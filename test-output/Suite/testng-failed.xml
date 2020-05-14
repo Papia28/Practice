@@ -5,8 +5,8 @@
     <classes>
       <class name="webApplication.testingFramework.runner.runTest">
         <methods>
-          <include name="runScenario" invocation-numbers="0"/>
           <include name="tearDownClass"/>
+          <include name="feature"/>
           <include name="setUpClass"/>
         </methods>
       </class> <!-- webApplication.testingFramework.runner.runTest -->

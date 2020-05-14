@@ -1,19 +1,50 @@
 package webApplication.testingFramework.common;
 
 import org.openqa.selenium.WebDriver;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import webApplication.testingFramework.seleniumBaseFramework.seleniumBase;
 
 
-public class genericFunctions extends seleniumBase {
+public final class genericFunctions {
 
-	private WebDriver driver = null;
+	private static WebDriver driver;
+	private final seleniumBase sb = new seleniumBase();
 
-	// method to launch the URL of the application
-	public void launchBaseURL() throws Exception {
+	
+	
+	@Before
+	public void openBrowser()throws Throwable {
+		try { 
+				driver = sb.beforeExecution();
+	}
+		catch(Exception e) {
+			System.out.println("Error occurred: openBrowser()");
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	@After
+	public void closeBrowser() throws Throwable {
 		try {
-			//TODO assign driver to something so that beforetest runs
-			driver = super.baseDriver;
-			String URL = rc.getURL();
+			sb.afterExecution();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error occurred: closeBrowser()");
+		}
+	}
+	
+	
+	
+	
+	// method to launch the URL of the application
+	public void launchBaseURL() throws Throwable {
+		try {
+			String URL = sb.rc.getURL();
 			if (URL != "") {
 				driver.get(URL);
 				Thread.sleep(2000);
@@ -29,8 +60,9 @@ public class genericFunctions extends seleniumBase {
 		}
 	}
 
+	
 	// method to maximize opened browser window
-	public void maximizeBrowser() throws Exception {
+	public void maximizeBrowser() throws Throwable {
 		try {
 			driver.manage().window().maximize();
 			Thread.sleep(5000);

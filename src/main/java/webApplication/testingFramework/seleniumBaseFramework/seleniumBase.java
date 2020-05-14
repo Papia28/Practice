@@ -1,44 +1,42 @@
 package webApplication.testingFramework.seleniumBaseFramework;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterSuite;
-//import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeSuite;
-//import org.testng.annotations.BeforeTest;
 
-public class seleniumBase extends seleniumBaseDriver {
 
-	protected WebDriver baseDriver = null;
+public final class seleniumBase extends seleniumBaseDriver {
 
+	private WebDriver baseDriver = null;
+
+	
 	// launch the browser
-	@BeforeSuite(alwaysRun = true)
-	public void openBrowser() throws Exception {
+	public WebDriver beforeExecution() throws Throwable {
 		try {
 			// System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
 			// WebDriverManager.chromedriver().setup();
 			// driver = new ChromeDriver();
 			super.setDriverManager();
 			super.setSeleniumBaseDriver(baseDriver);
-			Thread.sleep(2000);
+			Thread.sleep(500);
 			baseDriver = super.getSeleniumBaseDriver();
-			Thread.sleep(2000);
+			Thread.sleep(500);
+			return baseDriver;
 		} catch (Exception e) {
-			System.out.println("Error Occured: launchBrowser()");
+			System.out.println("Error Occured: beforeExecution()");
 			e.printStackTrace();
+			return null;
 		}
 	}
 
 	
 
-	// method to be executed after each test is finished running
-	@AfterSuite(alwaysRun = true)
-	public void closeBrowser() throws Exception {
+	// close browser
+	public void afterExecution() throws Throwable {
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(1000);
 			System.out.println("************Closing Browser**************");
 			baseDriver.close();
 		} catch (Exception e) {
-			System.out.println("Error Occured in closeBrowser");
+			System.out.println("Error Occured: afterExecution");
 			e.printStackTrace();
 		} finally {
 			System.out.println("************Quiting Browser**************");

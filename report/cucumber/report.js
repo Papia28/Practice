@@ -1,15 +1,27 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/java/webApplication/testingFramework/features/Login.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("Login.feature");
 formatter.feature({
-  "name": "To test sample Testing Framework",
+  "comments": [
+    {
+      "line": 1,
+      "value": "#Author: Papia Nandi"
+    }
+  ],
+  "line": 3,
+  "name": "To test first Testing Framework",
   "description": "",
+  "id": "to-test-first-testing-framework",
   "keyword": "Feature"
 });
 formatter.scenario({
+  "line": 5,
   "name": "To validate Login functionality",
   "description": "",
+  "id": "to-test-first-testing-framework;to-validate-login-functionality",
+  "type": "scenario",
   "keyword": "Scenario"
 });
 formatter.step({
+  "line": 7,
   "name": "application is launched",
   "keyword": "Given "
 });
