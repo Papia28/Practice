@@ -1,6 +1,6 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/java/webApplication/testingFramework/features/Login.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:src/test/java/features/Login.feature");
 formatter.feature({
-  "name": "To test sample Testing Framework",
+  "name": "To test first Testing Framework",
   "description": "",
   "keyword": "Feature"
 });
@@ -13,8 +13,10 @@ formatter.step({
   "name": "application is launched",
   "keyword": "Given "
 });
-formatter.match({});
+formatter.match({
+  "location": "stepDefinitions.Login.launchApplication()"
+});
 formatter.result({
-  "status": "undefined"
+  "status": "passed"
 });
 });
