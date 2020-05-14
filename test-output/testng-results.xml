@@ -2,19 +2,29 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="5818" started-at="2020-05-14T13:35:25 IST" finished-at="2020-05-14T13:35:31 IST">
+  <suite name="Suite" duration-ms="18717" started-at="2020-05-14T16:23:50 IST" finished-at="2020-05-14T16:24:09 IST">
     <groups>
       <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper, io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.TestRunner@45afc369]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper, io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.TestRunner@33cb5951]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test name="Default test" duration-ms="5818" started-at="2020-05-14T13:35:25 IST" finished-at="2020-05-14T13:35:31 IST">
+    <test name="Test" duration-ms="18717" started-at="2020-05-14T16:23:50 IST" finished-at="2020-05-14T16:24:09 IST">
+      <class name="webApplication.testingFramework.common.baseFunctions">
+        <test-method status="PASS" signature="openBrowser()[pri:0, instance:webApplication.testingFramework.common.baseFunctions@32a068d1]" name="openBrowser" is-config="true" duration-ms="8830" started-at="2020-05-14T16:23:41 IST" finished-at="2020-05-14T16:23:50 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method status="PASS" signature="closeBrowser()[pri:0, instance:webApplication.testingFramework.common.baseFunctions@32a068d1]" name="closeBrowser" is-config="true" duration-ms="6294" started-at="2020-05-14T16:24:09 IST" finished-at="2020-05-14T16:24:15 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- webApplication.testingFramework.common.baseFunctions -->
       <class name="runner.TestRunner">
-        <test-method status="PASS" signature="setUpClass()[pri:0, instance:runner.TestRunner@45afc369]" name="setUpClass" is-config="true" duration-ms="403" started-at="2020-05-14T13:35:25 IST" finished-at="2020-05-14T13:35:25 IST">
+        <test-method status="PASS" signature="setUpClass()[pri:0, instance:runner.TestRunner@33cb5951]" name="setUpClass" is-config="true" duration-ms="468" started-at="2020-05-14T16:23:50 IST" finished-at="2020-05-14T16:23:51 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method status="PASS" signature="runScenario(io.cucumber.testng.PickleWrapper, io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.TestRunner@45afc369]" name="runScenario" duration-ms="5219" started-at="2020-05-14T13:35:25 IST" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2020-05-14T13:35:31 IST">
+        <test-method status="PASS" signature="runScenario(io.cucumber.testng.PickleWrapper, io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.TestRunner@33cb5951]" name="runScenario" duration-ms="17991" started-at="2020-05-14T16:23:51 IST" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2020-05-14T16:24:09 IST">
           <params>
             <param index="0">
               <value>
@@ -30,11 +40,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:runner.TestRunner@45afc369]" name="tearDownClass" is-config="true" duration-ms="138" started-at="2020-05-14T13:35:31 IST" finished-at="2020-05-14T13:35:31 IST">
+        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:runner.TestRunner@33cb5951]" name="tearDownClass" is-config="true" duration-ms="188" started-at="2020-05-14T16:24:09 IST" finished-at="2020-05-14T16:24:09 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
       </class> <!-- runner.TestRunner -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
 </testng-results>
