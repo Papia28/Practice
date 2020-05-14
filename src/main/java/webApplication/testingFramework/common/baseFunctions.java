@@ -1,13 +1,15 @@
 package webApplication.testingFramework.common;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import webApplication.testingFramework.seleniumBaseFramework.seleniumBase;
 
-public final class baseFunctions {
+public class baseFunctions {
 
-	private static WebDriver driver;
+	protected static WebDriver driver;
 	private static final seleniumBase sb = new seleniumBase();
 
 	@BeforeSuite
@@ -50,14 +52,37 @@ public final class baseFunctions {
 		}
 	}
 
-	// method to maximize opened browser window
-	public void maximizeBrowser() throws Throwable {
+	// method to return locator type
+	public By getLocator(String locatorValue, String locatorType) throws Throwable{
 		try {
-			driver.manage().window().maximize();
-			Thread.sleep(5000);
+			switch (locatorType.toUpperCase()) {
+			case "XPATH":
+				return By.xpath(locatorValue);
+			case "ID":
+				return By.id(locatorValue);
+			case "NAME":
+				return By.name(locatorValue);
+			case "LINKTEXT":
+				return By.linkText(locatorValue);
+			case "PARTIALLINKTEXT":
+				return By.partialLinkText(locatorValue);
+			case "CSSSELECTOR":
+				return By.cssSelector(locatorValue);
+			case "TAGNAME":
+				return By.tagName(locatorValue);
+			case "CLASSNAME":
+				return By.className(locatorValue);
+			default:
+				System.out.println("No match found for Locators!");
+				return null;
+			}
 		} catch (Exception e) {
-			System.out.println("Error occurred: maximizeBrowser()");
 			e.printStackTrace();
+			System.out.println("Error in getLocator()");
+			return null;
 		}
 	}
+	
+	
+	
 }

@@ -19,4 +19,14 @@ formatter.match({
 formatter.result({
   "status": "passed"
 });
+formatter.step({
+  "name": "click Sign In",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "stepDefinitions.Login.clickSignIn()"
+});
+formatter.result({
+  "status": "passed"
+});
 });
