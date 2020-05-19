@@ -6,12 +6,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import webApplication.testingFramework.seleniumBaseFramework.readConfig;
 
-public class genericFunctions extends baseFunctions {
+public final class genericFunctions extends baseFunctions {
 
-	private static pageObjectProperties op = new pageObjectProperties();
+	private static final pageObjectProperties op = new pageObjectProperties();
+	private static final readConfig rc = new readConfig();
+	private static final WebDriver driver = baseFunctions.driver;
 	
-	private WebDriver driver = baseFunctions.driver;
 
 	// method to maximize opened browser window
 	public void maximizeBrowser() throws Throwable {
@@ -66,34 +68,98 @@ public class genericFunctions extends baseFunctions {
 			System.out.println("Error in click()");
 		}
 	}
-	
-	
-	//method to clear text
-	public void clearValue(String locatorValue, String locatorType)throws Throwable {
+
+	// method to clear text
+	public void clearValue(String locatorValue, String locatorType) throws Throwable {
 		try {
 			String value = op.getActualLocatorValue(locatorValue);
 			WebElement element = getElement(value, locatorType);
 			element.clear();
 			Thread.sleep(500);
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in clearText()");
 		}
 	}
-	
-	
-	//method to write in the fields
-	public void writeValue(String locatorValue, String locatorType, String fieldValue)throws Throwable {
+
+	// method to write in the fields
+	public void writeValue(String locatorValue, String locatorType, String fieldValue) throws Throwable {
 		try {
 			String locatorValue1 = op.getActualLocatorValue(locatorValue);
 			WebElement element = getElement(locatorValue1, locatorType);
 			element.sendKeys(fieldValue);
 			Thread.sleep(500);
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in writeValue()");
 		}
 	}
+
+	// method to return username
+	public String returnUsername() throws Throwable {
+		try {
+			String username = rc.getUsername();
+			return username;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in returnUsername()");
+			return null;
+		}
+	}
+
+	// method to return password
+	public String returnPassword() throws Throwable {
+		try {
+			String password = rc.getPassword();
+			return password;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in returnPassword()");
+			return null;
+		}
+	}
+
+	// method to return current page title
+	public String getActualPageTitle() throws Throwable {
+		try {
+			String pageTitle = driver.getTitle();
+			return pageTitle;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in getActualPageTitle()");
+			return null;
+		}
+	}
+	
+	//method to return expected page Title
+	public String getExpectedPageTitle() throws Throwable {
+		try {
+			String pageTitle = op.getActualLocatorValue("Page_Title");
+			return pageTitle;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in getExpectedPageTitle()");
+			return null;
+		}
+	}
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

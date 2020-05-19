@@ -1,21 +1,18 @@
 package stepDefinitions;
 
+import webApplication.testingFramework.common.assertions;
 import webApplication.testingFramework.common.baseFunctions;
 import webApplication.testingFramework.common.genericFunctions;
-import webApplication.testingFramework.seleniumBaseFramework.readConfig;
 
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
+public final class Login {
 
-
-public final class Login{
-
-	private baseFunctions bf = new baseFunctions();
-	private genericFunctions gf = new genericFunctions();
-	private static readConfig rc = new readConfig();
-	//private static WebDriver driver;
+	private static final baseFunctions bf = new baseFunctions();
+	private static final genericFunctions gf = new genericFunctions();
+	private static final assertions a = new assertions();
 
 	@Given("^application is launched$")
 	public void launchApplication() throws Throwable {
@@ -30,46 +27,68 @@ public final class Login{
 			System.out.println("Error occurred: launchApplication()");
 		}
 	}
-	
-	
+
 	@Then("^click Sign In$")
-	public void clickSignIn()throws Throwable
-	{
+	public void clickSignIn() throws Throwable {
 		try {
-		gf.click("Sign_In", "xpath");
-		}
-		catch(Exception e) {
+			gf.click("Sign_In_Btn", "xpath");
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in clickSignIn()");
 		}
 	}
-	
-	
+
 	@Then("^provide credentials$")
-	public void provideCredentials() throws Throwable
-	{
+	public void provideCredentials() throws Throwable {
 		try {
-			gf.clearValue("Email_Field", "xpath");
-			String username = rc.getUsername();
-			gf.writeValue("Email_Field", "xpath", username);
-		}
-		catch(Exception e) {
+			String username = gf.returnUsername();
+			String password = gf.returnPassword();
+			gf.clearValue("Username_txt", "xpath");
+			gf.writeValue("Username_txt", "xpath", username);
+			gf.click("Continue_Btn", "xpath");
+			Thread.sleep(500);
+			gf.clearValue("Password_txt", "xpath");
+			gf.writeValue("Password_txt", "xpath", password);
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in provideCredentials()");
-		}		
+		}
 	}
-	
-	
+
 	@Then("^click Login$")
-	public void clickLogin() throws Throwable
-	{
-		
+	public void clickLogin() throws Throwable {
+		try {
+			gf.click("Login_Btn", "xpath");
+			Thread.sleep(300);
+			gf.click("OTP_Continue_Btn", "xpath");
+			Thread.sleep(10000);
+			Thread.sleep(10000);
+			Thread.sleep(10000);
+			Thread.sleep(10000);
+			gf.click("OTP_Continue_Btn_2", "xpath");
+			Thread.sleep(500);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in clickLogin()");
+		}
 	}
-	
-	
+
 	@Then("^verify title of page$")
-	public void verifyTitle() throws Throwable
-	{
-		
+	public void verifyTitle() throws Throwable {
+		String actual = gf.getActualPageTitle();
+		String expected = gf.getExpectedPageTitle();
+		try {
+			if (a.assertEqualValue(actual, expected) == true)
+				System.out.println("Title verification successfull!");
+			else
+				throw new Exception("Title verification failure!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in verifyTitle()");
+		}
 	}
 }
+
+
+

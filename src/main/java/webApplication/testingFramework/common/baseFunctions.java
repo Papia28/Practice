@@ -9,7 +9,7 @@ import webApplication.testingFramework.seleniumBaseFramework.seleniumBase;
 
 public class baseFunctions {
 
-	protected static WebDriver driver;
+	protected static WebDriver driver = null;
 	private static final seleniumBase sb = new seleniumBase();
 
 	@BeforeSuite
