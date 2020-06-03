@@ -2,3 +2,6 @@
 /report/
 /.settings/
 /target/
+/TestingFramework/target/
+/.project
+/.classpath
