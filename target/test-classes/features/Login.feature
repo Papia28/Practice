@@ -2,8 +2,8 @@
 
 Feature: To test first Testing Framework
 
+@EndToEnd
 Scenario: To validate Login functionality
-
 Given application is launched
 Then click Sign In
 Then provide credentials
