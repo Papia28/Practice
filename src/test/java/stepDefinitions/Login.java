@@ -1,6 +1,5 @@
 package stepDefinitions;
 
-import webApplication.testingFramework.common.assertions;
 import webApplication.testingFramework.common.genericFunctions;
 
 import io.cucumber.java.PendingException;
@@ -10,7 +9,7 @@ import io.cucumber.java.en.Then;
 public final class Login {
 
 	private static final genericFunctions gf = new genericFunctions();
-	private static final assertions a = new assertions();
+
 
 	@Given("^application is launched$")
 	public void launchApplication() throws Throwable {

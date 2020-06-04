@@ -12,8 +12,5 @@ And user selects Drag and Drop
 @DragAndDrop
 @Functional
 Scenario: Test dragging and dropping of items
-When user selects draggable item
-And user drops item
-Then item displayed in list
-When user drops all items
+When user drags and drops all items
 Then all items displayed in list

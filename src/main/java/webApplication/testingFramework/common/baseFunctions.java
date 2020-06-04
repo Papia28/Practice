@@ -14,6 +14,7 @@ public class baseFunctions {
 
 	protected static WebDriver driver = null;
 	private static final seleniumBase sb = new seleniumBase();
+	protected static final pageObjects po = new pageObjects();
 
 	@BeforeSuite
 	public static void openBrowser() throws Throwable {
@@ -110,5 +111,29 @@ public class baseFunctions {
 				System.out.println("Error in getElements()");
 				return null;
 			}
-		}	
+		}
+		
+		// method to return username
+		public String returnUsername() throws Throwable {
+			try {
+				String username = po.getUsername();
+				return username;
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Error in returnUsername()");
+				return null;
+			}
+		}
+
+		// method to return password
+		public String returnPassword() throws Throwable {
+			try {
+				String password = po.getPassword();
+				return password;
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Error in returnPassword()");
+				return null;
+			}
+		}
 }
