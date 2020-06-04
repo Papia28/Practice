@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public final class genericFunctions extends baseFunctions {
 
-	private static final pageObjectProperties op = new pageObjectProperties();
+	private static final pageObjects po = new pageObjects();
 	private static final WebDriver driver = baseFunctions.driver;
 	private static final assertions a = new assertions();
 	
@@ -25,7 +25,7 @@ public final class genericFunctions extends baseFunctions {
 	// method to perform mouse click on items
 	public void click(String locatorType, String locatorValue) throws Throwable {
 		try {
-			String value = op.getActualLocatorValue(locatorValue);
+			String value = po.getActualLocatorValue(locatorValue);
 			Thread.sleep(500);
 			WebElement element = getElement(locatorType, value);
 			Thread.sleep(100);
@@ -40,7 +40,7 @@ public final class genericFunctions extends baseFunctions {
 	// method to clear text
 	public void clearValue(String locatorType, String locatorValue) throws Throwable {
 		try {
-			String value = op.getActualLocatorValue(locatorValue);
+			String value = po.getActualLocatorValue(locatorValue);
 			Thread.sleep(500);
 			WebElement element = getElement(locatorType, value);
 			Thread.sleep(100);
@@ -56,7 +56,7 @@ public final class genericFunctions extends baseFunctions {
 	// method to write in the fields
 	public void writeValue(String locatorType, String locatorValue, String fieldValue) throws Throwable {
 		try {
-			String locatorValue1 = op.getActualLocatorValue(locatorValue);
+			String locatorValue1 = po.getActualLocatorValue(locatorValue);
 			Thread.sleep(500);
 			WebElement element = getElement(locatorType, locatorValue1);
 			Thread.sleep(100);
@@ -72,7 +72,7 @@ public final class genericFunctions extends baseFunctions {
 	// method to return username
 	public String returnUsername() throws Throwable {
 		try {
-			String username = op.getUsername();
+			String username = po.getUsername();
 			return username;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -84,7 +84,7 @@ public final class genericFunctions extends baseFunctions {
 	// method to return password
 	public String returnPassword() throws Throwable {
 		try {
-			String password = op.getPassword();
+			String password = po.getPassword();
 			return password;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -110,7 +110,7 @@ public final class genericFunctions extends baseFunctions {
 	public boolean verifyPageTitle(String title) throws Throwable {
 		try {
 			Thread.sleep(500);
-			String expectedPageTitle = op.getActualLocatorValue(title);
+			String expectedPageTitle = po.getActualLocatorValue(title);
 			String actualPageTitle = getActualPageTitle();
 			boolean result = a.assertEqualValue(actualPageTitle, expectedPageTitle);
 			return result;

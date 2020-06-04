@@ -6,7 +6,7 @@ import java.util.Properties;
 
 import webApplication.testingFramework.seleniumBaseFramework.readConfig;
 
-public class pageObjectProperties extends readConfig{
+public class pageObjects extends readConfig{
 
 	private static File file = null;
 	private static FileInputStream inputStream = null;
