@@ -6,8 +6,13 @@ import io.cucumber.java.en.When;
 
 public class SimpleFormDemo {
 	
-	@Given("^user selects simple form demo$")
+	@Given("^user selects Simple Form Demo$")
 	public void selectSimpleForm() {
+		//TODO
+	}
+	
+	@Then("^user is on Simple Form Demo page$")
+	public void verifyPage() {
 		//TODO
 	}
 	

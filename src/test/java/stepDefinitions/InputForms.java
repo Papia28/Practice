@@ -5,6 +5,11 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class InputForms {
+	
+	@Given("^popups have been closed$")
+	public void popupsClosed() {
+		//TODO
+	}
 
 	@Given("^Input Forms is visible$")
 	public void visibleInputForms() {
