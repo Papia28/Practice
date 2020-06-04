@@ -1,7 +1,10 @@
 package webApplication.testingFramework.common;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 //import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -33,7 +36,7 @@ public class baseFunctions {
 	}
 
 	// method to launch the URL of the application
-	public WebDriver launchBaseURL() throws Throwable {
+	public void launchBaseURL() throws Throwable {
 		try {
 			String URL = sb.rc.getURL();
 			if (URL != "") {
@@ -44,16 +47,14 @@ public class baseFunctions {
 				System.out.println("URL cannot be empty!");
 				throw new NullPointerException();
 			}
-			return driver;
 		} catch (Exception e) {
 			System.out.println("Error Occured: launchURL()");
 			e.printStackTrace();
-			return null;
 		}
 	}
 
 	// method to return locator type
-	public By getLocator(String locatorValue, String locatorType) throws Throwable{
+	public By getLocator(String locatorType, String locatorValue) throws Throwable{
 		try {
 			switch (locatorType.toUpperCase()) {
 			case "XPATH":
@@ -83,6 +84,31 @@ public class baseFunctions {
 		}
 	}
 	
-	
-	
+	// method to find element
+		public WebElement getElement(String locatorType, String locatorValue) throws Throwable {
+			try {
+				By locator = getLocator(locatorType, locatorValue);
+				WebElement element = driver.findElement(locator);
+				Thread.sleep(500);
+				return element;
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Error in getElement()");
+				return null;
+			}
+		}
+
+		// method to find list of elements
+		public List<WebElement> getElements(String locatorType, String locatorValue) throws Throwable {
+			try {
+				By locator = getLocator(locatorType, locatorValue);
+				List<WebElement> elements = driver.findElements(locator);
+				Thread.sleep(500);
+				return elements;
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Error in getElements()");
+				return null;
+			}
+		}	
 }

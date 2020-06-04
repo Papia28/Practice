@@ -1,68 +1,36 @@
 package webApplication.testingFramework.common;
 
-import java.util.List;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import webApplication.testingFramework.seleniumBaseFramework.readConfig;
 
 public final class genericFunctions extends baseFunctions {
 
 	private static final pageObjectProperties op = new pageObjectProperties();
-	private static final readConfig rc = new readConfig();
 	private static final WebDriver driver = baseFunctions.driver;
+	private static final assertions a = new assertions();
 	
 
 	// method to maximize opened browser window
 	public void maximizeBrowser() throws Throwable {
 		try {
 			driver.manage().window().maximize();
-			Thread.sleep(500);
+			Thread.sleep(200);
 		} catch (Exception e) {
 			System.out.println("Error occurred: maximizeBrowser()");
 			e.printStackTrace();
 		}
-	}
-
-	// method to find element
-	public WebElement getElement(String locatorValue, String locatorType) throws Throwable {
-		try {
-			By locator = super.getLocator(locatorValue, locatorType);
-			WebElement element = driver.findElement(locator);
-			Thread.sleep(500);
-			return element;
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Error in getElement()");
-			return null;
-		}
-
-	}
-
-	// method to find list of elements
-	public List<WebElement> getElements(String locatorValue, String locatorType) throws Throwable {
-		try {
-			By locator = super.getLocator(locatorValue, locatorType);
-			List<WebElement> elements = driver.findElements(locator);
-			Thread.sleep(500);
-			return elements;
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Error in getElements()");
-			return null;
-		}
-
-	}
+	}	
 
 	// method to perform mouse click on items
-	public void click(String locatorValue, String locatorType) throws Throwable {
+	public void click(String locatorType, String locatorValue) throws Throwable {
 		try {
 			String value = op.getActualLocatorValue(locatorValue);
-			WebElement element = getElement(value, locatorType);
-			element.click();
 			Thread.sleep(500);
+			WebElement element = getElement(locatorType, value);
+			Thread.sleep(100);
+			element.click();
+			Thread.sleep(100);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in click()");
@@ -70,26 +38,32 @@ public final class genericFunctions extends baseFunctions {
 	}
 
 	// method to clear text
-	public void clearValue(String locatorValue, String locatorType) throws Throwable {
+	public void clearValue(String locatorType, String locatorValue) throws Throwable {
 		try {
 			String value = op.getActualLocatorValue(locatorValue);
-			WebElement element = getElement(value, locatorType);
-			element.clear();
 			Thread.sleep(500);
-		} catch (Exception e) {
+			WebElement element = getElement(locatorType, value);
+			Thread.sleep(100);
+			element.clear();
+			Thread.sleep(100);
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in clearText()");
 		}
 	}
 
 	// method to write in the fields
-	public void writeValue(String locatorValue, String locatorType, String fieldValue) throws Throwable {
+	public void writeValue(String locatorType, String locatorValue, String fieldValue) throws Throwable {
 		try {
 			String locatorValue1 = op.getActualLocatorValue(locatorValue);
-			WebElement element = getElement(locatorValue1, locatorType);
-			element.sendKeys(fieldValue);
 			Thread.sleep(500);
-		} catch (Exception e) {
+			WebElement element = getElement(locatorType, locatorValue1);
+			Thread.sleep(100);
+			element.sendKeys(fieldValue);
+			Thread.sleep(100);
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in writeValue()");
 		}
@@ -98,7 +72,7 @@ public final class genericFunctions extends baseFunctions {
 	// method to return username
 	public String returnUsername() throws Throwable {
 		try {
-			String username = rc.getUsername();
+			String username = op.getUsername();
 			return username;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -110,7 +84,7 @@ public final class genericFunctions extends baseFunctions {
 	// method to return password
 	public String returnPassword() throws Throwable {
 		try {
-			String password = rc.getPassword();
+			String password = op.getPassword();
 			return password;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -122,6 +96,7 @@ public final class genericFunctions extends baseFunctions {
 	// method to return current page title
 	public String getActualPageTitle() throws Throwable {
 		try {
+			Thread.sleep(500);
 			String pageTitle = driver.getTitle();
 			return pageTitle;
 		} catch (Exception e) {
@@ -131,15 +106,37 @@ public final class genericFunctions extends baseFunctions {
 		}
 	}
 	
-	//method to return expected page Title
-	public String getExpectedPageTitle() throws Throwable {
+	//method to verify page Title
+	public boolean verifyPageTitle(String title) throws Throwable {
 		try {
-			String pageTitle = op.getActualLocatorValue("Page_Title");
-			return pageTitle;
-		} catch (Exception e) {
+			Thread.sleep(500);
+			String expectedPageTitle = op.getActualLocatorValue(title);
+			String actualPageTitle = getActualPageTitle();
+			boolean result = a.assertEqualValue(actualPageTitle, expectedPageTitle);
+			return result;
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in getExpectedPageTitle()");
-			return null;
+			return false;
+		}
+	}
+	
+	//method to check if element visibility
+	public void isElementVisible(String locatorType, String locatorValue) throws Throwable {
+		try {
+			WebElement element = getElement(locatorType, locatorValue);
+			Thread.sleep(500);
+			boolean result = a.assertTrueValue(element.isDisplayed());
+			if(result == true)
+				System.out.println("Success! " + locatorValue + " is visible!");
+			else
+				System.out.println("Failure! " + locatorValue + " is not visible!");
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in isElementVisible().");
+			throw e;
 		}
 	}
 	

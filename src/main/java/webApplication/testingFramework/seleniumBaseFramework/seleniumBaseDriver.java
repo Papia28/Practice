@@ -18,7 +18,7 @@ public class seleniumBaseDriver extends seleniumBaseDriverManager {
 	protected void setSeleniumBaseDriver(WebDriver driver) throws Exception {
 		try {
 			seleniumBaseDriver = driver;
-			switch (super.browser) {
+			switch (browser) {
 			case "Chrome":
 				seleniumBaseDriver = new ChromeDriver();
 				break;

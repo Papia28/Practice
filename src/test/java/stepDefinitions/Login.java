@@ -1,7 +1,6 @@
 package stepDefinitions;
 
 import webApplication.testingFramework.common.assertions;
-import webApplication.testingFramework.common.baseFunctions;
 import webApplication.testingFramework.common.genericFunctions;
 
 import io.cucumber.java.PendingException;
@@ -10,14 +9,13 @@ import io.cucumber.java.en.Then;
 
 public final class Login {
 
-	private static final baseFunctions bf = new baseFunctions();
 	private static final genericFunctions gf = new genericFunctions();
 	private static final assertions a = new assertions();
 
 	@Given("^application is launched$")
 	public void launchApplication() throws Throwable {
 		try {
-			bf.launchBaseURL();
+			gf.launchBaseURL();
 			gf.maximizeBrowser();
 			Thread.sleep(5000);
 		} catch (PendingException n) {
@@ -71,21 +69,6 @@ public final class Login {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in clickLogin()");
-		}
-	}
-
-	@Then("^verify title of page$")
-	public void verifyTitle() throws Throwable {
-		String actual = gf.getActualPageTitle();
-		String expected = gf.getExpectedPageTitle();
-		try {
-			if (a.assertEqualValue(actual, expected) == true)
-				System.out.println("Title verification successfull!");
-			else
-				throw new Exception("Title verification failure!");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Error in verifyTitle()");
 		}
 	}
 }

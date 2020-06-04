@@ -1,17 +1,11 @@
 package webApplication.testingFramework.common;
 
-//import java.util.ArrayList;
-//import java.util.LinkedHashMap;
-//import java.util.List;
-
 //import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class assertions extends baseFunctions {
 	
 	//private static final WebDriver driver = baseFunctions.driver;
-	//public ArrayList<Integer> list1 = new ArrayList<Integer>();
-	//LinkedHashMap <Character, Integer> map1 = new LinkedHashMap <Character, Integer>();
 	
 	//method to assert a equal value
 	public boolean assertEqualValue(String value1, String value2)throws Throwable {
@@ -23,8 +17,22 @@ public class assertions extends baseFunctions {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-			System.out.println("Error! Verification unsuccessfull!");
-			return false;
+			System.out.println("assertEqualValue(): Error! Values do not match!");
+			throw e;
+		}
+	}
+	
+	//method to assert whether value true or not
+	public boolean assertTrueValue(boolean value) throws Throwable{
+		try {
+			System.out.println("Value: " + value);
+			Assert.assertTrue(value);
+			return true;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("assertTrueValue(): Error! Value not true!");
+			throw e;
 		}
 	}
 }

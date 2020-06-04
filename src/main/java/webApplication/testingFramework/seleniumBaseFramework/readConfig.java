@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Properties;
 
-public final class readConfig {
+public class readConfig {
 
 	// create variable of type File and FileInputStream to keep the custom
 	// properties into it

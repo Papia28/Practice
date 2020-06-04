@@ -17,7 +17,7 @@ public final class seleniumBase extends seleniumBaseDriver {
 			super.setDriverManager();
 			super.setSeleniumBaseDriver(baseDriver);
 			Thread.sleep(500);
-			baseDriver = super.getSeleniumBaseDriver();
+			baseDriver = getSeleniumBaseDriver();
 			Thread.sleep(500);
 			return baseDriver;
 		} catch (Exception e) {
