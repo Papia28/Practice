@@ -29,8 +29,8 @@ public class SelectDropdownList {
 			Thread.sleep(100);
 			gf.isElementVisible("xpath", "SelectDay");
 			Thread.sleep(100);
-			gf.selectDropdownByText("xpath", "SelectDay", "Day");
-			//gf.selectDropdownByValue("xpath", "SelectDay", "Day");
+			//gf.selectDropdownByText("xpath", "SelectDay", "Day");
+			gf.selectDropdownByValue("xpath", "SelectDay", "Day");
 			Thread.sleep(100);
 		} 
 		catch (Exception e) {
@@ -55,7 +55,7 @@ public class SelectDropdownList {
 		}
 	}
 	
-	@When("^user selects single state$")
+	/*@When("^user selects single state$")
 	public void selectSingleState() throws Throwable{
 		try {
 			Thread.sleep(100);
@@ -145,5 +145,5 @@ public class SelectDropdownList {
 			System.out.println("Error in selectMultiplePlaces()");
 			throw e;
 		}
-	}
+	}*/
 }

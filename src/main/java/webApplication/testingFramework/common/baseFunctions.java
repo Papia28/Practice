@@ -27,7 +27,7 @@ public class baseFunctions {
 		}
 	}
 
-	/*@AfterSuite
+	@AfterSuite
 	public static void closeBrowser() throws Throwable {
 		try {
 			sb.afterExecution();
@@ -36,7 +36,7 @@ public class baseFunctions {
 			System.out.println("Error occurred: closeBrowser()");
 			throw e;
 		}
-	}*/
+	}
 
 	// method to launch the URL of the application
 	public void launchBaseURL() throws Throwable {

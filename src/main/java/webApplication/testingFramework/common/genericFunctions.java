@@ -122,7 +122,7 @@ public class genericFunctions extends baseFunctions {
 	}
 
 	// method to select an item from dropdown by visible text
-	public void selectDropdownText(String locatorType, String locatorValue, String textValue) throws Throwable {
+	public void selectDropdownByText(String locatorType, String locatorValue, String textValue) throws Throwable {
 		try {
 			Thread.sleep(500);
 			String value = po.getActualLocatorValue(locatorValue);
@@ -136,7 +136,46 @@ public class genericFunctions extends baseFunctions {
 			Thread.sleep(100);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Error in selectDropdownText().");
+			System.out.println("Error in selectDropdownByText().");
+			throw e;
+		}
+	}
+	
+	//method to select an item from dropdown by value
+	public void selectDropdownByValue(String locatorType, String locatorValue, String optionValue) throws Throwable {
+		try {
+			Thread.sleep(500);
+			String value = po.getActualLocatorValue(locatorValue);
+			String option = po.getActualLocatorValue(optionValue);
+			Thread.sleep(500);
+			WebElement element = getElement(locatorType, value);
+			Thread.sleep(100);
+			Select dropDown = new Select(element);
+			Thread.sleep(100);
+			dropDown.selectByValue(option);
+			Thread.sleep(100);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in selectDropdownByValue().");
+			throw e;
+		}
+	}
+	
+	//verify single selected value
+	public boolean verifySingleSelected(String locatorType, String locatorValue, String verifyValue) throws Throwable {
+		try {
+			boolean result = false;
+			String value = po.getActualLocatorValue(locatorValue);
+			String expectedValue = po.getActualLocatorValue(verifyValue);
+			WebElement actualElement = getElement(locatorType, value);
+			String actualSetence = actualElement.getText();
+			String[] actualSetenceArray = actualSetence.split("-");
+			result = a.assertEqualValue(actualSetenceArray[1].trim(), expectedValue.trim());
+			return result;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in verifySingleSelected().");
 			throw e;
 		}
 	}

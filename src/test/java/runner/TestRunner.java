@@ -7,7 +7,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(features = "src/test/java/features/", 
 				 glue = "stepDefinitions", 
 				 plugin = { "pretty", "html:target/cucumber" },
-				 tags = {"@DragAndDrop"})
+				 tags = {"@SelectSingle"})
 
 @Test
 public class TestRunner extends AbstractTestNGCucumberTests {

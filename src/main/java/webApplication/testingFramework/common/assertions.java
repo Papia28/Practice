@@ -13,6 +13,7 @@ public class assertions extends baseFunctions {
 			System.out.println("Actual: " + value1);
 			System.out.println("Expected: " + value2);
 			Assert.assertEquals(value1, value2);
+			System.out.println("Success! Values match!");
 			return true;
 		}
 		catch(Exception e) {
