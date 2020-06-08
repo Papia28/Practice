@@ -15,20 +15,6 @@ Then selected day is displayed
 
 @Functional
 @Select
-Scenario: Test selecting single state
-#When user selects single state
-#And user clicks First Selected
-#Then first selected state is displayed
-
-@Functional
-@Select
-Scenario: Test selecting single state scenario 2
-#When user selects single state
-#And user clicks Get All Selected
-#Then all selected state is displayed
-
-@Functional
-@Select
 Scenario: Test selecting multiple places
 #When user selects multiple places
 #And user clicks First Selected

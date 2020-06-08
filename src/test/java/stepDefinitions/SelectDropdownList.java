@@ -1,12 +1,18 @@
 package stepDefinitions;
 
 import webApplication.testingFramework.common.genericFunctions;
+
+import org.openqa.selenium.support.ui.Select;
+
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class SelectDropdownList {
 	
 	private static final genericFunctions gf = new genericFunctions();
+	private static Select multiDropdown = null;
+	
+	
 	
 	@Then("^user selects Select Dropdown List$")
 	public void selectOption() throws Throwable{
@@ -23,14 +29,16 @@ public class SelectDropdownList {
 		}		
 	}
 	
+	//-----------------------------------------------Single Day Selector---------------------------------------------------
+	
 	@When("^user selects single day$")
 	public void selectDay() throws Throwable{
 		try {
 			Thread.sleep(100);
 			gf.isElementVisible("xpath", "SelectDay");
 			Thread.sleep(100);
-			//gf.selectDropdownByText("xpath", "SelectDay", "Day");
-			gf.selectDropdownByValue("xpath", "SelectDay", "Day");
+			//gf.singleSelectByText("xpath", "SelectDay", "Day");
+			gf.singleSelectByValue("xpath", "SelectDay", "Day");
 			Thread.sleep(100);
 		} 
 		catch (Exception e) {
@@ -55,18 +63,29 @@ public class SelectDropdownList {
 		}
 	}
 	
-	/*@When("^user selects single state$")
-	public void selectSingleState() throws Throwable{
+	//------------------------------------------------------------------------------------------------------------------------
+	
+	
+	
+	//------------------------------------------------MULTI STATE SELECTOR----------------------------------------------------
+	
+	@When("^user selects multiple states$")
+	public void selectMultipleStates() throws Throwable{
 		try {
 			Thread.sleep(100);
 			gf.isElementVisible("xpath", "SelectStates");
 			Thread.sleep(100);
-			gf.selectDropdownByValue("xpath", "SelectStates", "State");
+			gf.checkMultiSelect("xpath", "SelectStates");
+			Thread.sleep(100);
+			multiDropdown = gf.multiSelectByValue("xpath", "SelectStates", "States");
+			//gf.multiSelectByText("xpath", "SelectStates", "State");
+			//gf.multiSelectByText("xpath", "SelectStates", "States");
+			//gf.multiSelectByValue("xpath", "SelectStates", "State");
 			Thread.sleep(100);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Error in selectSingleState()");
+			System.out.println("Error in selectMultiplePlaces()");
 			throw e;
 		}
 	}
@@ -92,7 +111,8 @@ public class SelectDropdownList {
 			Thread.sleep(100);
 			gf.isElementVisible("xpath", "DisplayStates");
 			Thread.sleep(100);
-			gf.verifySingleSelected("xpath", "DisplayStates", "State");
+			gf.verifyFirstSelected("xpath", "DisplayStates", multiDropdown, "States");
+			//gf.verifyFirstSelected("xpath", "DisplayStates", "State");
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -122,7 +142,7 @@ public class SelectDropdownList {
 			Thread.sleep(100);
 			gf.isElementVisible("xpath", "DisplayResult");
 			Thread.sleep(100);
-			gf.verifyMultipleSelected("xpath", "DisplayResult", "Places");
+			gf.verifyAllSelected("xpath", multiDropdown, "Places");
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -131,19 +151,6 @@ public class SelectDropdownList {
 		}
 	}
 	
-	@When("^user selects multiple places$")
-	public void selectMultiplePlaces() throws Throwable{
-		try {
-			Thread.sleep(100);
-			gf.isElementVisible("xpath", "SelectPlaces");
-			Thread.sleep(100);
-			gf.selectDropdownByValue("xpath", "SelectPlaces", "Places");
-			Thread.sleep(100);
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Error in selectMultiplePlaces()");
-			throw e;
-		}
-	}*/
+	//------------------------------------------------------------------------------------------------------------------------
+	
 }

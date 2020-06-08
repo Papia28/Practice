@@ -109,8 +109,7 @@ public class genericFunctions extends baseFunctions {
 			Thread.sleep(500);
 			WebElement element = getElement(locatorType, value);
 			Thread.sleep(200);
-			boolean result = a.assertTrueValue(element.isDisplayed());
-			if (result == true)
+			if (a.assertTrueValue(element.isDisplayed()) == true)
 				System.out.println("Success! " + locatorValue + " is visible!");
 			else
 				System.out.println("Failure! " + locatorValue + " is not visible!");
@@ -122,7 +121,7 @@ public class genericFunctions extends baseFunctions {
 	}
 
 	// method to select an item from dropdown by visible text
-	public void selectDropdownByText(String locatorType, String locatorValue, String textValue) throws Throwable {
+	public void singleSelectByText(String locatorType, String locatorValue, String textValue) throws Throwable {
 		try {
 			Thread.sleep(500);
 			String value = po.getActualLocatorValue(locatorValue);
@@ -142,7 +141,7 @@ public class genericFunctions extends baseFunctions {
 	}
 	
 	//method to select an item from dropdown by value
-	public void selectDropdownByValue(String locatorType, String locatorValue, String optionValue) throws Throwable {
+	public void singleSelectByValue(String locatorType, String locatorValue, String optionValue) throws Throwable {
 		try {
 			Thread.sleep(500);
 			String value = po.getActualLocatorValue(locatorValue);
@@ -177,6 +176,68 @@ public class genericFunctions extends baseFunctions {
 			e.printStackTrace();
 			System.out.println("Error in verifySingleSelected().");
 			throw e;
+		}
+	}
+	
+	//method to verify is selection is multi select
+	public void checkMultiSelect(String locatorType, String locatorValue) throws Throwable {
+		try {
+			String value = po.getActualLocatorValue(locatorValue);
+			WebElement element = getElement(locatorType, value);
+			Select dropDown = new Select(element);
+			if(a.assertTrueValue(dropDown.isMultiple()) == true)
+				System.out.println("Dropdown is Multi Select type.");
+			else
+				System.out.println("Dropdown is Single Select type.");
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in checkMultiSelect().");
+			throw e;
+		}
+	}
+	
+	//method to do multiple selection by Value
+	public Select multiSelectByValue(String locatorType, String locatorValue, String values) throws Throwable {
+		try {
+			String value = po.getActualLocatorValue(locatorValue);
+			WebElement element = getElement(locatorType, value);
+			String [] valuesArray = values.split(",");
+			Select dropdown = new Select(element);
+			
+			for(int i=0; i< valuesArray.length; i++)
+			{
+				dropdown.selectByValue(valuesArray[i].trim());
+			}
+			return dropdown;			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in multiSelectByValue().");
+			throw e;
+		}
+	}
+	
+	//method to check first option selected by Select class object
+	public void verifyFirstSelected(String locatorType, String locatorValue, Select dropdown, String values) throws Throwable {
+		try {
+			String value = po.getActualLocatorValue(locatorValue);
+			
+			WebElement resultDisplayed = getElement(locatorType, value);
+			WebElement firstOption = dropdown.getFirstSelectedOption();
+			//TODO contains ","
+			String[] valuesArray = values.split(",");
+			String[] resultArray = resultDisplayed.getText().split(":");
+			
+			String actual1 = firstOption.getText();
+			String actual2 = resultArray[1].trim();
+			String expected = valuesArray[0].trim();
+			
+			a.assertEqualValue(actual1, actual2, expected);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in verifyFirstSelected().");
 		}
 	}
 
