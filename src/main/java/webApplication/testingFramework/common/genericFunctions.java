@@ -4,14 +4,15 @@ import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-public final class genericFunctions extends baseFunctions {
+public class genericFunctions extends baseFunctions {
 
-	private static final pageObjects po = baseFunctions.po;
-	private static final WebDriver driver = baseFunctions.driver;
-	private static final assertions a = new assertions();
+	protected static final pageObjects po = baseFunctions.po;
+	protected static final WebDriver driver = baseFunctions.driver;
+	protected static final assertions a = new assertions();
 
 	// method to maximize opened browser window
 	public void maximizeBrowser() throws Throwable {
@@ -21,6 +22,7 @@ public final class genericFunctions extends baseFunctions {
 		} catch (Exception e) {
 			System.out.println("Error occurred: maximizeBrowser()");
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
@@ -36,6 +38,7 @@ public final class genericFunctions extends baseFunctions {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in click()");
+			throw e;
 		}
 	}
 
@@ -51,6 +54,7 @@ public final class genericFunctions extends baseFunctions {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in clearText()");
+			throw e;
 		}
 	}
 
@@ -66,6 +70,7 @@ public final class genericFunctions extends baseFunctions {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in writeValue()");
+			throw e;
 		}
 	}
 
@@ -78,7 +83,7 @@ public final class genericFunctions extends baseFunctions {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in getActualPageTitle()");
-			return null;
+			throw e;
 		}
 	}
 
@@ -93,15 +98,16 @@ public final class genericFunctions extends baseFunctions {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in getExpectedPageTitle()");
-			return false;
+			throw e;
 		}
 	}
 
 	// method to check if element visibility
 	public void isElementVisible(String locatorType, String locatorValue) throws Throwable {
 		try {
+			String value = po.getActualLocatorValue(locatorValue);
 			Thread.sleep(500);
-			WebElement element = getElement(locatorType, locatorValue);
+			WebElement element = getElement(locatorType, value);
 			Thread.sleep(200);
 			boolean result = a.assertTrueValue(element.isDisplayed());
 			if (result == true)
@@ -116,70 +122,115 @@ public final class genericFunctions extends baseFunctions {
 	}
 
 	// method to select an item from dropdown by visible text
-	public void selectDropdownText(String locatorType, String locatorValue, String text) throws Throwable {
+	public void selectDropdownText(String locatorType, String locatorValue, String textValue) throws Throwable {
 		try {
 			Thread.sleep(500);
-			WebElement element = getElement(locatorType, locatorValue);
+			String value = po.getActualLocatorValue(locatorValue);
+			String text = po.getActualLocatorValue(textValue);
+			Thread.sleep(500);
+			WebElement element = getElement(locatorType, value);
 			Thread.sleep(100);
-			Select s = new Select(element);
+			Select dropDown = new Select(element);
 			Thread.sleep(100);
-			s.selectByVisibleText(text);
+			dropDown.selectByVisibleText(text);
 			Thread.sleep(100);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in selectDropdownText().");
+			throw e;
 		}
 	}
 
 	// method to click and hold
 	public void clickAndHoldElement(String locatorType, String locatorValue) throws Throwable {
 		try {
+			String value = po.getActualLocatorValue(locatorValue);
 			Thread.sleep(500);
-			WebElement element = getElement(locatorType, locatorValue);
+			WebElement element = getElement(locatorType, value);
 			Thread.sleep(100);
-			Actions grab = new Actions(driver);
-			grab.clickAndHold(element);
-			grab.build();
-			grab.perform();
+			Actions hold = new Actions(driver);
+			hold.clickAndHold(element);
+			hold.build();
+			hold.perform();
 			Thread.sleep(100);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in clickAndHoldElement().");
+			throw e;
 		}
 	}
 
-	// method to drag an element
+	// method to drag an element via single function
 	public String[] dragAndDropElements(String locatorType, String sourceValue, String targetValue) throws Throwable {
 		try {
+			String sourcePath = po.getActualLocatorValue(sourceValue);
+			String targetPath = po.getActualLocatorValue(targetValue);
 			Thread.sleep(500);
-			List<WebElement> sourceList = getElements(locatorType, sourceValue);
-			WebElement target = getElement(locatorType, targetValue);
-			Thread.sleep(100);
-			Actions dragDrop = new Actions(driver);
+			List<WebElement> sourceList = getElements(locatorType, sourcePath);
+			WebElement target = getElement(locatorType, targetPath);
+			Thread.sleep(100);	
+			String[] names = new String[sourceList.size()];	
 			WebElement source = null;
-			String[] names = new String[sourceList.size()];
-
-			for (int i = 0; i < sourceList.size(); i++) {
-				source = sourceList.get(i);
+			Actions dragDrop = new Actions(driver);
+			
+			for (int i = 0; i < sourceList.size(); i++) 
+			{
+				source = sourceList.get(i);		
+				System.out.println("Item " + (i+1) + " : " + source);
+				//dragDrop.moveToElement(source).build();
+				dragDrop.dragAndDrop(source, target).build().perform();
 				names[i] = source.getText();
-				dragDrop.dragAndDrop(source, target);
-				dragDrop.build();
-				dragDrop.perform();
 				Thread.sleep(100);
 			}
 			return names;
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in dragAndDropElements().");
-			return null;
+			throw e;
 		}
 	}
+	
+	// method to drag an element via multiple functions
+		public String[] dragAndDropElements1(String locatorType, String sourceValue, String targetValue) throws Throwable {
+			try {
+				String sourcePath = po.getActualLocatorValue(sourceValue);
+				String targetPath = po.getActualLocatorValue(targetValue);
+				Thread.sleep(500);
+				List<WebElement> sourceList = getElements(locatorType, sourcePath);
+				WebElement target = getElement(locatorType, targetPath);
+				Thread.sleep(100);
+				Actions dragDrop = new Actions(driver);
+				WebElement source = null;
+				String[] names = new String[sourceList.size()];
+
+				for (int i = 0; i < sourceList.size(); i++) {
+					source = sourceList.get(i);	
+					System.out.println("Item " + (i+1) + " : " + source);
+					dragDrop.clickAndHold(source).moveToElement(target, 1, 1).perform();					
+					Thread.sleep(2000);
+					dragDrop.release(target).build().perform();
+					names[i] = source.getText();
+					Thread.sleep(100);
+				}
+				return names;
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Error in dragAndDropElements().");
+				throw e;
+			}
+		}
 
 	// method to verify the dropped items
 	public void verifyDroppedItems(String locatorType, String values[], String locatorValue) throws Throwable {
 		try {
+			String value = po.getActualLocatorValue(locatorValue);
 			Thread.sleep(500);
-			List<WebElement> droppedItems = getElements(locatorType, locatorValue);
+			List<WebElement> droppedItems = getElements(locatorType, value);
+			
+			if(droppedItems.size() == 0)
+				throw new NullPointerException("No dropped elements found!");
+			
 			for (int i = 0; i < droppedItems.size(); i++) {
 				Thread.sleep(100);
 				String itemName = droppedItems.get(i).getText();
@@ -189,6 +240,7 @@ public final class genericFunctions extends baseFunctions {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in verifyDroppedItems().");
+			throw e;
 		}
 	}
 

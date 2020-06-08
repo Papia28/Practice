@@ -9,5 +9,4 @@ Then Others option is visible
 @Functional
 Scenario: Test Others dropdown click
 When user clicks Others
-Then Others dropdown opens
- 
+Then Others dropdown opens 

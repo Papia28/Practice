@@ -23,18 +23,20 @@ public class baseFunctions {
 		} catch (Exception e) {
 			System.out.println("Error occurred: openBrowser()");
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
-	@AfterSuite
+	/*@AfterSuite
 	public static void closeBrowser() throws Throwable {
 		try {
 			sb.afterExecution();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error occurred: closeBrowser()");
+			throw e;
 		}
-	}
+	}*/
 
 	// method to launch the URL of the application
 	public void launchBaseURL() throws Throwable {
@@ -44,13 +46,14 @@ public class baseFunctions {
 				driver.get(URL);
 				Thread.sleep(2000);
 				System.out.println("URL launched successfully.");
-			} else if (URL == "") {
-				System.out.println("URL cannot be empty!");
-				throw new NullPointerException();
-			}
-		} catch (Exception e) {
+			} 
+			else if (URL == "")
+				throw new NullPointerException("URL cannot be empty!");
+		} 
+		catch (Exception e) {
 			System.out.println("Error Occured: launchURL()");
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
@@ -81,7 +84,7 @@ public class baseFunctions {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in getLocator()");
-			return null;
+			throw e;
 		}
 	}
 	
@@ -89,13 +92,14 @@ public class baseFunctions {
 		public WebElement getElement(String locatorType, String locatorValue) throws Throwable {
 			try {
 				By locator = getLocator(locatorType, locatorValue);
+				System.out.println(locator);
 				WebElement element = driver.findElement(locator);
 				Thread.sleep(500);
 				return element;
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("Error in getElement()");
-				return null;
+				throw e;
 			}
 		}
 
@@ -103,13 +107,14 @@ public class baseFunctions {
 		public List<WebElement> getElements(String locatorType, String locatorValue) throws Throwable {
 			try {
 				By locator = getLocator(locatorType, locatorValue);
+				System.out.println(locator);
 				List<WebElement> elements = driver.findElements(locator);
 				Thread.sleep(500);
 				return elements;
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("Error in getElements()");
-				return null;
+				throw e;
 			}
 		}
 		
@@ -121,7 +126,7 @@ public class baseFunctions {
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("Error in returnUsername()");
-				return null;
+				throw e;
 			}
 		}
 
@@ -133,7 +138,7 @@ public class baseFunctions {
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("Error in returnPassword()");
-				return null;
+				throw e;
 			}
 		}
 }

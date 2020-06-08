@@ -11,39 +11,42 @@ public class Others {
 	@Then("^Others option is visible$")
 	public void othersVisible() throws Throwable {
 		try {
-			Thread.sleep(50);
+			Thread.sleep(100);
 			gf.isElementVisible("xpath", "Others");
 			Thread.sleep(50);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in othersVisible().");
+			throw e;
 		}
 	}
 	
 	@When("^user clicks Others$")
 	public void clickOthers() throws Throwable {
 		try {
-			Thread.sleep(50);
+			Thread.sleep(100);
 			gf.click("xpath", "Others");
 			Thread.sleep(50);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("Error in clickOthers().");
+			throw e;
 		}
 	}
 	
 	@Then("^Others dropdown opens$")
-	public void dropdownOpen() throws Throwable{
+	public void dropdownOthers() throws Throwable{
 		try {
-			Thread.sleep(50);
-			gf.isElementVisible("xpath", "OthersDropdown");
+			Thread.sleep(100);
+			gf.isElementVisible("xpath", "OthersDropDown");
 			Thread.sleep(50);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-			System.out.println("Error in dropdownOpen().");
+			System.out.println("Error in dropdownOthers().");
+			throw e;
 		}
 	}
 }

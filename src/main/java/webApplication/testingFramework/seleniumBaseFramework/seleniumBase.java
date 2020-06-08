@@ -14,8 +14,8 @@ public final class seleniumBase extends seleniumBaseDriver {
 			// System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
 			// WebDriverManager.chromedriver().setup();
 			// driver = new ChromeDriver();
-			super.setDriverManager();
-			super.setSeleniumBaseDriver(baseDriver);
+			setDriverManager();
+			setSeleniumBaseDriver(baseDriver);
 			Thread.sleep(500);
 			baseDriver = getSeleniumBaseDriver();
 			Thread.sleep(500);
@@ -34,7 +34,7 @@ public final class seleniumBase extends seleniumBaseDriver {
 		try {
 			Thread.sleep(1000);
 			System.out.println("************Closing Browser**************");
-			baseDriver.close();
+			//baseDriver.close();
 		} catch (Exception e) {
 			System.out.println("Error Occured: afterExecution");
 			e.printStackTrace();
