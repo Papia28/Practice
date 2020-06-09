@@ -54,7 +54,7 @@ public class SelectDropdownList {
 			Thread.sleep(100);
 			gf.isElementVisible("xpath", "DisplayDay");
 			Thread.sleep(100);
-			gf.verifySingleSelected("xpath", "DisplayDay", "Day");
+			gf.verifySingleDropdownResult("xpath", "DisplayDay", "Day");
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -142,7 +142,7 @@ public class SelectDropdownList {
 			Thread.sleep(100);
 			gf.isElementVisible("xpath", "DisplayResult");
 			Thread.sleep(100);
-			gf.verifyAllSelected("xpath", multiDropdown, "Places");
+			gf.verifyAllSelected("xpath", "DisplayStates", multiDropdown, "States");
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
