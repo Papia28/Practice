@@ -7,12 +7,14 @@ import org.openqa.selenium.support.ui.Select;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class SelectDropdownList {
+public class SelectDropdownList 
+{
+	//Start of class
 	
 	private static final genericFunctions gf = new genericFunctions();
 	private static Select multiDropdown = null;
 	
-	
+	//--------------------------------------------------Select Dropdown List----------------------------------------------
 	
 	@Then("^user selects Select Dropdown List$")
 	public void selectOption() throws Throwable{
@@ -28,6 +30,8 @@ public class SelectDropdownList {
 			throw e;
 		}		
 	}
+	
+	//------------------------------------------------------------------------------------------------------------------------
 	
 	//-----------------------------------------------Single Day Selector---------------------------------------------------
 	
@@ -136,11 +140,11 @@ public class SelectDropdownList {
 		}
 	}
 	
-	@Then("^all selected state is displayed$")
+	@Then("^all selected states are displayed$")
 	public void allSelectedStatesDisplayed() throws Throwable{
 		try {
-			Thread.sleep(100);
-			gf.isElementVisible("xpath", "DisplayResult");
+			Thread.sleep(1000);
+			gf.isElementVisible("xpath", "DisplayStates");
 			Thread.sleep(100);
 			gf.verifyAllSelected("xpath", "DisplayStates", multiDropdown, "States");
 		} 
@@ -152,5 +156,6 @@ public class SelectDropdownList {
 	}
 	
 	//------------------------------------------------------------------------------------------------------------------------
-	
+		
+//End of class	
 }

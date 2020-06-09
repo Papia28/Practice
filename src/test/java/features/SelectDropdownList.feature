@@ -3,21 +3,22 @@ Feature: To test the Select Dropdowns of Selenium Easy Demo website
 Background: Selenium Easy Demo website is launched
 Given application is launched
 And popups have been closed
+And Input Forms is visible
 When user selects Input Forms
-Then Input Forms dropdown is displayed
+Given Input Forms dropdown is displayed
 And user selects Select Dropdown List
 
-@Functional
-@SelectSingle
+@Select
+@SingleSelect
 Scenario: Test selecting single Day
 When user selects single day
 Then selected day is displayed
 
-@Functional
 @Select
-Scenario: Test selecting multiple places
-#When user selects multiple places
+@MultiSelect
+Scenario: Test selecting multiple states
+When user selects multiple states
 #And user clicks First Selected
-#Then First Selection result is displayed
-#When user clicks Get All Selected
-#Then all selection result is displayed
+#Then first selected state is displayed
+When user clicks Get All Selected
+Then all selected states are displayed

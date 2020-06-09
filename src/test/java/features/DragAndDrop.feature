@@ -8,9 +8,7 @@ When user clicks Others
 Then Others dropdown opens
 And user selects Drag and Drop
 
-@Others
 @DragAndDrop
-@Functional
 Scenario: Test dragging and dropping of items
 When user drags and drops all items
 Then all items displayed in list

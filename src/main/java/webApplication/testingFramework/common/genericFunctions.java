@@ -2,6 +2,7 @@ package webApplication.testingFramework.common;
 
 import java.util.List;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -295,12 +296,17 @@ public class genericFunctions extends baseFunctions {
 			
 			//create Select class object of the dropdown element
 			Select dropdown = new Select(element);
+			Actions actions = new Actions(driver);
 			
 			//select the options of the dropdown by value
 			for(int i=0; i< valuesArray.length; i++)
 			{
+				Thread.sleep(300);
+				actions.keyDown(Keys.ALT);
 				dropdown.selectByValue(valuesArray[i].trim());
 			}
+			
+			//actions.keyUp(Keys.ALT);
 			
 			//after selecting all options return the dropdown 
 			return dropdown;			

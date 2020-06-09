@@ -35,7 +35,8 @@ public class DragAndDrop {
 			Thread.sleep(100);
 			//droppedElements = gf.dragAndDropElements("xpath", "Item1", "DropHere");			
 			//droppedElements = gf.dragAndDropElements1("xpath", "ItemsToDrag", "DropHere");
-			droppedElements  = rf.dragAndDropElements("xpath", "ItemsToDrag", "DropHere");
+			//droppedElements  = rf.dragAndDropElements("xpath", "ItemsToDrag", "DropHere");
+			droppedElements  = rf.dragAndDropElementsRobot("xpath", "ItemsToDrag", "DropHere");
 			Thread.sleep(50);
 		}
 		catch(Exception e) {
