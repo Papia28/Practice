@@ -5,22 +5,34 @@ import org.openqa.selenium.WebDriver;
 
 public final class seleniumBase extends seleniumBaseDriver {
 
-	private WebDriver baseDriver = null;
-
+	private static WebDriver driver = null;
 	
 	// launch the browser
 	public WebDriver beforeExecution() throws Throwable {
 		try {
-			// System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
-			// WebDriverManager.chromedriver().setup();
-			// driver = new ChromeDriver();
+			
+			/*
+			 * System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
+			 * WebDriverManager.chromedriver().setup(); 
+			 * driver = new ChromeDriver();
+			 */
+			
+			//set the webDriverManager as per the browser
 			setDriverManager();
-			setSeleniumBaseDriver(baseDriver);
+			
+			//set the WebDriver driver object
+			//setBaseDriver(driver);
+			setBaseDriver();
 			Thread.sleep(500);
-			baseDriver = getSeleniumBaseDriver();
+			
+			//get the WebDriver driver object
+			driver = getBaseDriver();
 			Thread.sleep(500);
-			return baseDriver;
-		} catch (Exception e) {
+			
+			//return the driver
+			return driver;
+		} 
+		catch (Exception e) {
 			System.out.println("Error Occured: beforeExecution()");
 			e.printStackTrace();
 			return null;
@@ -34,13 +46,15 @@ public final class seleniumBase extends seleniumBaseDriver {
 		try {
 			Thread.sleep(1000);
 			System.out.println("************Closing Browser**************");
-			//baseDriver.close();
-		} catch (Exception e) {
+			//driver.close();
+		} 
+		catch (Exception e) {
 			System.out.println("Error Occured: afterExecution");
 			e.printStackTrace();
-		} finally {
+		} 
+		finally {
 			System.out.println("************Quiting Browser**************");
-			baseDriver.quit();
+			driver.quit();
 		}
 	}
 }

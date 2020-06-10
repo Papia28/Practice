@@ -10,10 +10,9 @@ import org.openqa.selenium.support.ui.Select;
 
 public class genericFunctions extends baseFunctions {
 
-	protected static final pageObjects po = baseFunctions.po;
-	protected static final WebDriver driver = baseFunctions.driver;
+	protected static final WebDriver driver = baseFunctions.getDriver();
 	protected static final assertions a = new assertions();
-
+	
 	//----------------------------------------------------------------------------------------------------------------------------------------------
 	// method to maximize open browser window
 	
@@ -36,7 +35,7 @@ public class genericFunctions extends baseFunctions {
 	public void click(String locatorType, String locatorValue) throws Throwable {
 		try {
 			//get the actual value of the locator by reading the objectProperties file
-			String value = po.getActualLocatorValue(locatorValue);
+			String value = pageObjects.getActualLocatorValue(locatorValue);
 			Thread.sleep(500);
 			
 			//get the element using the actual locator
@@ -60,7 +59,7 @@ public class genericFunctions extends baseFunctions {
 	public void clearValue(String locatorType, String locatorValue) throws Throwable {
 		try {
 			//get the actual value of the locator by reading the objectProperties file
-			String value = po.getActualLocatorValue(locatorValue);
+			String value = pageObjects.getActualLocatorValue(locatorValue);
 			Thread.sleep(500);
 			
 			//get the element using the actual locator
@@ -84,7 +83,7 @@ public class genericFunctions extends baseFunctions {
 	public void writeValue(String locatorType, String locatorValue, String fieldValue) throws Throwable {
 		try {
 			//get the actual value of the locator by reading the objectProperties file
-			String locatorValue1 = po.getActualLocatorValue(locatorValue);
+			String locatorValue1 = pageObjects.getActualLocatorValue(locatorValue);
 			Thread.sleep(500);
 			
 			//get the element using the actual locator
@@ -125,7 +124,7 @@ public class genericFunctions extends baseFunctions {
 	public void verifyPageTitle(String title) throws Throwable {
 		try {			
 			//get the actual value of the expected page title by reading the objectProperties file
-			String expectedPageTitle = po.getActualLocatorValue(title);
+			String expectedPageTitle = pageObjects.getActualLocatorValue(title);
 			Thread.sleep(500);
 			
 			//call function to return current web page title
@@ -147,7 +146,7 @@ public class genericFunctions extends baseFunctions {
 	public void isElementVisible(String locatorType, String locatorValue) throws Throwable {
 		try {
 			//get the actual value of the locator by reading the objectProperties file
-			String value = po.getActualLocatorValue(locatorValue);
+			String value = pageObjects.getActualLocatorValue(locatorValue);
 			Thread.sleep(500);			
 			
 			//get the element using the actual locator
@@ -173,8 +172,8 @@ public class genericFunctions extends baseFunctions {
 	public void singleSelectByText(String locatorType, String locatorValue, String textValue) throws Throwable {
 		try {
 			//get the actual value of the locator and text to be selected by reading the objectProperties file
-			String value = po.getActualLocatorValue(locatorValue);
-			String text = po.getActualLocatorValue(textValue);
+			String value = pageObjects.getActualLocatorValue(locatorValue);
+			String text = pageObjects.getActualLocatorValue(textValue);
 			Thread.sleep(500);
 			
 			//get the dropdown element using the actual locator
@@ -202,8 +201,8 @@ public class genericFunctions extends baseFunctions {
 	public void singleSelectByValue(String locatorType, String locatorValue, String optionValue) throws Throwable {
 		try {
 			//get the actual value of the locator and value to be selected by reading the objectProperties file
-			String value = po.getActualLocatorValue(locatorValue);
-			String option = po.getActualLocatorValue(optionValue);
+			String value = pageObjects.getActualLocatorValue(locatorValue);
+			String option = pageObjects.getActualLocatorValue(optionValue);
 			Thread.sleep(500);
 			
 			//get the dropdown element using the actual locator
@@ -231,8 +230,8 @@ public class genericFunctions extends baseFunctions {
 	public void verifySingleDropdownResult(String locatorType, String locatorValue, String verifyValue) throws Throwable {
 		try {
 			//get the actual value of the locator and expected value by reading the objectProperties file
-			String value = po.getActualLocatorValue(locatorValue);
-			String expected = po.getActualLocatorValue(verifyValue);
+			String value = pageObjects.getActualLocatorValue(locatorValue);
+			String expected = pageObjects.getActualLocatorValue(verifyValue);
 			Thread.sleep(300);
 			
 			//get the result element using the actual locator
@@ -256,7 +255,7 @@ public class genericFunctions extends baseFunctions {
 	public void checkMultiSelect(String locatorType, String locatorValue) throws Throwable {
 		try {
 			//get the actual value of the locator by reading the objectProperties file
-			String value = po.getActualLocatorValue(locatorValue);
+			String value = pageObjects.getActualLocatorValue(locatorValue);
 			Thread.sleep(300);
 			
 			//get the dropdown element using the actual locator
@@ -284,8 +283,8 @@ public class genericFunctions extends baseFunctions {
 	public Select multiSelectByValue(String locatorType, String locatorValue, String values) throws Throwable {
 		try {
 			//get the actual value of the locator and values to be selected by reading the objectProperties file
-			String value = po.getActualLocatorValue(locatorValue);
-			String actualValues = po.getActualLocatorValue(values);
+			String value = pageObjects.getActualLocatorValue(locatorValue);
+			String actualValues = pageObjects.getActualLocatorValue(values);
 			Thread.sleep(300);
 			
 			//get the dropdown element using the actual locator
@@ -324,8 +323,8 @@ public class genericFunctions extends baseFunctions {
 	public void verifyFirstSelected(String locatorType, String locatorValue, Select dropdown, String values) throws Throwable {
 		try {
 			//get the actual value of the locator and values to be selected by reading the objectProperties file
-			String value = po.getActualLocatorValue(locatorValue);
-			String actualValues = po.getActualLocatorValue(values);
+			String value = pageObjects.getActualLocatorValue(locatorValue);
+			String actualValues = pageObjects.getActualLocatorValue(values);
 			Thread.sleep(300);
 			
 			//get the result element using the actual locator
@@ -357,8 +356,8 @@ public class genericFunctions extends baseFunctions {
 	public void verifyAllSelected(String locatorType, String locatorValue, Select dropdown, String values) throws Throwable {
 		try {
 			//get the actual value of the locator and values to be selected by reading the objectProperties file
-			String value = po.getActualLocatorValue(locatorValue);
-			String actualValues = po.getActualLocatorValue(values);
+			String value = pageObjects.getActualLocatorValue(locatorValue);
+			String actualValues = pageObjects.getActualLocatorValue(values);
 			Thread.sleep(300);
 			
 			//get the list of web elements selected in the dropdown 
@@ -396,7 +395,7 @@ public class genericFunctions extends baseFunctions {
 	public void clickAndHoldElement(String locatorType, String locatorValue) throws Throwable {
 		try {
 			//get the actual value of the locator by reading the objectProperties file
-			String value = po.getActualLocatorValue(locatorValue);
+			String value = pageObjects.getActualLocatorValue(locatorValue);
 			Thread.sleep(500);
 			
 			//get the element using the actual locator
@@ -425,8 +424,8 @@ public class genericFunctions extends baseFunctions {
 	public String[] dragAndDropElements(String locatorType, String sourceValue, String targetValue) throws Throwable {
 		try {
 			//get the actual value of the source and target element locators by reading the objectProperties file
-			String sourcePath = po.getActualLocatorValue(sourceValue);
-			String targetPath = po.getActualLocatorValue(targetValue);
+			String sourcePath = pageObjects.getActualLocatorValue(sourceValue);
+			String targetPath = pageObjects.getActualLocatorValue(targetValue);
 			Thread.sleep(500);
 			
 			//get the list of source elements using the actual locator value
@@ -474,8 +473,8 @@ public class genericFunctions extends baseFunctions {
 		public String[] dragAndDropElements1(String locatorType, String sourceValue, String targetValue) throws Throwable {
 			try {
 				//get the actual value of the source and target element locators by reading the objectProperties file
-				String sourcePath = po.getActualLocatorValue(sourceValue);
-				String targetPath = po.getActualLocatorValue(targetValue);
+				String sourcePath = pageObjects.getActualLocatorValue(sourceValue);
+				String targetPath = pageObjects.getActualLocatorValue(targetValue);
 				Thread.sleep(500);
 				
 				//get the list of source elements using the actual locator value
@@ -524,7 +523,7 @@ public class genericFunctions extends baseFunctions {
 	public void verifyDroppedItems(String locatorType, String values[], String locatorValue) throws Throwable {
 		try {
 			//get the actual value of the dropped list locator by reading the objectProperties file
-			String value = po.getActualLocatorValue(locatorValue);
+			String value = pageObjects.getActualLocatorValue(locatorValue);
 			Thread.sleep(500);
 			
 			//store the web elements present in the dropped list into a List

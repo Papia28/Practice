@@ -7,18 +7,28 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+
 import webApplication.testingFramework.seleniumBaseFramework.seleniumBase;
 
 public class baseFunctions {
 
-	protected static WebDriver driver = null;
+	private static WebDriver driver = null;
 	private static final seleniumBase sb = new seleniumBase();
-	protected static final pageObjects po = new pageObjects();
+	
+	//getter method for driver
+	public static WebDriver getDriver() {
+		return driver;
+	}
+
+	//setter method for driver
+	public static void setDriver(WebDriver driver) {
+		baseFunctions.driver = driver;
+	}
 
 	@BeforeSuite
 	public static void openBrowser() throws Throwable {
 		try {
-			driver = sb.beforeExecution();
+			setDriver(sb.beforeExecution());
 		} catch (Exception e) {
 			System.out.println("Error occurred: openBrowser()");
 			e.printStackTrace();
@@ -40,9 +50,9 @@ public class baseFunctions {
 	// method to launch the URL of the application
 	public void launchBaseURL() throws Throwable {
 		try {
-			String URL = sb.rc.getURL();
+			String URL = pageObjects.getURL();
 			if (URL != "") {
-				driver.get(URL);
+				getDriver().get(URL);
 				Thread.sleep(2000);
 				System.out.println("URL launched successfully.");
 			} 
@@ -77,8 +87,8 @@ public class baseFunctions {
 			case "CLASSNAME":
 				return By.className(locatorValue);
 			default:
-				System.out.println("No match found for Locators!");
-				return null;
+				throw new NullPointerException("No match found for Locators!");
+				//TODO correct exception name
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,7 +102,7 @@ public class baseFunctions {
 			try {
 				By locator = getLocator(locatorType, locatorValue);
 				System.out.println(locator);
-				WebElement element = driver.findElement(locator);
+				WebElement element = getDriver().findElement(locator);
 				Thread.sleep(500);
 				return element;
 			} catch (Exception e) {
@@ -107,7 +117,7 @@ public class baseFunctions {
 			try {
 				By locator = getLocator(locatorType, locatorValue);
 				System.out.println(locator);
-				List<WebElement> elements = driver.findElements(locator);
+				List<WebElement> elements = getDriver().findElements(locator);
 				Thread.sleep(500);
 				return elements;
 			} catch (Exception e) {
@@ -120,7 +130,7 @@ public class baseFunctions {
 		// method to return username
 		public String returnUsername() throws Throwable {
 			try {
-				String username = po.getUsername();
+				String username = pageObjects.getUsername();
 				return username;
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -132,7 +142,7 @@ public class baseFunctions {
 		// method to return password
 		public String returnPassword() throws Throwable {
 			try {
-				String password = po.getPassword();
+				String password = pageObjects.getPassword();
 				return password;
 			} catch (Exception e) {
 				e.printStackTrace();

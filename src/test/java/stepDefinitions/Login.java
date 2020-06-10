@@ -1,7 +1,12 @@
 package stepDefinitions;
 
+import webApplication.testingFramework.common.baseFunctions;
 import webApplication.testingFramework.common.genericFunctions;
 
+import org.openqa.selenium.WebDriver;
+
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,7 +14,36 @@ import io.cucumber.java.en.Then;
 public final class Login {
 
 	private static final genericFunctions gf = new genericFunctions();
-
+	private static WebDriver driver = baseFunctions.getDriver();
+	
+	@Before
+	public void beforeScenario() throws Throwable {
+		try {
+			if (driver == null)
+			{
+				baseFunctions.openBrowser();
+				Thread.sleep(300);
+			}			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in beforeScenario().");
+			throw e;
+		}
+	}
+	
+	@After
+	public void afterScenario() throws Throwable {
+		try {
+			Thread.sleep(300);
+			baseFunctions.closeBrowser();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in afterScenario().");
+			throw e;
+		}
+	}
 
 	@Given("^application is launched$")
 	public void launchApplication() throws Throwable {

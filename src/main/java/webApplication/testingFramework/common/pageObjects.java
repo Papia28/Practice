@@ -8,24 +8,40 @@ import webApplication.testingFramework.seleniumBaseFramework.readConfig;
 
 public class pageObjects extends readConfig{
 
-	private static File file = null;
-	private static FileInputStream inputStream = null;
-	private static final Properties property = new Properties();
-	private static String propertyValue =  null;
+	private static File pageObjectFile = null;
+	private static FileInputStream pageObjectInputStream = null;
+	private static final Properties pageObjectProperty = new Properties();
+	
+	//constructor for pageObjects
+	public pageObjects() throws Throwable {
+		try {
+			// convert pageObjects.properties to type File and assign it to previously
+			// created File type variable
+			pageObjectFile = new File("src/main/resources/config/pageObjects.properties");
+			
+			// convert configFile to FileInputStream type and assign it to previously
+			// created FileInputStream type variable
+			pageObjectInputStream = new FileInputStream(pageObjectFile);
+			
+			// load pageObjectProperty via FileInputStream type variable
+			pageObjectProperty.load(pageObjectInputStream);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in reading pageObjects file!");
+			throw e;
+		}
+	}
 	
 	//method to provide the actual locator values
-	protected String getActualLocatorValue(String value) throws Throwable {
+	protected static String getActualLocatorValue(String value) throws Throwable {
 		try {		
-			file = new File("src/main/resources/config/pageObjects.properties");
-			inputStream = new FileInputStream(file);
-			property.load(inputStream);
-			propertyValue = property.getProperty(value);
-			return propertyValue;
+			return pageObjectProperty.getProperty(value);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Error in getLocatorValue(String).");
-			return null;
+			System.out.println("Error in getActualLocatorValue()!");
+			throw e;
 		}
 	}
 }

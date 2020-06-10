@@ -8,83 +8,80 @@ public class readConfig {
 
 	// create variable of type File and FileInputStream to keep the custom
 	// properties into it
-	private File configFile = null;
-	private FileInputStream configFileInput = null;
-	private Properties prop = null;
+	private static File configFile = null;
+	private static FileInputStream configInputStream = null;
+	private static final Properties configProperties = new Properties();
 
-	//method to read the customConfig.properties file
-	//public void getConfig() throws Exception {
-	public readConfig() {
+	//constructor to read the customConfig.properties file
+	public readConfig() throws Throwable{
 		try {
-
-			// convert the custom properties to type File and assign it to previously
-			// created
-			// File type variable
+			// convert customConfig.properties to type File and assign it to previously
+			// created File type variable
 			configFile = new File("src/main/resources/config/customConfig.properties");
-			// convert the configFile to FileInputStream type and assign it to previously
+			
+			// convert configFile to FileInputStream type and assign it to previously
 			// created FileInputStream type variable
-			configFileInput = new FileInputStream(configFile);
+			configInputStream = new FileInputStream(configFile);
 
-			// initiate Properties type variable
-			prop = new Properties();
-
-			// load the properties via FileInputType variable
-			prop.load(configFileInput);
-
-		} catch (Exception e) {
+			// load configProperties via FileInputStream type variable
+			configProperties.load(configInputStream);
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("Error in reading config file!");
+			throw e;
 		}
 	}
 
 	
 	//method to return the value of browser from customConfig.properties file
-	public String getBrowser()throws Exception {
+	public static String getBrowser()throws Exception {
 		try {
-			return prop.getProperty("browser");
+			return configProperties.getProperty("browser");
 		}
 		catch(Exception e) {
 			System.out.println("Error occurred: method getBrowser()");
 			e.printStackTrace();
-			return null;
+			throw e;
 		}
 	}
 	
 	
 	//method to return the value of URL from customConfig.properties file
-	public String getURL()throws Exception {
+	public static String getURL()throws Exception {
 		try {
-			return prop.getProperty("url");
+			return configProperties.getProperty("url");
 		}
 		catch(Exception e) {
 			System.out.println("Error occurred: method getURL()");
 			e.printStackTrace();
-			return null;
+			throw e;
 		}		
 	}
 	
 	
 	//method to return the value of username from customConfig.properties file
-	public String getUsername()throws Exception{
+	public static String getUsername()throws Exception{
 		try {
-			return prop.getProperty("username");
+			return configProperties.getProperty("username");
 		}
 		catch(Exception e) {
 			System.out.println("Error occurred: method getUsername()");
 			e.printStackTrace();
-			return null;
+			throw e;
 		}
 	}
 	
 	
 	//method to return the password from customConfig.properties file
-	public String getPassword()throws Exception {
+	public static String getPassword()throws Exception {
 		try {
-			return prop.getProperty("password");
+			return configProperties.getProperty("password");
 		}
 		catch(Exception e) {
 			System.out.println("Error occurred: method getPassword()");
 			e.printStackTrace();
-			return null;
+			throw e;
 		}
 	}
 }

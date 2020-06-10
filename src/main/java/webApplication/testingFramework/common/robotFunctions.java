@@ -5,14 +5,13 @@ import java.awt.event.InputEvent;
 import java.util.List;
 
 import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class robotFunctions extends genericFunctions {
 	
-	private static final WebDriver driver = genericFunctions.driver;
-	private static final pageObjects po = genericFunctions.po;
-	private static final assertions a = genericFunctions.a;
+	//private static final WebDriver driver = genericFunctions.driver;
+	//private static final assertions a = genericFunctions.a;
 	private static Robot robot = null;
 	
 	public String[] dragAndDropElementsRobot(String locatorType, String sourcePath, String targetPath) throws Throwable {
@@ -21,8 +20,8 @@ public class robotFunctions extends genericFunctions {
 			robot = new Robot();
 			
 			//get actual value of locator by reading the objectProperties file
-			String source = po.getActualLocatorValue(sourcePath);
-			String target = po.getActualLocatorValue(targetPath);
+			String source = pageObjects.getActualLocatorValue(sourcePath);
+			String target = pageObjects.getActualLocatorValue(targetPath);
 			
 			//put all the source elements into a list
 			List<WebElement> sourceList = getElements(locatorType, source);
