@@ -10,8 +10,29 @@ import org.openqa.selenium.support.ui.Select;
 
 public class genericFunctions extends baseFunctions {
 
-	protected static final WebDriver driver = baseFunctions.getDriver();
+	private WebDriver driver = null;
 	protected static final assertions a = new assertions();
+	
+	//----------------------------------------------------------------------------------------------------------------------------------------------
+	// methods to manipulate driver
+	
+	//accessor method for driver
+	public WebDriver getDriver()
+	{
+		return driver;
+	}
+
+	//mutator method for driver
+	public void setDriver(WebDriver driver)
+	{
+		this.driver = driver;
+	}
+	
+	//constructor of genericFunctions
+	public genericFunctions()
+	{
+		setDriver(baseFunctions.getBaseDriver());
+	}
 	
 	//----------------------------------------------------------------------------------------------------------------------------------------------
 	// method to maximize open browser window
@@ -19,7 +40,7 @@ public class genericFunctions extends baseFunctions {
 	public void maximizeBrowser() throws Throwable {
 		try {
 			//code to maximize the browser window
-			driver.manage().window().maximize();
+			getDriver().manage().window().maximize();
 			Thread.sleep(200);
 		} 
 		catch (Exception e) {
@@ -109,7 +130,7 @@ public class genericFunctions extends baseFunctions {
 			Thread.sleep(500);
 			
 			//return the title of the current web page
-			return driver.getTitle();
+			return getDriver().getTitle();
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -403,7 +424,7 @@ public class genericFunctions extends baseFunctions {
 			Thread.sleep(100);
 			
 			//create Actions class object of the WebDriver object
-			Actions hold = new Actions(driver);
+			Actions hold = new Actions(getDriver());
 			
 			//perform click and hold of the element using the Actions class object
 			hold.clickAndHold(element);
@@ -485,7 +506,7 @@ public class genericFunctions extends baseFunctions {
 				Thread.sleep(100);
 				
 				//create Actions class object of the WebDriver ojbect
-				Actions dragDrop = new Actions(driver);
+				Actions dragDrop = new Actions(getDriver());
 				
 				//String array to store names of the source elements to be dragged and dropped
 				String[] names = new String[sourceList.size()];

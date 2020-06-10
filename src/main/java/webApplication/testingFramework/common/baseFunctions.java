@@ -16,19 +16,19 @@ public class baseFunctions {
 	private static final seleniumBase sb = new seleniumBase();
 	
 	//getter method for driver
-	public static WebDriver getDriver() {
+	public static WebDriver getBaseDriver() {
 		return driver;
 	}
 
 	//setter method for driver
-	public static void setDriver(WebDriver driver) {
+	public static void setBaseDriver(WebDriver driver) {
 		baseFunctions.driver = driver;
 	}
 
 	@BeforeSuite
 	public static void openBrowser() throws Throwable {
 		try {
-			setDriver(sb.beforeExecution());
+			setBaseDriver(sb.beforeExecution());
 		} catch (Exception e) {
 			System.out.println("Error occurred: openBrowser()");
 			e.printStackTrace();
@@ -52,7 +52,7 @@ public class baseFunctions {
 		try {
 			String URL = pageObjects.getURL();
 			if (URL != "") {
-				getDriver().get(URL);
+				getBaseDriver().get(URL);
 				Thread.sleep(2000);
 				System.out.println("URL launched successfully.");
 			} 
@@ -102,7 +102,7 @@ public class baseFunctions {
 			try {
 				By locator = getLocator(locatorType, locatorValue);
 				System.out.println(locator);
-				WebElement element = getDriver().findElement(locator);
+				WebElement element = getBaseDriver().findElement(locator);
 				Thread.sleep(500);
 				return element;
 			} catch (Exception e) {
@@ -117,7 +117,7 @@ public class baseFunctions {
 			try {
 				By locator = getLocator(locatorType, locatorValue);
 				System.out.println(locator);
-				List<WebElement> elements = getDriver().findElements(locator);
+				List<WebElement> elements = getBaseDriver().findElements(locator);
 				Thread.sleep(500);
 				return elements;
 			} catch (Exception e) {

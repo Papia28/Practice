@@ -5,12 +5,10 @@ import java.awt.event.InputEvent;
 import java.util.List;
 
 import org.openqa.selenium.Point;
-//import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class robotFunctions extends genericFunctions {
 	
-	//private static final WebDriver driver = genericFunctions.driver;
 	//private static final assertions a = genericFunctions.a;
 	private static Robot robot = null;
 	
