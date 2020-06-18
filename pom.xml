@@ -13,29 +13,43 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+	</properties>	
+	
+	
+	<build>
+    <pluginManagement>
+      <plugins>
+      
+        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+		<plugin>
+    	  <groupId>org.apache.maven.plugins</groupId>
+    	  <artifactId>maven-surefire-plugin</artifactId>
+    	  <version>3.0.0-M4</version>
+          <configuration>
+          	<suiteXmlFiles>
+          		<suiteXmlFile>testng.xml</suiteXmlFile>
+          	</suiteXmlFiles>
+          </configuration>
+        </plugin>
+        
+        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+		<plugin>
+    	  <groupId>org.apache.maven.plugins</groupId>
+    	  <artifactId>maven-compiler-plugin</artifactId>
+    	  <version>3.8.1</version>
+    	  <configuration>
+            <!--<source>14.0</source>-->
+            <!--<target>14.0</target>-->
+            <release>10</release>
+          </configuration>
+		</plugin>
+        
+      </plugins>
+    </pluginManagement>
+  </build>
+
 
 	<dependencies>
-
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
-		</dependency>
-
-
-
-		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
-		<dependency>
-			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-junit</artifactId>
-			<version>2.0.0</version>
-			<scope>test</scope>
-		</dependency>
-
-
 
 		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
 		<dependency>
@@ -44,15 +58,12 @@
 			<version>5.6.0</version>
 		</dependency>
 
-
-
 		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-testng</artifactId>
 			<version>5.6.0</version>
 		</dependency>
-
 
 		<!-- https://mvnrepository.com/artifact/info.cukes/cucumber-java -->
 		<dependency>
@@ -61,17 +72,12 @@
 			<version>1.2.5</version>
 		</dependency>
 
-
-
-
 		<!-- https://mvnrepository.com/artifact/info.cukes/cucumber-testng -->
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-testng</artifactId>
 			<version>1.2.5</version>
 		</dependency>
-
-
 
 		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java8 -->
 		<dependency>
@@ -80,18 +86,12 @@
 			<version>5.6.0</version>
 		</dependency>
 
-
-
 		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-core -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-core</artifactId>
 			<version>5.6.0</version>
 		</dependency>
-
-
-
-
 
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>
@@ -100,17 +100,13 @@
 			<version>3.141.59</version>
 		</dependency>
 
-
-
 		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>7.1.0</version>
-			<scope>test</scope>
+			<scope>compile</scope>
 		</dependency>
-
-
 
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver -->
 		<dependency>
@@ -119,16 +115,12 @@
 			<version>3.141.59</version>
 		</dependency>
 
-
-
 		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>
 			<version>3.8.1</version>
 		</dependency>
-
-
 
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-firefox-driver -->
 		<dependency>
@@ -137,16 +129,12 @@
 			<version>3.141.59</version>
 		</dependency>
 
-
-
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-edge-driver -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-edge-driver</artifactId>
 			<version>2.47.1</version>
 		</dependency>
-
-
 
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-ie-driver -->
 		<dependency>
@@ -155,20 +143,12 @@
 			<version>3.141.59</version>
 		</dependency>
 
-
-
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/htmlunit-driver -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>htmlunit-driver</artifactId>
 			<version>2.23</version>
 		</dependency>
-
-
-
-
-
-
 
 	</dependencies>
 </project>

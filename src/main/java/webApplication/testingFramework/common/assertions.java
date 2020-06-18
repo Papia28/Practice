@@ -2,6 +2,7 @@ package webApplication.testingFramework.common;
 
 //import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import java.lang.Throwable;
 
 public class assertions extends baseFunctions {
 	
