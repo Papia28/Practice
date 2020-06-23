@@ -2,12 +2,16 @@ package stepDefinitions;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import webApplication.testingFramework.common.genericFunctions;
+import webApplication.testingFramework.common.actionsFunctions;
 import webApplication.testingFramework.common.robotFunctions;
 
 public class DragAndDrop {
 	
-	private static final genericFunctions gf = new genericFunctions();
+	//actionsFunctions and robotFunctions both inherit genericFunctions
+	//hence one can use the genericFunctions methods by calling them 
+	//via either of the objects
+	
+	private static final actionsFunctions af = new actionsFunctions();
 	private static final robotFunctions rf = new robotFunctions();
 	private static String [] droppedElements = null;
 	
@@ -15,11 +19,11 @@ public class DragAndDrop {
 	public void selectDragDrop() throws Throwable {
 		try {
 			Thread.sleep(100);
-			//gf.isElementVisible("xpath", "OthersDropDown");
-			gf.isElementVisible("xpath", "DragAndDrop");
-			//gf.selectDropdownText("xpath", "OthersDropDown", "DragAndDropText");
+			//rf.isElementVisible("xpath", "OthersDropDown");
+			rf.isElementVisible("xpath", "DragAndDrop");
+			//rf.selectDropdownText("xpath", "OthersDropDown", "DragAndDropText");
 			Thread.sleep(100);
-			gf.click("xpath", "DragAndDrop");
+			rf.click("xpath", "DragAndDrop");
 			Thread.sleep(50);
 		}
 		catch(Exception e) {
@@ -33,8 +37,8 @@ public class DragAndDrop {
 	public void performDragAndDrop() throws Throwable {
 		try {
 			Thread.sleep(100);
-			//droppedElements = gf.dragAndDropElements("xpath", "Item1", "DropHere");			
-			//droppedElements = gf.dragAndDropElements1("xpath", "ItemsToDrag", "DropHere");
+			//droppedElements = rf.dragAndDropElements("xpath", "Item1", "DropHere");			
+			//droppedElements = rf.dragAndDropElements1("xpath", "ItemsToDrag", "DropHere");
 			//droppedElements  = rf.dragAndDropElements("xpath", "ItemsToDrag", "DropHere");
 			droppedElements  = rf.dragAndDropElementsRobot("xpath", "Item1", "DropHere");
 			Thread.sleep(50);
@@ -50,7 +54,7 @@ public class DragAndDrop {
 	public void verifyDragDroppedItems() throws Throwable {
 		try {
 			Thread.sleep(100);
-			gf.verifyDroppedItems("xpath", droppedElements, "DropedList");
+			af.verifyDroppedItems("xpath", droppedElements, "DropedList");
 			Thread.sleep(50);
 		}
 		catch(Exception e) {

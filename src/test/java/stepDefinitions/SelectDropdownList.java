@@ -1,6 +1,6 @@
 package stepDefinitions;
 
-import webApplication.testingFramework.common.genericFunctions;
+import webApplication.testingFramework.common.selectFunctions;
 
 import org.openqa.selenium.support.ui.Select;
 
@@ -10,8 +10,9 @@ import io.cucumber.java.en.When;
 public class SelectDropdownList 
 {
 	//Start of class
-	
-	private static final genericFunctions gf = new genericFunctions();
+	//genericFunctions are inherited by selectFunctions
+	//hence no need to create genericFunctions object separately.
+	private static final selectFunctions sf = new selectFunctions();
 	private static Select multiDropdown = null;
 	
 	//--------------------------------------------------Select Dropdown List----------------------------------------------
@@ -20,9 +21,9 @@ public class SelectDropdownList
 	public void selectOption() throws Throwable{
 		try {
 			Thread.sleep(100);
-			gf.isElementVisible("xpath", "SelectDropdownList");
+			sf.isElementVisible("xpath", "SelectDropdownList");
 			Thread.sleep(100);
-			gf.click("xpath", "SelectDropdownList");
+			sf.click("xpath", "SelectDropdownList");
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -39,10 +40,10 @@ public class SelectDropdownList
 	public void selectDay() throws Throwable{
 		try {
 			Thread.sleep(100);
-			gf.isElementVisible("xpath", "SelectDay");
+			sf.isElementVisible("xpath", "SelectDay");
 			Thread.sleep(100);
-			//gf.singleSelectByText("xpath", "SelectDay", "Day");
-			gf.singleSelectByValue("xpath", "SelectDay", "Day");
+			//sf.singleSelectByText("xpath", "SelectDay", "Day");
+			sf.singleSelectByValue("xpath", "SelectDay", "Day");
 			Thread.sleep(100);
 		} 
 		catch (Exception e) {
@@ -56,9 +57,9 @@ public class SelectDropdownList
 	public void selecetedDayDisplayed() throws Throwable{
 		try {
 			Thread.sleep(100);
-			gf.isElementVisible("xpath", "DisplayDay");
+			sf.isElementVisible("xpath", "DisplayDay");
 			Thread.sleep(100);
-			gf.verifySingleDropdownResult("xpath", "DisplayDay", "Day");
+			sf.verifySingleDropdownResult("xpath", "DisplayDay", "Day");
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -77,14 +78,14 @@ public class SelectDropdownList
 	public void selectMultipleStates() throws Throwable{
 		try {
 			Thread.sleep(100);
-			gf.isElementVisible("xpath", "SelectStates");
+			sf.isElementVisible("xpath", "SelectStates");
 			Thread.sleep(100);
-			gf.checkMultiSelect("xpath", "SelectStates");
+			sf.checkMultiSelect("xpath", "SelectStates");
 			Thread.sleep(100);
-			multiDropdown = gf.multiSelectByValue("xpath", "SelectStates", "States");
-			//gf.multiSelectByText("xpath", "SelectStates", "State");
-			//gf.multiSelectByText("xpath", "SelectStates", "States");
-			//gf.multiSelectByValue("xpath", "SelectStates", "State");
+			multiDropdown = sf.multiSelectByValue("xpath", "SelectStates", "States");
+			//sf.multiSelectByText("xpath", "SelectStates", "State");
+			//sf.multiSelectByText("xpath", "SelectStates", "States");
+			//sf.multiSelectByValue("xpath", "SelectStates", "State");
 			Thread.sleep(100);
 		} 
 		catch (Exception e) {
@@ -98,9 +99,9 @@ public class SelectDropdownList
 	public void firstSelectedButtonClick() throws Throwable{
 		try {
 			Thread.sleep(100);
-			gf.isElementVisible("xpath", "FirstSelectedBtn");
+			sf.isElementVisible("xpath", "FirstSelectedBtn");
 			Thread.sleep(100);
-			gf.click("xpath", "FirstSelectedBtn");
+			sf.click("xpath", "FirstSelectedBtn");
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -113,10 +114,10 @@ public class SelectDropdownList
 	public void firstSelectedStateDisplayed() throws Throwable{
 		try {
 			Thread.sleep(100);
-			gf.isElementVisible("xpath", "DisplayStates");
+			sf.isElementVisible("xpath", "DisplayStates");
 			Thread.sleep(100);
-			gf.verifyFirstSelected("xpath", "DisplayStates", multiDropdown, "States");
-			//gf.verifyFirstSelected("xpath", "DisplayStates", "State");
+			sf.verifyFirstSelected("xpath", "DisplayStates", multiDropdown, "States");
+			//sf.verifyFirstSelected("xpath", "DisplayStates", "State");
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -129,9 +130,9 @@ public class SelectDropdownList
 	public void getAllSelectedButtonClick() throws Throwable{
 		try {
 			Thread.sleep(100);
-			gf.isElementVisible("xpath", "GetAllSelectedBtn");
+			sf.isElementVisible("xpath", "GetAllSelectedBtn");
 			Thread.sleep(100);
-			gf.click("xpath", "GetAllSelectedBtn");
+			sf.click("xpath", "GetAllSelectedBtn");
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -144,9 +145,9 @@ public class SelectDropdownList
 	public void allSelectedStatesDisplayed() throws Throwable{
 		try {
 			Thread.sleep(1000);
-			gf.isElementVisible("xpath", "DisplayStates");
+			sf.isElementVisible("xpath", "DisplayStates");
 			Thread.sleep(100);
-			gf.verifyAllSelected("xpath", "DisplayStates", multiDropdown, "States");
+			sf.verifyAllSelected("xpath", "DisplayStates", multiDropdown, "States");
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
