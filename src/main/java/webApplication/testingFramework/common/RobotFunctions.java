@@ -7,7 +7,7 @@ import java.util.List;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 
-public class robotFunctions extends genericFunctions {
+public class RobotFunctions extends GenericFunctions {
 	
 	//private static final assertions a = genericFunctions.a;
 	private static Robot robot = null;
@@ -18,8 +18,8 @@ public class robotFunctions extends genericFunctions {
 			robot = new Robot();
 			
 			//get actual value of locator by reading the objectProperties file
-			String source = pageObjects.getActualLocatorValue(sourcePath);
-			String target = pageObjects.getActualLocatorValue(targetPath);
+			String source = PageObjects.getActualLocatorValue(sourcePath);
+			String target = PageObjects.getActualLocatorValue(targetPath);
 			
 			//put all the source elements into a list
 			List<WebElement> sourceList = getElements(locatorType, source);

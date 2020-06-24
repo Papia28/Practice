@@ -3,11 +3,11 @@ package stepDefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import webApplication.testingFramework.common.genericFunctions;
+import webApplication.testingFramework.common.GenericFunctions;
 
 public class InputForms {
 	
-	private static final genericFunctions gf = new genericFunctions();
+	private static final GenericFunctions gf = new GenericFunctions();
 	
 	@Given("^popups have been closed$")
 	public void popupsClosed() throws Throwable {

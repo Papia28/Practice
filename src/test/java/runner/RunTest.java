@@ -14,7 +14,7 @@ import cucumber.api.testng.TestNGCucumberRunner;
 		"html:target/cucumber" })
 
 @Test
-public class runTest {
+public class RunTest {
 	private TestNGCucumberRunner testNGCucumberRunner;
 
 	@BeforeTest(alwaysRun = true)

@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeSuite;
 
 import webApplication.testingFramework.seleniumBaseFramework.seleniumBase;
 
-public class baseFunctions {
+public class BaseFunctions {
 
 	private static WebDriver driver = null;
 	private static final seleniumBase sb = new seleniumBase();
@@ -22,7 +22,7 @@ public class baseFunctions {
 
 	//setter method for driver
 	public static void setBaseDriver(WebDriver driver) {
-		baseFunctions.driver = driver;
+		BaseFunctions.driver = driver;
 	}
 
 	@BeforeSuite
@@ -50,7 +50,7 @@ public class baseFunctions {
 	// method to launch the URL of the application
 	public void launchBaseURL() throws Throwable {
 		try {
-			String URL = pageObjects.getURL();
+			String URL = PageObjects.getURL();
 			if (URL != "") {
 				getBaseDriver().get(URL);
 				Thread.sleep(2000);
@@ -130,7 +130,7 @@ public class baseFunctions {
 		// method to return username
 		public String returnUsername() throws Throwable {
 			try {
-				String username = pageObjects.getUsername();
+				String username = PageObjects.getUsername();
 				return username;
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -142,7 +142,7 @@ public class baseFunctions {
 		// method to return password
 		public String returnPassword() throws Throwable {
 			try {
-				String password = pageObjects.getPassword();
+				String password = PageObjects.getPassword();
 				return password;
 			} catch (Exception e) {
 				e.printStackTrace();

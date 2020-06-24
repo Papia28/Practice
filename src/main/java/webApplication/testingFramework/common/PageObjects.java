@@ -6,14 +6,14 @@ import java.util.Properties;
 
 import webApplication.testingFramework.seleniumBaseFramework.readConfig;
 
-public class pageObjects extends readConfig{
+public class PageObjects extends readConfig{
 
 	private static File pageObjectFile = null;
 	private static FileInputStream pageObjectInputStream = null;
 	private static final Properties pageObjectProperty = new Properties();
 	
 	//constructor for pageObjects
-	public pageObjects() throws Throwable {
+	public PageObjects() throws Throwable {
 		try {
 			// convert pageObjects.properties to type File and assign it to previously
 			// created File type variable

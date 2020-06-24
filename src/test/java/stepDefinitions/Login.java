@@ -1,6 +1,6 @@
 package stepDefinitions;
 
-import webApplication.testingFramework.common.genericFunctions;
+import webApplication.testingFramework.common.GenericFunctions;
 
 //import org.openqa.selenium.WebDriver;
 
@@ -12,14 +12,14 @@ import io.cucumber.java.en.Then;
 
 public final class Login {
 
-	private static final genericFunctions gf = new genericFunctions();
+	private static final GenericFunctions gf = new GenericFunctions();
 	
 	@Before
 	public void beforeScenario() throws Throwable {
 		try {
 			if (gf.getDriver() == null)
 			{
-				genericFunctions.openBrowser();
+				GenericFunctions.openBrowser();
 				Thread.sleep(300);
 			}			
 		}
@@ -34,7 +34,7 @@ public final class Login {
 	public void afterScenario() throws Throwable {
 		try {
 			Thread.sleep(300);
-			genericFunctions.closeBrowser();
+			GenericFunctions.closeBrowser();
 		}
 		catch(Exception e) {
 			e.printStackTrace();

@@ -3,18 +3,18 @@ package webApplication.testingFramework.common;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class genericFunctions extends baseFunctions {
+public class GenericFunctions extends BaseFunctions {
 
 	private WebDriver driver = null;
-	protected assertions a = new assertions();
+	protected Assertions a = new Assertions();
 	
 	//----------------------------------------------------------------------------------------------------------------------------------------------
 	// methods to manipulate driver
 	
 	//constructor of genericFunctions
-	public genericFunctions()
+	public GenericFunctions()
 	{
-		setDriver(baseFunctions.getBaseDriver());
+		setDriver(BaseFunctions.getBaseDriver());
 	}
 	
 	//accessor method for driver
@@ -52,7 +52,7 @@ public class genericFunctions extends baseFunctions {
 	public void click(String locatorType, String locatorValue) throws Throwable {
 		try {
 			//get the actual value of the locator by reading the objectProperties file
-			String value = pageObjects.getActualLocatorValue(locatorValue);
+			String value = PageObjects.getActualLocatorValue(locatorValue);
 			Thread.sleep(500);
 			
 			//get the element using the actual locator
@@ -76,7 +76,7 @@ public class genericFunctions extends baseFunctions {
 	public void clearValue(String locatorType, String locatorValue) throws Throwable {
 		try {
 			//get the actual value of the locator by reading the objectProperties file
-			String value = pageObjects.getActualLocatorValue(locatorValue);
+			String value = PageObjects.getActualLocatorValue(locatorValue);
 			Thread.sleep(500);
 			
 			//get the element using the actual locator
@@ -100,7 +100,7 @@ public class genericFunctions extends baseFunctions {
 	public void writeValue(String locatorType, String locatorValue, String fieldValue) throws Throwable {
 		try {
 			//get the actual value of the locator by reading the objectProperties file
-			String locatorValue1 = pageObjects.getActualLocatorValue(locatorValue);
+			String locatorValue1 = PageObjects.getActualLocatorValue(locatorValue);
 			Thread.sleep(500);
 			
 			//get the element using the actual locator
@@ -141,7 +141,7 @@ public class genericFunctions extends baseFunctions {
 	public void verifyPageTitle(String title) throws Throwable {
 		try {			
 			//get the actual value of the expected page title by reading the objectProperties file
-			String expectedPageTitle = pageObjects.getActualLocatorValue(title);
+			String expectedPageTitle = PageObjects.getActualLocatorValue(title);
 			Thread.sleep(500);
 			
 			//call function to return current web page title
@@ -163,7 +163,7 @@ public class genericFunctions extends baseFunctions {
 	public void isElementVisible(String locatorType, String locatorValue) throws Throwable {
 		try {
 			//get the actual value of the locator by reading the objectProperties file
-			String value = pageObjects.getActualLocatorValue(locatorValue);
+			String value = PageObjects.getActualLocatorValue(locatorValue);
 			Thread.sleep(500);			
 			
 			//get the element using the actual locator

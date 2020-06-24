@@ -1,6 +1,6 @@
 package stepDefinitions;
 
-import webApplication.testingFramework.common.selectFunctions;
+import webApplication.testingFramework.common.SelectFunctions;
 
 import org.openqa.selenium.support.ui.Select;
 
@@ -12,7 +12,7 @@ public class SelectDropdownList
 	//Start of class
 	//genericFunctions are inherited by selectFunctions
 	//hence no need to create genericFunctions object separately.
-	private static final selectFunctions sf = new selectFunctions();
+	private static final SelectFunctions sf = new SelectFunctions();
 	private static Select multiDropdown = null;
 	
 	//--------------------------------------------------Select Dropdown List----------------------------------------------

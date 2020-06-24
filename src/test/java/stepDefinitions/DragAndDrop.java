@@ -2,8 +2,8 @@ package stepDefinitions;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import webApplication.testingFramework.common.actionsFunctions;
-import webApplication.testingFramework.common.robotFunctions;
+import webApplication.testingFramework.common.ActionFunctions;
+import webApplication.testingFramework.common.RobotFunctions;
 
 public class DragAndDrop {
 	
@@ -11,8 +11,8 @@ public class DragAndDrop {
 	//hence one can use the genericFunctions methods by calling them 
 	//via either of the objects
 	
-	private static final actionsFunctions af = new actionsFunctions();
-	private static final robotFunctions rf = new robotFunctions();
+	private static final ActionFunctions af = new ActionFunctions();
+	private static final RobotFunctions rf = new RobotFunctions();
 	private static String [] droppedElements = null;
 	
 	@Then("^user selects Drag and Drop$")

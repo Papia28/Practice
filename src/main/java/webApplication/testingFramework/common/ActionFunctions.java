@@ -6,16 +6,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class actionsFunctions extends genericFunctions{
+public class ActionFunctions extends GenericFunctions{
 	
 	private WebDriver driver = null;
-	private genericFunctions gf = new genericFunctions();	
+	private GenericFunctions gf = new GenericFunctions();	
 	
 	//----------------------------------------------------------------------------------------------------------------------------------------------
 		// methods to manipulate driver
 	
 	//constructor for actionsFunctions
-	public actionsFunctions()
+	public ActionFunctions()
 	{
 		setDriver(gf.getDriver());
 	}
@@ -39,7 +39,7 @@ public class actionsFunctions extends genericFunctions{
 	public void clickAndHoldElement(String locatorType, String locatorValue) throws Throwable {
 		try {
 			//get the actual value of the locator by reading the objectProperties file
-			String value = pageObjects.getActualLocatorValue(locatorValue);
+			String value = PageObjects.getActualLocatorValue(locatorValue);
 			Thread.sleep(500);
 			
 			//get the element using the actual locator
@@ -68,8 +68,8 @@ public class actionsFunctions extends genericFunctions{
 	public String[] dragAndDropElements(String locatorType, String sourceValue, String targetValue) throws Throwable {
 		try {
 			//get the actual value of the source and target element locators by reading the objectProperties file
-			String sourcePath = pageObjects.getActualLocatorValue(sourceValue);
-			String targetPath = pageObjects.getActualLocatorValue(targetValue);
+			String sourcePath = PageObjects.getActualLocatorValue(sourceValue);
+			String targetPath = PageObjects.getActualLocatorValue(targetValue);
 			Thread.sleep(500);
 			
 			//get the list of source elements using the actual locator value
@@ -117,8 +117,8 @@ public class actionsFunctions extends genericFunctions{
 		public String[] dragAndDropElements1(String locatorType, String sourceValue, String targetValue) throws Throwable {
 			try {
 				//get the actual value of the source and target element locators by reading the objectProperties file
-				String sourcePath = pageObjects.getActualLocatorValue(sourceValue);
-				String targetPath = pageObjects.getActualLocatorValue(targetValue);
+				String sourcePath = PageObjects.getActualLocatorValue(sourceValue);
+				String targetPath = PageObjects.getActualLocatorValue(targetValue);
 				Thread.sleep(500);
 				
 				//get the list of source elements using the actual locator value
@@ -167,7 +167,7 @@ public class actionsFunctions extends genericFunctions{
 	public void verifyDroppedItems(String locatorType, String values[], String locatorValue) throws Throwable {
 		try {
 			//get the actual value of the dropped list locator by reading the objectProperties file
-			String value = pageObjects.getActualLocatorValue(locatorValue);
+			String value = PageObjects.getActualLocatorValue(locatorValue);
 			Thread.sleep(500);
 			
 			//store the web elements present in the dropped list into a List

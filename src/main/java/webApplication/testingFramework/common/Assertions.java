@@ -4,7 +4,7 @@ package webApplication.testingFramework.common;
 import org.testng.Assert;
 import java.lang.Throwable;
 
-public class assertions extends baseFunctions {
+public class Assertions extends BaseFunctions {
 	
 	//private static final WebDriver driver = baseFunctions.driver;
 	
