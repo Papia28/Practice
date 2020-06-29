@@ -10,7 +10,26 @@ import org.openqa.selenium.WebElement;
 public class RobotFunctions extends GenericFunctions {
 	
 	//private static final assertions a = genericFunctions.a;
-	private static Robot robot = null;
+	private Robot robot = null;
+	
+	//accessor method for robot
+	/*public Robot getRobot()
+	{
+		return robot;
+	}*/
+	
+	//mutator method for robot
+	/*public void setRobot(Robot robot)
+	{
+		this.robot = robot;
+	}*/
+	
+	/*constructor for RobotFunctions class
+	public RobotFunctions() throws AWTException
+	{
+	//TODO
+		setRobot(new Robot());		
+	}*/
 	
 	public String[] dragAndDropElementsRobot(String locatorType, String sourcePath, String targetPath) throws Throwable {
 		try {

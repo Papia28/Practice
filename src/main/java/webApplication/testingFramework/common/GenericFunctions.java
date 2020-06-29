@@ -1,5 +1,7 @@
 package webApplication.testingFramework.common;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -7,6 +9,7 @@ public class GenericFunctions extends BaseFunctions {
 
 	private WebDriver driver = null;
 	protected Assertions a = new Assertions();
+	private Logger log = LogManager.getLogger(GenericFunctions.class.getName());
 	
 	//----------------------------------------------------------------------------------------------------------------------------------------------
 	// methods to manipulate driver
@@ -36,11 +39,13 @@ public class GenericFunctions extends BaseFunctions {
 	public void maximizeBrowser() throws Throwable {
 		try {
 			//code to maximize the browser window
+			log.debug("Maximizing browser");
 			getDriver().manage().window().maximize();
 			Thread.sleep(200);
+			log.info("Successfully maximized browser!");
 		} 
 		catch (Exception e) {
-			System.out.println("Error occurred: maximizeBrowser()");
+			log.error("Error occurred: maximizeBrowser()");
 			e.printStackTrace();
 			throw e;
 		}
