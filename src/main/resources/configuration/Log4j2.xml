@@ -4,13 +4,16 @@
 		<Property name="basePath">./logs</Property>
 	</Properties>
 	<Appenders>
-		<RollingFile name="File" fileName="${basePath}/Log_29062020_9:33_am.log"
+		<RollingFile name="File"
+			fileName="${basePath}/Log_29062020_9:33_am.log"
 			filePattern="${basePath}/Log_%d{dd-MM-yyyy}.log">
-			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
 			<SizeBasedTriggeringPolicy size="2048" />
 		</RollingFile>
 		<Console name="Console" target="SYSTEM_OUT">
-			<PatternLayout	pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
 		</Console>
 	</Appenders>
 	<Loggers>
