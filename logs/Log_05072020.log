@@ -1,6 +1,16 @@
-16:39:10.118 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - Setting driver.
-16:39:14.729 [main] DEBUG webApplication.testingFramework.common.Waits - Setting implicit wait for the driver.
-16:39:14.738 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriver - Success! driver set.
-16:39:20.165 [main] DEBUG webApplication.testingFramework.common.GenericFunctions - Maximizing browser
-16:39:20.166 [main] ERROR webApplication.testingFramework.common.GenericFunctions - Error occurred: maximizeBrowser()
-16:39:21.110 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - ************Quitting Browser**************
+17:23:53.193 [main] DEBUG webApplication.testingFramework.common.Waits - Setting implicit wait for the driver.
+17:23:53.212 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriver - Success! driver set.
+17:23:57.897 [main] DEBUG webApplication.testingFramework.common.GenericFunctions - Maximizing browser
+17:23:57.897 [main] ERROR webApplication.testingFramework.common.GenericFunctions - Error occurred: maximizeBrowser()
+17:23:58.830 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - ************Quitting Browser**************
+17:27:56.321 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - Setting browser.
+17:27:56.326 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - Setting WebDriverManager.
+17:27:56.327 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriverManager - Success! Browser is set.
+17:27:56.327 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriverManager - Browser is Chrome.
+17:27:56.912 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriverManager - Success! Browser driver path set.
+17:27:56.912 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - Setting driver.
+17:28:01.354 [main] DEBUG webApplication.testingFramework.common.Waits - Setting implicit wait for the driver.
+17:28:01.365 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriver - Success! driver set.
+17:28:06.767 [main] DEBUG webApplication.testingFramework.common.GenericFunctions - Maximizing browser
+17:28:06.768 [main] ERROR webApplication.testingFramework.common.GenericFunctions - Error occurred: maximizeBrowser()
+17:28:07.767 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - ************Quitting Browser**************
