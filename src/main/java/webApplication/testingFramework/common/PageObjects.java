@@ -13,7 +13,7 @@ public class PageObjects extends readConfig{
 	private static final Properties pageObjectProperty = new Properties();
 	
 	//constructor for pageObjects
-	public PageObjects() throws Throwable {
+	protected static void setPageObjects() throws Throwable {
 		try {
 			// convert pageObjects.properties to type File and assign it to previously
 			// created File type variable

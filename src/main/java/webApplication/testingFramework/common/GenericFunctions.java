@@ -17,7 +17,7 @@ public class GenericFunctions extends BaseFunctions {
 	//constructor of genericFunctions
 	public GenericFunctions()
 	{
-		setDriver(BaseFunctions.getBaseDriver());
+		setDriver(getBaseDriver());
 	}
 	
 	//accessor method for driver
@@ -40,7 +40,7 @@ public class GenericFunctions extends BaseFunctions {
 		try {
 			//code to maximize the browser window
 			log.debug("Maximizing browser");
-			getDriver().manage().window().maximize();
+			driver.manage().window().maximize();
 			Thread.sleep(200);
 			log.info("Successfully maximized browser!");
 		} 
@@ -131,7 +131,7 @@ public class GenericFunctions extends BaseFunctions {
 			Thread.sleep(500);
 			
 			//return the title of the current web page
-			return getDriver().getTitle();
+			return driver.getTitle();
 		} 
 		catch (Exception e) {
 			e.printStackTrace();

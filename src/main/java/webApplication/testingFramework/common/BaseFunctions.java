@@ -5,30 +5,31 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+//import org.testng.annotations.AfterSuite;
+//import org.testng.annotations.BeforeSuite;
 
 import webApplication.testingFramework.seleniumBaseFramework.seleniumBase;
 
 public class BaseFunctions {
 
-	private static WebDriver driver = null;
-	private static final seleniumBase sb = new seleniumBase();
-	
-	//getter method for driver
-	public static WebDriver getBaseDriver() {
+	private WebDriver driver = null;
+
+	// getter method for driver
+	public WebDriver getBaseDriver() {
 		return driver;
 	}
 
-	//setter method for driver
-	public static void setBaseDriver(WebDriver driver) {
-		BaseFunctions.driver = driver;
+	// setter method for driver
+	public void setBaseDriver(WebDriver driver) {
+		this.driver = driver;
 	}
 
-	@BeforeSuite
-	public static void openBrowser() throws Throwable {
+	//@BeforeSuite
+	public void beforeExecution() throws Throwable {
 		try {
-			setBaseDriver(sb.beforeExecution());
+			PageObjects.setReadConfig();
+			PageObjects.setPageObjects();
+			setBaseDriver(seleniumBase.openBrowser());
 		} catch (Exception e) {
 			System.out.println("Error occurred: openBrowser()");
 			e.printStackTrace();
@@ -36,10 +37,10 @@ public class BaseFunctions {
 		}
 	}
 
-	@AfterSuite
-	public static void closeBrowser() throws Throwable {
+	//@AfterSuite
+	public void afterExecution() throws Throwable {
 		try {
-			sb.afterExecution();
+			seleniumBase.closeBrowser();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error occurred: closeBrowser()");
@@ -55,11 +56,9 @@ public class BaseFunctions {
 				getBaseDriver().get(URL);
 				Thread.sleep(2000);
 				System.out.println("URL launched successfully.");
-			} 
-			else if (URL == "")
+			} else if (URL == "")
 				throw new NullPointerException("URL cannot be empty!");
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("Error Occured: launchURL()");
 			e.printStackTrace();
 			throw e;
@@ -67,7 +66,7 @@ public class BaseFunctions {
 	}
 
 	// method to return locator type
-	public By getLocator(String locatorType, String locatorValue) throws Throwable{
+	public By getLocator(String locatorType, String locatorValue) throws Throwable {
 		try {
 			switch (locatorType.toUpperCase()) {
 			case "XPATH":
@@ -88,7 +87,7 @@ public class BaseFunctions {
 				return By.className(locatorValue);
 			default:
 				throw new NullPointerException("No match found for Locators!");
-				//TODO correct exception name
+				// TODO correct exception name
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -96,58 +95,58 @@ public class BaseFunctions {
 			throw e;
 		}
 	}
-	
+
 	// method to find element
-		public WebElement getElement(String locatorType, String locatorValue) throws Throwable {
-			try {
-				By locator = getLocator(locatorType, locatorValue);
-				System.out.println(locator);
-				WebElement element = getBaseDriver().findElement(locator);
-				Thread.sleep(500);
-				return element;
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("Error in getElement()");
-				throw e;
-			}
+	public WebElement getElement(String locatorType, String locatorValue) throws Throwable {
+		try {
+			By locator = getLocator(locatorType, locatorValue);
+			System.out.println(locator);
+			WebElement element = getBaseDriver().findElement(locator);
+			Thread.sleep(500);
+			return element;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in getElement()");
+			throw e;
 		}
+	}
 
-		// method to find list of elements
-		public List<WebElement> getElements(String locatorType, String locatorValue) throws Throwable {
-			try {
-				By locator = getLocator(locatorType, locatorValue);
-				System.out.println(locator);
-				List<WebElement> elements = getBaseDriver().findElements(locator);
-				Thread.sleep(500);
-				return elements;
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("Error in getElements()");
-				throw e;
-			}
+	// method to find list of elements
+	public List<WebElement> getElements(String locatorType, String locatorValue) throws Throwable {
+		try {
+			By locator = getLocator(locatorType, locatorValue);
+			System.out.println(locator);
+			List<WebElement> elements = getBaseDriver().findElements(locator);
+			Thread.sleep(500);
+			return elements;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in getElements()");
+			throw e;
 		}
-		
-		// method to return username
-		public String returnUsername() throws Throwable {
-			try {
-				String username = PageObjects.getUsername();
-				return username;
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("Error in returnUsername()");
-				throw e;
-			}
-		}
+	}
 
-		// method to return password
-		public String returnPassword() throws Throwable {
-			try {
-				String password = PageObjects.getPassword();
-				return password;
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("Error in returnPassword()");
-				throw e;
-			}
+	// method to return username
+	public String returnUsername() throws Throwable {
+		try {
+			String username = PageObjects.getUsername();
+			return username;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in returnUsername()");
+			throw e;
 		}
+	}
+
+	// method to return password
+	public String returnPassword() throws Throwable {
+		try {
+			String password = PageObjects.getPassword();
+			return password;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in returnPassword()");
+			throw e;
+		}
+	}
 }

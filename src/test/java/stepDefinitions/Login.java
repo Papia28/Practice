@@ -17,11 +17,9 @@ public final class Login {
 	@Before
 	public void beforeScenario() throws Throwable {
 		try {
-			if (gf.getDriver() == null)
-			{
-				GenericFunctions.openBrowser();
+			//TODO
+				gf.beforeExecution();;
 				Thread.sleep(300);
-			}			
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -34,7 +32,7 @@ public final class Login {
 	public void afterScenario() throws Throwable {
 		try {
 			Thread.sleep(300);
-			GenericFunctions.closeBrowser();
+			gf.afterExecution();
 		}
 		catch(Exception e) {
 			e.printStackTrace();

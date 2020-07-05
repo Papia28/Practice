@@ -1,0 +1,17 @@
+16:35:32.820 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - Setting browser.
+16:35:32.849 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - Setting WebDriverManager.
+16:35:32.849 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriverManager - Success! Browser is set.
+16:35:32.849 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriverManager - Browser is Chrome.
+16:35:33.409 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriverManager - Success! Browser driver path set.
+16:35:33.410 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - Setting driver.
+16:35:37.949 [main] DEBUG webApplication.testingFramework.common.Waits - Setting implicit wait for the driver.
+16:35:37.958 [main] ERROR webApplication.testingFramework.common.Waits - Failure! Implicit wait not set.
+16:35:37.961 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriver - Success! driver set.
+16:35:42.930 [main] DEBUG webApplication.testingFramework.common.GenericFunctions - Maximizing browser
+16:35:42.931 [main] ERROR webApplication.testingFramework.common.GenericFunctions - Error occurred: maximizeBrowser()
+16:35:43.865 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - ************Quitting Browser**************
+16:39:09.598 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - Setting browser.
+16:39:09.602 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - Setting WebDriverManager.
+16:39:09.603 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriverManager - Success! Browser is set.
+16:39:09.603 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriverManager - Browser is Chrome.
+16:39:10.118 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriverManager - Success! Browser driver path set.

@@ -6,8 +6,8 @@
 	</listeners>
 	<test name="Test">
 		<classes>
-			<class
-				name="webApplication.testingFramework.common.BaseFunctions" />
+			<!-- <class
+				name="webApplication.testingFramework.common.BaseFunctions" /> -->
 			<class name="runner.TestRunner" />
 		</classes>
 	</test> <!-- Test -->

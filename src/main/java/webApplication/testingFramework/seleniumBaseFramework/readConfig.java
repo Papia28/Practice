@@ -13,7 +13,7 @@ public class readConfig {
 	private static final Properties configProperties = new Properties();
 
 	//constructor to read the customConfig.properties file
-	public readConfig() throws Throwable{
+	public static void setReadConfig() throws Throwable{
 		try {
 			// convert customConfig.properties to type File and assign it to previously
 			// created File type variable
