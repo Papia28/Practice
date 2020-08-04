@@ -12,7 +12,7 @@ import io.cucumber.java.en.When;
 
 public class SelectDropdownList 
 {
-	public static GenericFunctions gf;
+	public static GenericFunctions gf =  GenericFunctions.getInstance();
 	private static Select multiDropdown = null;
 	
 	//--------------------------------------------------Select Dropdown List----------------------------------------------

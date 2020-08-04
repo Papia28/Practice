@@ -9,12 +9,14 @@ Given Input Forms dropdown is displayed
 And user selects Select Dropdown List
 
 @Select
+@InputForms
 @SingleSelect
 Scenario: Test selecting single Day
 When user selects single day
 Then selected day is displayed
 
 @Select
+@InputForms
 @MultiSelect
 Scenario: Test selecting multiple states
 When user selects multiple states

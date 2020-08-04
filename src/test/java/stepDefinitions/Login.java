@@ -10,12 +10,12 @@ import io.cucumber.java.en.Then;
 
 public final class Login {
 
-	public static GenericFunctions gf = null;
+	public GenericFunctions gf = null;
 	
 	@Before
 	public void beforeScenario() throws Throwable {
 		try {
-				gf = new GenericFunctions();
+				gf = GenericFunctions.getInstance();
 				Thread.sleep(300);				
 		}
 		catch(Exception e) {
@@ -30,6 +30,7 @@ public final class Login {
 		try {
 			Thread.sleep(300);
 			gf.afterExecution();
+			GenericFunctions.deleteInstance();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
