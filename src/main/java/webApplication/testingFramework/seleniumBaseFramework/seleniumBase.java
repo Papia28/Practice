@@ -50,21 +50,20 @@ public final class seleniumBase extends seleniumBaseDriver {
 	
 
 	// close all opened browsers
-	public static void closeBrowser() throws Throwable 
+	public static void closeBrowser() 
 	{		
 		log.debug("************Quitting Browser**************");
 		try {		
 			Thread.sleep(1000);
 			driver.quit();
-			System.exit(0);
 		} 
-		catch (Exception e) {
+		catch (Throwable e) {
 			log.error("Failure! Error occurred during closeBrowser().");
 			e.printStackTrace();
-			throw e;
+			System.exit(0);
 		} 
-		finally {
-			driver.quit();
-		}
+		/*
+		 * finally { driver.quit(); }
+		 */
 	}
 }

@@ -7,7 +7,7 @@ import webApplication.testingFramework.common.GenericFunctions;
 
 public class InputForms {
 	
-	private static final GenericFunctions gf = new GenericFunctions();
+	public static GenericFunctions gf;
 	
 	@Given("^popups have been closed$")
 	public void popupsClosed() throws Throwable {

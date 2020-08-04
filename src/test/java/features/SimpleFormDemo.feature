@@ -10,7 +10,6 @@ And user selects Simple Form Demo
 Then user is on Simple Form Demo page
 
 @Functional
-@InputForms
 @SingleInput
 Scenario: Test Single Input Field
 When user enters message
@@ -18,7 +17,6 @@ And user clicks Show Message
 Then entered message is displayed
 
 @Functional
-@InputForms
 @DoubleInput
 Scenario: Test Two Input Fields
 When user enters value of a

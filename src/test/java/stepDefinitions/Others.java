@@ -6,7 +6,7 @@ import webApplication.testingFramework.common.GenericFunctions;
 
 public class Others {
 	
-	private static final GenericFunctions gf = new GenericFunctions();
+	public static GenericFunctions gf;
 
 	@Then("^Others option is visible$")
 	public void othersVisible() throws Throwable {

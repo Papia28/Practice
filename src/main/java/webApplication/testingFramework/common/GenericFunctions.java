@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 public class GenericFunctions extends BaseFunctions {
 
 	private WebDriver driver = null;
-	protected Assertions a = new Assertions();
 	private Logger log = LogManager.getLogger(GenericFunctions.class.getName());
 	
 	//----------------------------------------------------------------------------------------------------------------------------------------------
@@ -16,8 +15,9 @@ public class GenericFunctions extends BaseFunctions {
 	
 	//constructor of genericFunctions
 	public GenericFunctions()
-	{
-		setDriver(getBaseDriver());
+	{	
+		super();
+		setDriver();
 	}
 	
 	//accessor method for driver
@@ -27,9 +27,9 @@ public class GenericFunctions extends BaseFunctions {
 	}
 
 	//mutator method for driver
-	public void setDriver(WebDriver driver)
-	{
-		this.driver = driver;
+	public void setDriver()
+	{			
+		this.driver = getBaseDriver();
 	}	
 	
 	//----------------------------------------------------------------------------------------------------------------------------------------------
@@ -153,7 +153,7 @@ public class GenericFunctions extends BaseFunctions {
 			String actualPageTitle = getActualPageTitle();
 			
 			//assert the actual and expected page titles
-			a.assertEqualValue(actualPageTitle, expectedPageTitle);
+			Assertions.assertEqualValue(actualPageTitle, expectedPageTitle);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -176,7 +176,7 @@ public class GenericFunctions extends BaseFunctions {
 			Thread.sleep(200);
 			
 			//assert visibility of element
-			if (a.assertTrueValue(element.isDisplayed()) == true)
+			if (Assertions.assertTrueValue(element.isDisplayed()) == true)
 				System.out.println("Success! " + locatorValue + " is visible!");
 			else
 				System.out.println("Failure! " + locatorValue + " is not visible!");

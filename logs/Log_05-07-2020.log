@@ -1,17 +1,1 @@
-17:17:51.188 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - Setting browser.
-17:17:51.199 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - Setting WebDriverManager.
-17:17:51.200 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriverManager - Success! Browser is set.
-17:17:51.200 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriverManager - Browser is Chrome.
-17:17:51.754 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriverManager - Success! Browser driver path set.
-17:17:51.755 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - Setting driver.
-17:17:56.301 [main] DEBUG webApplication.testingFramework.common.Waits - Setting implicit wait for the driver.
-17:17:56.309 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriver - Success! driver set.
-17:18:01.224 [main] DEBUG webApplication.testingFramework.common.GenericFunctions - Maximizing browser
-17:18:01.225 [main] ERROR webApplication.testingFramework.common.GenericFunctions - Error occurred: maximizeBrowser()
-17:18:02.175 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - ************Quitting Browser**************
-17:23:48.053 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - Setting browser.
-17:23:48.057 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - Setting WebDriverManager.
-17:23:48.057 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriverManager - Success! Browser is set.
-17:23:48.057 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriverManager - Browser is Chrome.
-17:23:48.573 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriverManager - Success! Browser driver path set.
-17:23:48.573 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - Setting driver.
+16:31:08.995 [main] FATAL webApplication.testingFramework.reporting.Listeners - Error in taking screenshot during failure!

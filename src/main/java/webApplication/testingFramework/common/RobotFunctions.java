@@ -7,49 +7,21 @@ import java.util.List;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 
-public class RobotFunctions extends GenericFunctions {
+public class RobotFunctions {
 	
 	//private static final assertions a = genericFunctions.a;
-	private Robot robot = null;
+	private static Robot robot = null;
 	
-	//accessor method for robot
-	/*public Robot getRobot()
-	{
-		return robot;
-	}*/
-	
-	//mutator method for robot
-	/*public void setRobot(Robot robot)
-	{
-		this.robot = robot;
-	}*/
-	
-	/*constructor for RobotFunctions class
-	public RobotFunctions() throws AWTException
-	{
-	//TODO
-		setRobot(new Robot());		
-	}*/
-	
-	public String[] dragAndDropElementsRobot(String locatorType, String sourcePath, String targetPath) throws Throwable {
+	public static String[] dragAndDropElementsRobot(List<WebElement> sourceList, WebElement target) throws Throwable {
 		try {
 			//initialize static Robot class object
 			robot = new Robot();
 			
-			//get actual value of locator by reading the objectProperties file
-			String source = PageObjects.getActualLocatorValue(sourcePath);
-			String target = PageObjects.getActualLocatorValue(targetPath);
-			
-			//put all the source elements into a list
-			List<WebElement> sourceList = getElements(locatorType, source);
 			String[] values = new String[sourceList.size()];
 			WebElement sourceElement = null;
 			
-			//get target element via the actual locator values
-			WebElement targetElement = getElement(locatorType, target);
-			
 			//find the coordinates of the target element
-			Point coordinates1 = null, coordinates2 = targetElement.getLocation();
+			Point coordinates1 = null, coordinates2 = target.getLocation();
 			
 			for (int i = 0; i < sourceList.size(); i++) 
 			{

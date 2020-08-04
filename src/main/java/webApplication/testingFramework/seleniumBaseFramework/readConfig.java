@@ -2,7 +2,11 @@ package webApplication.testingFramework.seleniumBaseFramework;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Properties;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class readConfig {
 
@@ -11,6 +15,7 @@ public class readConfig {
 	private static File configFile = null;
 	private static FileInputStream configInputStream = null;
 	private static final Properties configProperties = new Properties();
+	private static Logger log = LogManager.getLogger(readConfig.class.getName());
 
 	//constructor to read the customConfig.properties file
 	public static void setReadConfig() throws Throwable{
@@ -25,10 +30,15 @@ public class readConfig {
 
 			// load configProperties via FileInputStream type variable
 			configProperties.load(configInputStream);
-		} 
-		catch (Exception e) {
+		}
+		catch(FileNotFoundException e) {
 			e.printStackTrace();
-			System.out.println("Error in reading config file!");
+			log.fatal("Failure! Specified file with location is not found.");
+			throw e;
+		}
+		catch (Throwable e) {
+			e.printStackTrace();
+			log.fatal("Failure! Error in reading config file.");
 			throw e;
 		}
 	}
@@ -39,8 +49,8 @@ public class readConfig {
 		try {
 			return configProperties.getProperty("browser");
 		}
-		catch(Exception e) {
-			System.out.println("Error occurred: method getBrowser()");
+		catch(Throwable e) {
+			log.fatal("Failure! Error in getting browser name.");
 			e.printStackTrace();
 			throw e;
 		}
@@ -52,8 +62,8 @@ public class readConfig {
 		try {
 			return configProperties.getProperty("url");
 		}
-		catch(Exception e) {
-			System.out.println("Error occurred: method getURL()");
+		catch(Throwable e) {
+			log.fatal("Failure! Error in getting URL.");
 			e.printStackTrace();
 			throw e;
 		}		
@@ -65,8 +75,8 @@ public class readConfig {
 		try {
 			return configProperties.getProperty("username");
 		}
-		catch(Exception e) {
-			System.out.println("Error occurred: method getUsername()");
+		catch(Throwable e) {
+			log.fatal("Failure! Error in getting username.");
 			e.printStackTrace();
 			throw e;
 		}
@@ -78,8 +88,8 @@ public class readConfig {
 		try {
 			return configProperties.getProperty("password");
 		}
-		catch(Exception e) {
-			System.out.println("Error occurred: method getPassword()");
+		catch(Throwable e) {
+			log.fatal("Failure! Error in getting password.");
 			e.printStackTrace();
 			throw e;
 		}

@@ -2,52 +2,26 @@ package webApplication.testingFramework.common;
 
 import java.util.List;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class ActionFunctions extends GenericFunctions{
+public class ActionFunctions {
 	
-	private WebDriver driver = null;
-	private GenericFunctions gf = new GenericFunctions();	
-	
-	//----------------------------------------------------------------------------------------------------------------------------------------------
-		// methods to manipulate driver
-	
-	//constructor for actionsFunctions
-	public ActionFunctions()
-	{
-		setDriver(gf.getDriver());
-	}
-	
-	//accessor method for actionsFunctions
-	public WebDriver getDriver()
-	{
-		return driver;
-	}
-	
-	//mutator method for actionsFunctions
-	public void setDriver(WebDriver driver)
-	{
-		this.driver = driver;
-	}	
-	
-	//----------------------------------------------------------------------------------------------------------------------------------------------
-	
+	//----------------------------------------------------------------------------------------------------------------------------------------------	
 	// method to click and hold
 	
-	public void clickAndHoldElement(String locatorType, String locatorValue) throws Throwable {
+	public static void clickAndHoldElement(GenericFunctions gf, String locatorType, String locatorValue) throws Throwable {
 		try {
 			//get the actual value of the locator by reading the objectProperties file
 			String value = PageObjects.getActualLocatorValue(locatorValue);
 			Thread.sleep(500);
 			
 			//get the element using the actual locator
-			WebElement element = getElement(locatorType, value);
+			WebElement element = gf.getElement(locatorType, value);
 			Thread.sleep(100);
 			
 			//create Actions class object of the WebDriver object
-			Actions hold = new Actions(getDriver());
+			Actions hold = new Actions(gf.getDriver());
 			
 			//perform click and hold of the element using the Actions class object
 			hold.clickAndHold(element);
@@ -65,7 +39,7 @@ public class ActionFunctions extends GenericFunctions{
 	//-----------------------------------------------------------------------------------------------------------------------------------------------
 	// method to drag an element via single function
 	
-	public String[] dragAndDropElements(String locatorType, String sourceValue, String targetValue) throws Throwable {
+	public static String[] dragAndDropElements(GenericFunctions gf, String locatorType, String sourceValue, String targetValue) throws Throwable {
 		try {
 			//get the actual value of the source and target element locators by reading the objectProperties file
 			String sourcePath = PageObjects.getActualLocatorValue(sourceValue);
@@ -73,17 +47,17 @@ public class ActionFunctions extends GenericFunctions{
 			Thread.sleep(500);
 			
 			//get the list of source elements using the actual locator value
-			List<WebElement> sourceList = getElements(locatorType, sourcePath);
+			List<WebElement> sourceList = gf.getElements(locatorType, sourcePath);
 			
 			//get the target element using the actual locator value
-			WebElement target = getElement(locatorType, targetPath);
+			WebElement target = gf.getElement(locatorType, targetPath);
 			Thread.sleep(100);	
 			
 			//String array to store names of the source elements to be dragged and dropped
 			String[] names = new String[sourceList.size()];	
 			
 			//create Actions class object of the WebDriver ojbect
-			Actions dragDrop = new Actions(driver);
+			Actions dragDrop = new Actions(gf.getDriver());
 			
 			WebElement source = null;
 			
@@ -114,7 +88,7 @@ public class ActionFunctions extends GenericFunctions{
 	//-----------------------------------------------------------------------------------------------------------------------------------------------	
 	// method to drag an element via multiple functions
 	
-		public String[] dragAndDropElements1(String locatorType, String sourceValue, String targetValue) throws Throwable {
+		public static String[] dragAndDropElements1(GenericFunctions gf, String locatorType, String sourceValue, String targetValue) throws Throwable {
 			try {
 				//get the actual value of the source and target element locators by reading the objectProperties file
 				String sourcePath = PageObjects.getActualLocatorValue(sourceValue);
@@ -122,14 +96,14 @@ public class ActionFunctions extends GenericFunctions{
 				Thread.sleep(500);
 				
 				//get the list of source elements using the actual locator value
-				List<WebElement> sourceList = getElements(locatorType, sourcePath);
+				List<WebElement> sourceList = gf.getElements(locatorType, sourcePath);
 				
 				//get the target element using the actual locator value
-				WebElement target = getElement(locatorType, targetPath);
+				WebElement target = gf.getElement(locatorType, targetPath);
 				Thread.sleep(100);
 				
 				//create Actions class object of the WebDriver ojbect
-				Actions dragDrop = new Actions(getDriver());
+				Actions dragDrop = new Actions(gf.getDriver());
 				
 				//String array to store names of the source elements to be dragged and dropped
 				String[] names = new String[sourceList.size()];
@@ -164,14 +138,14 @@ public class ActionFunctions extends GenericFunctions{
 	// -----------------------------------------------------------------------------------------------------------------------------------------------
 	// method to verify the dropped items
 
-	public void verifyDroppedItems(String locatorType, String values[], String locatorValue) throws Throwable {
+	public static void verifyDroppedItems(GenericFunctions gf, String locatorType, String values[], String locatorValue) throws Throwable {
 		try {
 			//get the actual value of the dropped list locator by reading the objectProperties file
 			String value = PageObjects.getActualLocatorValue(locatorValue);
 			Thread.sleep(500);
 			
 			//store the web elements present in the dropped list into a List
-			List<WebElement> droppedItems = getElements(locatorType, value);
+			List<WebElement> droppedItems = gf.getElements(locatorType, value);
 
 			//throw error if dropped list is empty
 			if (droppedItems.size() == 0)
@@ -186,7 +160,7 @@ public class ActionFunctions extends GenericFunctions{
 				Thread.sleep(100);
 				
 				//asert whether name of item in dropped list matches with name of dropped items array
-				a.assertEqualValue(itemName, values[i]);
+				Assertions.assertEqualValue(itemName, values[i]);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

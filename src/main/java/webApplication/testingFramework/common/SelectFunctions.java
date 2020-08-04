@@ -8,46 +8,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-public class SelectFunctions extends GenericFunctions{
-	
-	private WebDriver driver = null;
-	private GenericFunctions gf = new GenericFunctions();
+public class SelectFunctions {
 	
 	//----------------------------------------------------------------------------------------------------------------------------------------------
-		// methods to manipulate driver
-	
-	//constructor of selectFunctions
-	public SelectFunctions()
-	{
-		setDriver(gf.getDriver());
-	}
-	
-	//accessor method of selectFunctions
-	public WebDriver getDriver()
-	{
-		return driver;
-	}
-	
-	//mutator method of selectFunctions
-	public void setDriver(WebDriver driver)
-	{
-		this.driver = driver;
-	}	
-	
-	//----------------------------------------------------------------------------------------------------------------------------------------------
-	
 	// method to select an item from dropdown by visible text
 	
-		public void singleSelectByText(String locatorType, String locatorValue, String textValue) throws Throwable {
+		public static void singleSelectByText(WebElement element, String text) throws Throwable {
 			try {
-				//get the actual value of the locator and text to be selected by reading the objectProperties file
-				String value = PageObjects.getActualLocatorValue(locatorValue);
-				String text = PageObjects.getActualLocatorValue(textValue);
-				Thread.sleep(500);
-				
-				//get the dropdown element using the actual locator
-				WebElement element = getElement(locatorType, value);
-				Thread.sleep(100);
 				
 				//create Select class object of the dropdown element
 				Select dropDown = new Select(element);
@@ -67,23 +34,14 @@ public class SelectFunctions extends GenericFunctions{
 		//-----------------------------------------------------------------------------------------------------------------------------------------------
 		//method to select an item from dropdown by value
 		
-		public void singleSelectByValue(String locatorType, String locatorValue, String optionValue) throws Throwable {
+		public static void singleSelectByValue(WebElement element, String value) throws Throwable {
 			try {
-				//get the actual value of the locator and value to be selected by reading the objectProperties file
-				String value = PageObjects.getActualLocatorValue(locatorValue);
-				String option = PageObjects.getActualLocatorValue(optionValue);
-				Thread.sleep(500);
-				
-				//get the dropdown element using the actual locator
-				WebElement element = getElement(locatorType, value);
-				Thread.sleep(100);
-				
 				//create Select class object of the dropdown element
 				Select dropDown = new Select(element);
 				Thread.sleep(100);
 				
 				//select the option of the dropdown via value
-				dropDown.selectByValue(option);
+				dropDown.selectByValue(value);
 				Thread.sleep(100);
 			} 
 			catch (Exception e) {
@@ -96,20 +54,13 @@ public class SelectFunctions extends GenericFunctions{
 		//-----------------------------------------------------------------------------------------------------------------------------------------------
 		//verify single selected value
 		
-		public void verifySingleDropdownResult(String locatorType, String locatorValue, String verifyValue) throws Throwable {
+		public static void verifySingleDropdownResult(WebElement element, String expected) throws Throwable {
 			try {
-				//get the actual value of the locator and expected value by reading the objectProperties file
-				String value = PageObjects.getActualLocatorValue(locatorValue);
-				String expected = PageObjects.getActualLocatorValue(verifyValue);
-				Thread.sleep(300);
-				
-				//get the result element using the actual locator
-				WebElement actualElement = getElement(locatorType, value);
-				String actualSetence = actualElement.getText();
+				String actualSetence = element.getText();
 				String[] actual = actualSetence.split("-");
 				
 				//assert selected and displayed result value
-				a.assertEqualValue(actual[1].trim(), expected.trim());
+				Assertions.assertEqualValue(actual[1].trim(), expected.trim());
 			}
 			catch(Exception e) {
 				e.printStackTrace();
@@ -121,20 +72,13 @@ public class SelectFunctions extends GenericFunctions{
 		//-----------------------------------------------------------------------------------------------------------------------------------------------
 		//method to verify is selection is multi select
 		
-		public void checkMultiSelect(String locatorType, String locatorValue) throws Throwable {
-			try {
-				//get the actual value of the locator by reading the objectProperties file
-				String value = PageObjects.getActualLocatorValue(locatorValue);
-				Thread.sleep(300);
-				
-				//get the dropdown element using the actual locator
-				WebElement element = getElement(locatorType, value);
-				
+		public static void checkMultiSelect(WebElement element) throws Throwable {
+			try {				
 				//create Select class object of the dropdown element
 				Select dropDown = new Select(element);
 				
 				//assert whether dropdown is multi select or not
-				if(a.assertTrueValue(dropDown.isMultiple()) == true)
+				if(Assertions.assertTrueValue(dropDown.isMultiple()) == true)
 					System.out.println("Dropdown is Multi Select type.");
 				else
 					System.out.println("Dropdown is Single Select type.");
@@ -149,18 +93,10 @@ public class SelectFunctions extends GenericFunctions{
 		//-----------------------------------------------------------------------------------------------------------------------------------------------
 		//method to do multiple selection by Value
 		
-		public Select multiSelectByValue(String locatorType, String locatorValue, String values) throws Throwable {
-			try {
-				//get the actual value of the locator and values to be selected by reading the objectProperties file
-				String value = PageObjects.getActualLocatorValue(locatorValue);
-				String actualValues = PageObjects.getActualLocatorValue(values);
-				Thread.sleep(300);
-				
-				//get the dropdown element using the actual locator
-				WebElement element = getElement(locatorType, value);
-				
+		public static Select multiSelectByValue(WebDriver driver, WebElement element, String values) throws Throwable {
+			try {				
 				//put the actual values to be selected into a String array
-				String [] valuesArray = actualValues.split(",");
+				String [] valuesArray = values.split(",");
 				
 				//create Select class object of the dropdown element
 				Select dropdown = new Select(element);
@@ -189,28 +125,20 @@ public class SelectFunctions extends GenericFunctions{
 		//-----------------------------------------------------------------------------------------------------------------------------------------------
 		//method to check first option selected by Select class object
 		
-		public void verifyFirstSelected(String locatorType, String locatorValue, Select dropdown, String values) throws Throwable {
-			try {
-				//get the actual value of the locator and values to be selected by reading the objectProperties file
-				String value = PageObjects.getActualLocatorValue(locatorValue);
-				String actualValues = PageObjects.getActualLocatorValue(values);
-				Thread.sleep(300);
-				
-				//get the result element using the actual locator
-				WebElement resultDisplayed = getElement(locatorType, value);
-				
+		public static void verifyFirstSelected(WebElement result, Select dropdown, String values) throws Throwable {
+			try {				
 				//get the first option selected from the dropdown
 				WebElement firstOption = dropdown.getFirstSelectedOption();
 				
 				//set the actual and expected values to be verified
-				String[] valuesArray = actualValues.split(",");
-				String[] resultArray = resultDisplayed.getText().split(":");			
+				String[] valuesArray = values.split(",");
+				String[] resultArray = result.getText().split(":");			
 				String actual1 = firstOption.getText();
 				String actual2 = resultArray[1].trim();
 				String expected = valuesArray[0].trim();
 				
 				//verify the first selected actual and expected values 
-				a.assertEqualValue(actual1, actual2, expected);
+				Assertions.assertEqualValue(actual1, actual2, expected);
 			}
 			catch(Exception e) {
 				e.printStackTrace();
@@ -222,23 +150,15 @@ public class SelectFunctions extends GenericFunctions{
 		//-----------------------------------------------------------------------------------------------------------------------------------------------
 		//method to verify all selected options in a multi select dropdown
 		
-		public void verifyAllSelected(String locatorType, String locatorValue, Select dropdown, String values) throws Throwable {
-			try {
-				//get the actual value of the locator and values to be selected by reading the objectProperties file
-				String value = PageObjects.getActualLocatorValue(locatorValue);
-				String actualValues = PageObjects.getActualLocatorValue(values);
-				Thread.sleep(300);
-				
+		public static void verifyAllSelected(WebElement result, Select dropdown, String values) throws Throwable {
+			try {				
 				//get the list of web elements selected in the dropdown 
 				List <WebElement> selectedOptions = dropdown.getAllSelectedOptions();
 				
-				//get the result element using the actual locator
-				WebElement resultDisplayed = getElement(locatorType, value);
-				
 				//set the actual and expected values selected to be verified
-				String[] valuesArray = actualValues.split(",");
-				int loc = resultDisplayed.getText().indexOf(":");
-				String resultString = resultDisplayed.getText().substring(loc+2);
+				String[] valuesArray = values.split(",");
+				int loc = result.getText().indexOf(":");
+				String resultString = result.getText().substring(loc+2);
 				String[] resultArray = resultString.split(",");
 				
 				for(int i = 0; i < selectedOptions.size(); i++) 
@@ -248,7 +168,7 @@ public class SelectFunctions extends GenericFunctions{
 					String expected = valuesArray[i].trim();	
 					
 					//verify the actual and expected selected values in same order
-					a.assertEqualValue(actual1, actual2, expected);
+					Assertions.assertEqualValue(actual1, actual2, expected);
 				}
 			}
 			catch(Exception e) {

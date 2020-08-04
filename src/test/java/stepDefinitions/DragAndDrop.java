@@ -2,28 +2,21 @@ package stepDefinitions;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import webApplication.testingFramework.common.ActionFunctions;
-import webApplication.testingFramework.common.RobotFunctions;
+import webApplication.testingFramework.common.GenericFunctions;
 
 public class DragAndDrop {
 	
-	//actionsFunctions and robotFunctions both inherit genericFunctions
-	//hence one can use the genericFunctions methods by calling them 
-	//via either of the objects
-	
-	private static final ActionFunctions af = new ActionFunctions();
-	private static final RobotFunctions rf = new RobotFunctions();
+	public static GenericFunctions gf;
 	private static String [] droppedElements = null;
 	
 	@Then("^user selects Drag and Drop$")
 	public void selectDragDrop() throws Throwable {
 		try {
 			Thread.sleep(100);
-			//rf.isElementVisible("xpath", "OthersDropDown");
-			rf.isElementVisible("xpath", "DragAndDrop");
+			gf.isElementVisible("xpath", "DragAndDrop");
 			//rf.selectDropdownText("xpath", "OthersDropDown", "DragAndDropText");
 			Thread.sleep(100);
-			rf.click("xpath", "DragAndDrop");
+			gf.click("xpath", "DragAndDrop");
 			Thread.sleep(50);
 		}
 		catch(Exception e) {
@@ -40,7 +33,7 @@ public class DragAndDrop {
 			//droppedElements = rf.dragAndDropElements("xpath", "Item1", "DropHere");			
 			//droppedElements = rf.dragAndDropElements1("xpath", "ItemsToDrag", "DropHere");
 			//droppedElements  = rf.dragAndDropElements("xpath", "ItemsToDrag", "DropHere");
-			droppedElements  = rf.dragAndDropElementsRobot("xpath", "Item1", "DropHere");
+			//droppedElements  = gf.dragAndDropElementsRobot("xpath", "Item1", "DropHere");
 			Thread.sleep(50);
 		}
 		catch(Exception e) {
@@ -54,7 +47,7 @@ public class DragAndDrop {
 	public void verifyDragDroppedItems() throws Throwable {
 		try {
 			Thread.sleep(100);
-			af.verifyDroppedItems("xpath", droppedElements, "DropedList");
+			//af.verifyDroppedItems("xpath", droppedElements, "DropedList");
 			Thread.sleep(50);
 		}
 		catch(Exception e) {

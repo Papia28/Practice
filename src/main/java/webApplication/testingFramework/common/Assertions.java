@@ -1,15 +1,12 @@
 package webApplication.testingFramework.common;
 
-//import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import java.lang.Throwable;
 
-public class Assertions extends BaseFunctions {
-	
-	//private static final WebDriver driver = baseFunctions.driver;
+public class Assertions {
 	
 	//method to assert an equality for two values
-	public boolean assertEqualValue(String value1, String value2)throws Throwable {
+	public static boolean assertEqualValue(String value1, String value2)throws Throwable {
 		try {			
 			System.out.println("Actual: " + value1);
 			System.out.println("Expected: " + value2);
@@ -25,7 +22,7 @@ public class Assertions extends BaseFunctions {
 	}
 	
 	//method to assert whether value true or not
-	public boolean assertTrueValue(boolean value) throws Throwable{
+	public static boolean assertTrueValue(boolean value) throws Throwable{
 		try {
 			System.out.println("Value: " + value);
 			Assert.assertTrue(value);
@@ -39,7 +36,7 @@ public class Assertions extends BaseFunctions {
 	}
 	
 	//method to check whether true or false without assertion
-	public boolean checkTrueFalse(boolean value) throws Throwable {
+	public static boolean checkTrueFalse(boolean value) throws Throwable {
 		try {
 			if(value == true)
 				return true;
@@ -56,7 +53,7 @@ public class Assertions extends BaseFunctions {
 	}
 	
 	//method to assert an equality for three values
-		public boolean assertEqualValue(String value1, String value2, String value3)throws Throwable {
+		public static boolean assertEqualValue(String value1, String value2, String value3)throws Throwable {
 			try {			
 				System.out.println("Actual Value1: " + value1);
 				System.out.println("Actual Value2: " + value2);

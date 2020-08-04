@@ -13,6 +13,21 @@ import webApplication.testingFramework.seleniumBaseFramework.seleniumBase;
 public class BaseFunctions {
 
 	private WebDriver driver = null;
+	
+	//constructor forBaseFunctions
+	
+	  public BaseFunctions()
+	{ 
+		  try { 
+			  beforeExecution(); 
+			  } 
+		  catch (Throwable e) 
+		  {
+			  e.printStackTrace(); 
+			  afterExecution(); 
+		  } 
+	}
+	 
 
 	// getter method for driver
 	public WebDriver getBaseDriver() {
@@ -23,29 +38,23 @@ public class BaseFunctions {
 	public void setBaseDriver(WebDriver driver) {
 		this.driver = driver;
 	}
-
-	//@BeforeSuite
+	
+	//this should be run before starting any test
 	public void beforeExecution() throws Throwable {
 		try {
 			PageObjects.setReadConfig();
 			PageObjects.setPageObjects();
 			setBaseDriver(seleniumBase.openBrowser());
 		} catch (Exception e) {
-			System.out.println("Error occurred: openBrowser()");
+			System.out.println("Error occurred: beforeExecution()");
 			e.printStackTrace();
 			throw e;
 		}
 	}
 
-	//@AfterSuite
-	public void afterExecution() throws Throwable {
-		try {
+	//this should be run after completing any test
+	public void afterExecution() {
 			seleniumBase.closeBrowser();
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Error occurred: closeBrowser()");
-			throw e;
-		}
 	}
 
 	// method to launch the URL of the application
@@ -53,7 +62,7 @@ public class BaseFunctions {
 		try {
 			String URL = PageObjects.getURL();
 			if (URL != "") {
-				getBaseDriver().get(URL);
+				driver.get(URL);
 				Thread.sleep(2000);
 				System.out.println("URL launched successfully.");
 			} else if (URL == "")
@@ -101,7 +110,7 @@ public class BaseFunctions {
 		try {
 			By locator = getLocator(locatorType, locatorValue);
 			System.out.println(locator);
-			WebElement element = getBaseDriver().findElement(locator);
+			WebElement element = driver.findElement(locator);
 			Thread.sleep(500);
 			return element;
 		} catch (Exception e) {
@@ -116,7 +125,7 @@ public class BaseFunctions {
 		try {
 			By locator = getLocator(locatorType, locatorValue);
 			System.out.println(locator);
-			List<WebElement> elements = getBaseDriver().findElements(locator);
+			List<WebElement> elements = driver.findElements(locator);
 			Thread.sleep(500);
 			return elements;
 		} catch (Exception e) {

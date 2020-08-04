@@ -17,7 +17,7 @@ public class PageObjects extends readConfig{
 		try {
 			// convert pageObjects.properties to type File and assign it to previously
 			// created File type variable
-			pageObjectFile = new File("src/main/resources/config/pageObjects.properties");
+			pageObjectFile = new File("src/main/resources/config/pageObjectsSeleniumEasy.properties");
 			
 			// convert configFile to FileInputStream type and assign it to previously
 			// created FileInputStream type variable
@@ -34,7 +34,7 @@ public class PageObjects extends readConfig{
 	}
 	
 	//method to provide the actual locator values
-	protected static String getActualLocatorValue(String value) throws Throwable {
+	public static String getActualLocatorValue(String value) throws Throwable {
 		try {		
 			return pageObjectProperty.getProperty(value);
 		} 
