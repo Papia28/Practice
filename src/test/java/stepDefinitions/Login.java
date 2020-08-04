@@ -2,8 +2,6 @@ package stepDefinitions;
 
 import webApplication.testingFramework.common.GenericFunctions;
 
-//import org.openqa.selenium.WebDriver;
-
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.PendingException;
@@ -12,14 +10,13 @@ import io.cucumber.java.en.Then;
 
 public final class Login {
 
-	private static final GenericFunctions gf = new GenericFunctions();
+	public static GenericFunctions gf = null;
 	
 	@Before
 	public void beforeScenario() throws Throwable {
 		try {
-			//TODO
-				gf.beforeExecution();;
-				Thread.sleep(300);
+				gf = new GenericFunctions();
+				Thread.sleep(300);				
 		}
 		catch(Exception e) {
 			e.printStackTrace();
