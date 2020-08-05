@@ -5,17 +5,14 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-//import org.testng.annotations.AfterSuite;
-//import org.testng.annotations.BeforeSuite;
 
 import webApplication.testingFramework.seleniumBaseFramework.seleniumBase;
 
-public class BaseFunctions {
+public abstract class BaseFunctions {
 
 	private WebDriver driver = null;
 	
-	//constructor forBaseFunctions
-	
+	//constructor for BaseFunctions	
 	  public BaseFunctions()
 	{ 
 		  try { 

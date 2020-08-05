@@ -41,7 +41,7 @@ public class GenericFunctions extends BaseFunctions {
 	//method to delete singleton object
 	public static void deleteInstance()
 	{
-		genericInstance = null;
+		//genericInstance = null;
 	}
 	
 	//accessor method for driver

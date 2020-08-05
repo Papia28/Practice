@@ -42,6 +42,7 @@ public class SelectDropdownList
 			Thread.sleep(100);
 			gf.isElementVisible("xpath", "SelectDay");
 			Thread.sleep(100);
+			//actual
 			WebElement element = gf.getElement("xpath", "SelectDay");
 			String text = PageObjects.getActualLocatorValue("Day");
 			SelectFunctions.singleSelectByText(element, text);
