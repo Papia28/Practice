@@ -19,23 +19,49 @@ import webApplication.testingFramework.common.Waits;
 
 public class seleniumBaseDriver extends seleniumBaseDriverManager 
 {
-	private static WebDriver baseDriver = null;
+	private static WebDriver driver = null;
 	private static Logger log = LogManager.getLogger(seleniumBaseDriver.class.getName());
 	//private Logger log = Log.getInstance(Thread.currentThread().getStackTrace()[1].getClassName());
 	private static DesiredCapabilities capabilities  = null;
+	private static seleniumBaseDriver baseInstance = null;
 
-	//getter method for driver
-	protected static WebDriver getBaseDriver() 
+	//private contrustor of the class
+	private seleniumBaseDriver()
 	{
-		return baseDriver;
+		try {
+			setDriver();
+		} catch (Throwable e) {
+			log.error("Error in creating object of seleniumBaseDriver()");
+			e.printStackTrace();
+		}
+	}
+	
+	//method to get instance of the singleton class
+	public static seleniumBaseDriver getInstance()
+	{
+		if(baseInstance == null)
+			baseInstance = new seleniumBaseDriver();
+		return baseInstance;
+	}
+	
+	//method to delete instance of the singleton class
+	public static void deleteInstance()
+	{
+		baseInstance = null;
+	}
+	
+	//getter method for driver
+	protected WebDriver getDriver() 
+	{
+		return driver;
 	}
 	
 	//setter method for driver
-	protected static void setBaseDriver() throws Throwable
+	protected void setDriver() throws Throwable
 	{
 		try {			
 			//call method to set and get the WebDriver object
-			seleniumBaseDriver.baseDriver = setSeleniumBaseDriver(getBrowser());
+			seleniumBaseDriver.driver = setSeleniumBaseDriver(getBrowser());
 			log.info("Success! driver set.");
 		} 
 		catch (Exception e) {
@@ -56,8 +82,8 @@ public class seleniumBaseDriver extends seleniumBaseDriverManager
 				capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
-				baseDriver = new ChromeDriver();
-				baseDriver = Waits.implicitWait(baseDriver);
+				driver = new ChromeDriver();
+				driver = Waits.implicitWait(driver);
 			} 
 			else if ("Chrome Headless".equalsIgnoreCase(browser)) {
 				log.info("Browser is Chrome Headless!");
@@ -70,8 +96,8 @@ public class seleniumBaseDriver extends seleniumBaseDriverManager
 				ch.addArguments("--headless");
 				//ch.setHeadless(true);
 				ch.merge(capabilities);
-				baseDriver = new ChromeDriver(ch);
-				baseDriver = Waits.implicitWait(baseDriver);
+				driver = new ChromeDriver(ch);
+				driver = Waits.implicitWait(driver);
 			} 
 			else if ("Firefox".equalsIgnoreCase(browser)) {
 				log.info("Browser is Firefox!");
@@ -80,8 +106,8 @@ public class seleniumBaseDriver extends seleniumBaseDriverManager
 				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 				capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
-				baseDriver = new FirefoxDriver();
-				baseDriver = Waits.implicitWait(baseDriver);
+				driver = new FirefoxDriver();
+				driver = Waits.implicitWait(driver);
 			} 
 			else if ("Firefox Headless".equalsIgnoreCase(browser)) {
 				log.info("Browser is Firefox Headless");
@@ -93,8 +119,8 @@ public class seleniumBaseDriver extends seleniumBaseDriverManager
 				FirefoxOptions ff = new FirefoxOptions();
 				ff.setHeadless(true);
 				ff.merge(capabilities);
-				baseDriver = new FirefoxDriver(ff);
-				baseDriver = Waits.implicitWait(baseDriver);
+				driver = new FirefoxDriver(ff);
+				driver = Waits.implicitWait(driver);
 			} 
 			else if ("Internet Explorer".equalsIgnoreCase(browser)) {
 				log.info("Browser is Internet Explorer!");
@@ -103,8 +129,8 @@ public class seleniumBaseDriver extends seleniumBaseDriverManager
 				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 				capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
-				baseDriver = new InternetExplorerDriver();
-				baseDriver = Waits.implicitWait(baseDriver);
+				driver = new InternetExplorerDriver();
+				driver = Waits.implicitWait(driver);
 			} 
 			else if ("Microsoft Edge".equalsIgnoreCase(browser)) {
 				log.info("Browser is Microsoft Edge!");
@@ -113,8 +139,8 @@ public class seleniumBaseDriver extends seleniumBaseDriverManager
 				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 				capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
-				baseDriver = new EdgeDriver();
-				baseDriver = Waits.implicitWait(baseDriver);
+				driver = new EdgeDriver();
+				driver = Waits.implicitWait(driver);
 			} 
 			else if ("Headless".equalsIgnoreCase(browser)) {
 				log.info("Browser is Headless!");
@@ -123,15 +149,15 @@ public class seleniumBaseDriver extends seleniumBaseDriverManager
 				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 				capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
-				baseDriver = new HtmlUnitDriver();
-				baseDriver = Waits.implicitWait(baseDriver);
+				driver = new HtmlUnitDriver();
+				driver = Waits.implicitWait(driver);
 			}
 
 			// TODO safari
 			// TODO selenium grid
 			// TODO for android for appium
 
-			return baseDriver;
+			return driver;
 		}
 		catch(WebDriverException e) {
 			log.fatal("Failure! WebDriver object not set.");

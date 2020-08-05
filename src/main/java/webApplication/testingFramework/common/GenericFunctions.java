@@ -19,30 +19,25 @@ public class GenericFunctions extends BaseFunctions {
 
 	private WebDriver driver = null;
 	private Logger log = LogManager.getLogger(GenericFunctions.class.getName());
-	private static GenericFunctions genericInstance = null;
+	//private static GenericFunctions genericInstance = null;
 	
 	//----------------------------------------------------------------------------------------------------------------------------------------------
 	
 	//privatised constructor of genericFunctions
-	private GenericFunctions()
+	public GenericFunctions()
 	{	
 		super();
 		setDriver();
 	}
 	
-	//method to return singleton object of GenericFunctions class
-	public static GenericFunctions getInstance()
-	{
-		if(genericInstance == null)
-			genericInstance = new GenericFunctions();
-		return genericInstance;
-	}
-	
-	//method to delete singleton object
-	public static void deleteInstance()
-	{
-		//genericInstance = null;
-	}
+	/*
+	 * //method to return singleton object of GenericFunctions class public static
+	 * GenericFunctions getInstance() { if(genericInstance == null) genericInstance
+	 * = new GenericFunctions(); return genericInstance; }
+	 * 
+	 * //method to delete singleton object public static void deleteInstance() {
+	 * //genericInstance = null; }
+	 */
 	
 	//accessor method for driver
 	public WebDriver getDriver()

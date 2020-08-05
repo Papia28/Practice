@@ -17,7 +17,7 @@ public class readConfig {
 	private static final Properties configProperties = new Properties();
 	private static Logger log = LogManager.getLogger(readConfig.class.getName());
 
-	//constructor to read the customConfig.properties file
+	//to read the customConfig.properties file
 	public static void setReadConfig() throws Throwable{
 		try {
 			// convert customConfig.properties to type File and assign it to previously

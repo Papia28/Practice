@@ -6,7 +6,7 @@ import webApplication.testingFramework.common.GenericFunctions;
 
 public class DragAndDrop {
 	
-	public static GenericFunctions gf = GenericFunctions.getInstance();
+	public static GenericFunctions gf = new GenericFunctions();
 	private static String [] droppedElements = null;
 	
 	@Then("^user selects Drag and Drop$")

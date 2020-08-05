@@ -12,8 +12,8 @@ public class PageObjects extends readConfig{
 	private static FileInputStream pageObjectInputStream = null;
 	private static final Properties pageObjectProperty = new Properties();
 	
-	//constructor for pageObjects
-	protected static void setPageObjects() throws Throwable {
+	//to set global variables for pageObjects
+	public static void setPageObjects() throws Throwable {
 		try {
 			// convert pageObjects.properties to type File and assign it to previously
 			// created File type variable

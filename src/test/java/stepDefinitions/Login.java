@@ -1,7 +1,8 @@
 package stepDefinitions;
 
 import webApplication.testingFramework.common.GenericFunctions;
-
+import webApplication.testingFramework.common.PageObjects;
+import webApplication.testingFramework.seleniumBaseFramework.seleniumBase;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.PendingException;
@@ -15,8 +16,11 @@ public final class Login {
 	@Before
 	public void beforeScenario() throws Throwable {
 		try {
-				gf = GenericFunctions.getInstance();
-				Thread.sleep(300);				
+			//initialize and open browser
+			seleniumBase.openBrowser();
+			
+			gf = new GenericFunctions();
+			Thread.sleep(300);				
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -29,8 +33,8 @@ public final class Login {
 	public void afterScenario() throws Throwable {
 		try {
 			Thread.sleep(300);
-			gf.afterExecution();
-			GenericFunctions.deleteInstance();
+			//gf.afterExecution();
+			seleniumBase.closeBrowser();
 		}
 		catch(Exception e) {
 			e.printStackTrace();

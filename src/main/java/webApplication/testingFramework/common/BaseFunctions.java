@@ -16,15 +16,14 @@ public abstract class BaseFunctions {
 	  public BaseFunctions()
 	{ 
 		  try { 
-			  beforeExecution(); 
+			  setBaseDriver(seleniumBase.getDriver());
 			  } 
 		  catch (Throwable e) 
 		  {
 			  e.printStackTrace(); 
-			  afterExecution(); 
+			  //afterExecution(); 
 		  } 
-	}
-	 
+	}	 
 
 	// getter method for driver
 	public WebDriver getBaseDriver() {
@@ -36,23 +35,18 @@ public abstract class BaseFunctions {
 		this.driver = driver;
 	}
 	
-	//this should be run before starting any test
-	public void beforeExecution() throws Throwable {
-		try {
-			PageObjects.setReadConfig();
-			PageObjects.setPageObjects();
-			setBaseDriver(seleniumBase.openBrowser());
-		} catch (Exception e) {
-			System.out.println("Error occurred: beforeExecution()");
-			e.printStackTrace();
-			throw e;
-		}
-	}
+	/*
+	 * //this should be run before starting any test public void beforeExecution()
+	 * throws Throwable { try { PageObjects.setReadConfig();
+	 * PageObjects.setPageObjects(); seleniumBase.openBrowser(); } catch (Exception
+	 * e) { System.out.println("Error occurred: beforeExecution()");
+	 * e.printStackTrace(); throw e; } }
+	 */
 
-	//this should be run after completing any test
-	public void afterExecution() {
-			seleniumBase.closeBrowser();
-	}
+	/*
+	 * //this should be run after completing any test public void afterExecution() {
+	 * seleniumBase.closeBrowser(); }
+	 */
 
 	// method to launch the URL of the application
 	public void launchBaseURL() throws Throwable {

@@ -23,8 +23,7 @@ public class seleniumBaseDriverManager
 		seleniumBaseDriverManager.browser = browser;
 	}
 	
-	//getter method for 
-	
+	//setting the path for webdriver
 	protected static void setWebDriverManager() throws Throwable {
 		try {
 			//set the WebDriverManager
