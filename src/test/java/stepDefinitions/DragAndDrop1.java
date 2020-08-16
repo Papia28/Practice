@@ -5,6 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import webApplication.testingFramework.common.ActionFunctions;
 import webApplication.testingFramework.common.GenericFunctions;
+import webApplication.testingFramework.common.JavascriptFunctions;
 
 public class DragAndDrop1 {
 	
@@ -44,6 +45,8 @@ public class DragAndDrop1 {
 	@Then("^user selects Droppable$")
 	public void selectDragDrop() throws Throwable {
 		try {
+			JavascriptFunctions.scrollToLast(gf.getDriver());
+			Thread.sleep(100);
 			ActionFunctions.hoverOnElement(gf, "xpath", "Droppable");
 			gf.click("xpath", "Droppable");
 			Thread.sleep(300);

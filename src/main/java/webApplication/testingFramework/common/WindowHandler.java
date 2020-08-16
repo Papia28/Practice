@@ -35,7 +35,7 @@ public class WindowHandler extends BaseFunctions{
 		}
 	}
 
-	public void switchToChildWindow(WebDriver driver, int num)throws Throwable
+	public void switchToNthChildWindow(WebDriver driver, int n)throws Throwable
 	{
 		int count = 0;		
 		Set<String> windows = getChildWindows(driver);
@@ -46,7 +46,7 @@ public class WindowHandler extends BaseFunctions{
 			{
 					driver.switchTo().window(child);
 					count++;
-					if(count == num)
+					if(count == n)
 						break;
 			}
 		}
@@ -59,6 +59,6 @@ public class WindowHandler extends BaseFunctions{
 	
 	public void openNewTab(WebDriver driver) throws Throwable
 	{
-		WebElement body = getElement("xpath", "//body");
+		WebElement body = getElement("xpath", "PageBody");
 	}
 }

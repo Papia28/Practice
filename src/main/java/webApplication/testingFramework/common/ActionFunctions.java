@@ -25,7 +25,6 @@ public class ActionFunctions {
 				
 				//perform click and hold of the element using the Actions class object
 				hover.moveToElement(element);
-				hover.build();
 				hover.perform();
 				Thread.sleep(100);
 			} 
@@ -54,7 +53,6 @@ public class ActionFunctions {
 			
 			//perform click and hold of the element using the Actions class object
 			hold.clickAndHold(element);
-			hold.build();
 			hold.perform();
 			Thread.sleep(100);
 		} 
@@ -66,7 +64,7 @@ public class ActionFunctions {
 	}
 	
 	//-----------------------------------------------------------------------------------------------------------------------------------------------
-		// method to drag and drop an element via single function
+		// method to drag and drop an element
 		
 		public static void dragAndDropElement(GenericFunctions gf, String locatorType, String sourceValue, String targetValue) throws Throwable {
 			try {
@@ -86,7 +84,9 @@ public class ActionFunctions {
 				Actions dragDrop = new Actions(gf.getDriver());
 					
 				//perform drag and drop of the source element into the target element
-				dragDrop.dragAndDrop(source, target).build().perform();
+				dragDrop.dragAndDrop(source, target);
+				//DO NOT USE BUILD().IT CAUSES THE DRAG AND DROP TO NOT WORK
+				dragDrop.perform();
 				Thread.sleep(100);
 			} 
 			catch (Exception e) {
@@ -128,8 +128,8 @@ public class ActionFunctions {
 				System.out.println("Item " + (i+1) + " : " + source);
 				
 				//perform drag and drop of the source element into the target element
-				//dragDrop.moveToElement(source).build();
-				dragDrop.dragAndDrop(source, target).build().perform();
+				dragDrop.moveToElement(source).perform();
+				dragDrop.dragAndDrop(source, target).perform();
 				
 				//store the dragged and dropped element name into the array
 				names[i] = source.getText();
@@ -177,9 +177,9 @@ public class ActionFunctions {
 					System.out.println("Item " + (i+1) + " : " + source);
 					
 					//perform drag and drop of the source element into the target element
-					dragDrop.clickAndHold(source).moveToElement(target, 1, 1).perform();					
-					Thread.sleep(2000);
-					dragDrop.release(target).build().perform();
+					dragDrop.clickAndHold(source).moveToElement(target, 1, 1).build().perform();					
+					Thread.sleep(100);
+					dragDrop.release(target).perform();
 					
 					//store the dragged and dropped element name into the array
 					names[i] = source.getText();
