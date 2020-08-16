@@ -17,8 +17,8 @@ public class PageObjects extends readConfig{
 		try {
 			// convert pageObjects.properties to type File and assign it to previously
 			// created File type variable
-			//pageObjectFile = new File("src/main/resources/config/pageObjectsSeleniumEasy.properties");
-			pageObjectFile = new File("src/main/resources/config/pageObjectsToolsQADemo.properties");
+			//pageObjectFile = new File("src/test/resources/config/pageObjectsSeleniumEasy.properties");
+			pageObjectFile = new File("src/test/resources/config/pageObjectsToolsQADemo.properties");
 			
 			// convert configFile to FileInputStream type and assign it to previously
 			// created FileInputStream type variable
