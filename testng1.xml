@@ -6,7 +6,7 @@
 	</listeners>
 	<test name="Test">
 		<classes>
-			<class name="runner.TestRunner1" />
+			<class name="runner.TestRunnerToolsQA" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

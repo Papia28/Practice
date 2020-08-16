@@ -13,7 +13,7 @@ import io.cucumber.testng.CucumberOptions;
 )
 
 @Test
-public class TestRunner1 extends AbstractTestNGCucumberTests {
+public class TestRunnerToolsQA extends AbstractTestNGCucumberTests {
 
 }
 
