@@ -5,12 +5,14 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+//import org.testng.ITestContext;
 
 import webApplication.testingFramework.seleniumBaseFramework.seleniumBase;
 
 public abstract class BaseFunctions {
 
 	private WebDriver driver = null;
+	//public ITestContext context;
 	
 	//constructor for BaseFunctions	
 	  public BaseFunctions()
@@ -34,19 +36,6 @@ public abstract class BaseFunctions {
 	public void setBaseDriver(WebDriver driver) {
 		this.driver = driver;
 	}
-	
-	/*
-	 * //this should be run before starting any test public void beforeExecution()
-	 * throws Throwable { try { PageObjects.setReadConfig();
-	 * PageObjects.setPageObjects(); seleniumBase.openBrowser(); } catch (Exception
-	 * e) { System.out.println("Error occurred: beforeExecution()");
-	 * e.printStackTrace(); throw e; } }
-	 */
-
-	/*
-	 * //this should be run after completing any test public void afterExecution() {
-	 * seleniumBase.closeBrowser(); }
-	 */
 
 	// method to launch the URL of the application
 	public void launchBaseURL() throws Throwable {

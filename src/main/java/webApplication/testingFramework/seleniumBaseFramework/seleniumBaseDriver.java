@@ -77,65 +77,68 @@ public class seleniumBaseDriver extends seleniumBaseDriverManager
 		try {
 			// return proper WebDriver object
 			if ("Chrome".equalsIgnoreCase(browser)) {
-				capabilities = DesiredCapabilities.chrome();
-				capabilities.setCapability(CapabilityType.BROWSER_NAME, "Chrome");
+				capabilities = new DesiredCapabilities();
+				capabilities.setCapability(CapabilityType.BROWSER_NAME, "chrome");
 				capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
 				driver = new ChromeDriver();
 				driver = Waits.implicitWait(driver);
 			} 
-			else if ("Chrome Headless".equalsIgnoreCase(browser)) {
+			else if ("ChromeHeadless".equalsIgnoreCase(browser)) {
 				log.info("Browser is Chrome Headless!");
-				capabilities = DesiredCapabilities.chrome();
-				capabilities.setCapability(CapabilityType.BROWSER_NAME, "Chrome Headless");
+				capabilities = new DesiredCapabilities();
+				capabilities.setCapability(CapabilityType.BROWSER_NAME, "chrome");
 				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 				capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
 				ChromeOptions ch = new ChromeOptions();
 				ch.addArguments("--headless");
-				//ch.setHeadless(true);
+				ch.addArguments("--disable-gpu");
+				ch.addArguments("--window-size=1920,1080");
 				ch.merge(capabilities);
 				driver = new ChromeDriver(ch);
 				driver = Waits.implicitWait(driver);
 			} 
 			else if ("Firefox".equalsIgnoreCase(browser)) {
 				log.info("Browser is Firefox!");
-				capabilities = DesiredCapabilities.firefox();
-				capabilities.setCapability(CapabilityType.BROWSER_NAME, "Firefox");
+				capabilities = new DesiredCapabilities();
+				capabilities.setCapability(CapabilityType.BROWSER_NAME, "firefox");
 				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 				capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
 				driver = new FirefoxDriver();
 				driver = Waits.implicitWait(driver);
 			} 
-			else if ("Firefox Headless".equalsIgnoreCase(browser)) {
+			else if ("FirefoxHeadless".equalsIgnoreCase(browser)) {
 				log.info("Browser is Firefox Headless");
-				capabilities = DesiredCapabilities.firefox();
-				capabilities.setCapability(CapabilityType.BROWSER_NAME, "Firefox Headless");
+				capabilities = new DesiredCapabilities();
+				capabilities.setCapability(CapabilityType.BROWSER_NAME, "firefox");
 				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 				capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
 				FirefoxOptions ff = new FirefoxOptions();
-				ff.setHeadless(true);
+				ff.addArguments("--headless");
+				ff.addArguments("--disable-gpu");
+				ff.addArguments("--window-size=1920,1080");
 				ff.merge(capabilities);
 				driver = new FirefoxDriver(ff);
 				driver = Waits.implicitWait(driver);
 			} 
-			else if ("Internet Explorer".equalsIgnoreCase(browser)) {
+			else if ("InternetExplorer".equalsIgnoreCase(browser)) {
 				log.info("Browser is Internet Explorer!");
-				capabilities = DesiredCapabilities.internetExplorer();
-				capabilities.setCapability(CapabilityType.BROWSER_NAME, "Internet Explorer");
+				capabilities = new DesiredCapabilities();
+				capabilities.setCapability(CapabilityType.BROWSER_NAME, "internetExplorer");
 				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 				capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
 				driver = new InternetExplorerDriver();
 				driver = Waits.implicitWait(driver);
 			} 
-			else if ("Microsoft Edge".equalsIgnoreCase(browser)) {
+			else if ("MicrosoftEdge".equalsIgnoreCase(browser)) {
 				log.info("Browser is Microsoft Edge!");
-				capabilities = DesiredCapabilities.edge();
-				capabilities.setCapability(CapabilityType.BROWSER_NAME, "Edge Chromium");
+				capabilities = new DesiredCapabilities();
+				capabilities.setCapability(CapabilityType.BROWSER_NAME, "edge");
 				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 				capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
@@ -144,8 +147,8 @@ public class seleniumBaseDriver extends seleniumBaseDriverManager
 			} 
 			else if ("Headless".equalsIgnoreCase(browser)) {
 				log.info("Browser is Headless!");
-				capabilities = DesiredCapabilities.htmlUnit();
-				capabilities.setCapability(CapabilityType.BROWSER_NAME, "HTML Unit Driver");
+				capabilities = new DesiredCapabilities();
+				capabilities.setCapability(CapabilityType.BROWSER_NAME, "htmlUnit");
 				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 				capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);

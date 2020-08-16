@@ -3,6 +3,7 @@ package webApplication.testingFramework.seleniumBaseFramework;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestContext;
 
 import webApplication.testingFramework.common.PageObjects;
 
@@ -13,16 +14,17 @@ public final class seleniumBase {
 	private static Logger log = LogManager.getLogger(seleniumBase.class.getName());
 	private static seleniumBaseDriver sbd = null;
 	
-	//getter method for driver
+	//accessor method for driver
 	public static WebDriver getDriver()
 	{			
 		//return the driver
 		return driver;
 	} 
 	
-	//setter method for driver
+	//mutator method for driver
 	public static void setDriver(WebDriver driver)
 	{
+		//set value of the driver
 		seleniumBase.driver = driver;
 	}
 	

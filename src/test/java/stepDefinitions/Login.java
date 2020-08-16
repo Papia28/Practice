@@ -1,8 +1,10 @@
 package stepDefinitions;
 
 import webApplication.testingFramework.common.GenericFunctions;
-import webApplication.testingFramework.common.PageObjects;
 import webApplication.testingFramework.seleniumBaseFramework.seleniumBase;
+
+import org.testng.ITestContext;
+
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.PendingException;
@@ -20,6 +22,8 @@ public final class Login {
 			seleniumBase.openBrowser();
 			
 			gf = new GenericFunctions();
+			//ITestContext context = (ITestContext) gf;
+			//context.setAttribute("webDriver", gf.getDriver());
 			Thread.sleep(300);				
 		}
 		catch(Exception e) {
@@ -67,11 +71,11 @@ public final class Login {
 		}
 	}
 
-	@Then("^provide credentials$")
-	public void provideCredentials() throws Throwable {
+	@Then("^user provides \"(.*)\" and \"(.*)\"$")
+	public void provideCredentials(String username, String password) throws Throwable {
 		try {
-			String username = gf.returnUsername();
-			String password = gf.returnPassword();
+			//String username = gf.returnUsername();
+			//String password = gf.returnPassword();
 			gf.clearValue("Username_txt", "xpath");
 			gf.writeValue("Username_txt", "xpath", username);
 			gf.click("Continue_Btn", "xpath");

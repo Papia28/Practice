@@ -6,20 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 
-
-/** This class is a singleton class. 
- * 
- * Only a single object will be created of this class.
- * @param genericInstance
- * This single object will be used to drive the whole execution. 
- */
-
-
 public class GenericFunctions extends BaseFunctions {
 
 	private WebDriver driver = null;
 	private Logger log = LogManager.getLogger(GenericFunctions.class.getName());
-	//private static GenericFunctions genericInstance = null;
 	
 	//----------------------------------------------------------------------------------------------------------------------------------------------
 	
@@ -29,15 +19,6 @@ public class GenericFunctions extends BaseFunctions {
 		super();
 		setDriver();
 	}
-	
-	/*
-	 * //method to return singleton object of GenericFunctions class public static
-	 * GenericFunctions getInstance() { if(genericInstance == null) genericInstance
-	 * = new GenericFunctions(); return genericInstance; }
-	 * 
-	 * //method to delete singleton object public static void deleteInstance() {
-	 * //genericInstance = null; }
-	 */
 	
 	//accessor method for driver
 	public WebDriver getDriver()

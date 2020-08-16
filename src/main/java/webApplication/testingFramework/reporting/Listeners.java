@@ -13,36 +13,48 @@ import com.aventstack.extentreports.Status;
 
 import webApplication.testingFramework.common.Screenshots;
 
-public class Listeners extends Screenshots implements ITestListener {
+public class Listeners implements ITestListener {
 
-	private WebDriver driver = null;
 	private ExtentReports extent = ExtentReportHandler.getExtentObject();
 	private ExtentTest test = null;
 	private String testName = null;
 	private Logger log = LogManager.getLogger(Listeners.class.getName());
+	private WebDriver driver = null;
 
+	@Override
+	public void onStart(ITestContext context) {
+	}
+	
 	@Override
 	public void onTestStart(ITestResult result) {
 		log.debug("Setting the onTestStart method of Listeners.");
-		testName = result.getMethod().getMethodName();
+		//testName = result.getMethod().getMethodName();
+		testName = result.getName();
 		test = extent.createTest(testName);
 		log.info("Success! ExtentTest object created in onTestStart().");
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
+		try {
 		log.info("Success! Test passed.");
+		String imagePath = Screenshots.saveScreenshot(driver, testName);
+		test.addScreenCaptureFromPath(imagePath, testName);
+		test.pass("Success! Test passed.");
 		test.log(Status.PASS, "Success! Test passed.");
+		}
+		catch(Throwable e)
+		{
+			e.printStackTrace();
+			log.fatal("Error in taking screenshot during success!");
+		}
 	}
 
 	@Override
 	public void onTestFailure(ITestResult result) {
 		try {
-			// TODO this using ITestContext
 			log.error("Failure! Test failed.");
-			driver = (WebDriver) result.getTestClass().getRealClass().getDeclaredField("driver")
-					.get(result.getInstance());
-			String imagePath = saveScreenshot(driver, testName);
+			String imagePath = Screenshots.saveScreenshot(driver, testName);			
 			test.addScreenCaptureFromPath(imagePath, testName);
 			test.fail(result.getThrowable());
 			test.log(Status.FAIL, "Failure! Test failed.");
@@ -69,17 +81,11 @@ public class Listeners extends Screenshots implements ITestListener {
 	public void onTestFailedWithTimeout(ITestResult result) {
 		// TODO Auto-generated method stub
 		// ITestListener.super.onTestFailedWithTimeout(result);
-	}
-
-	@Override
-	public void onStart(ITestContext context) {
-		// TODO ITestContext here
-	}
+	}	
 
 	@Override
 	public void onFinish(ITestContext context) {
-		// TODO Auto-generated method stub
-		// ITestListener.super.onFinish(context);
+		extent.flush();
 	}
 
 }

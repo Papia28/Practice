@@ -8,7 +8,7 @@ import io.cucumber.testng.CucumberOptions;
 		features = "src/test/java/features/", 
 		glue = "stepDefinitions", 
 		plugin = { "pretty", "html:target/cucumber" },
-		tags = {"@DragAndDrop"}		
+		tags = {"@DragAndDrop1"}		
 )
 
 @Test

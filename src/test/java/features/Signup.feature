@@ -1,6 +1,7 @@
 Feature: To test sign up feature of website
 
 @EndToEnd
+@Signup
 Scenario: Test sign up
 Given application is launched
 When user clicks Signin

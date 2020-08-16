@@ -7,8 +7,10 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
 		features = "src/test/java/features/", 
 		glue = "stepDefinitions", 
-		plugin = { "pretty", "html:target/cucumber" },
-		tags = {"@InputForms"}		
+		plugin = { "pretty", "html:target/cucumber" },   //formatting
+		tags = {"@InputForms"},   //use ~ to exclude tags
+		strict = true,  //fails the build if steps have not been found or have been skipped
+		dryRun = false  //checks whether each step has corresponding code written in step definition file or not
 )
 
 @Test

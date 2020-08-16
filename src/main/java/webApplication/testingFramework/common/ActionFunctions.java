@@ -8,6 +8,35 @@ import org.openqa.selenium.interactions.Actions;
 public class ActionFunctions {
 	
 	//----------------------------------------------------------------------------------------------------------------------------------------------	
+		// method to hover on element
+		
+		public static void hoverOnElement(GenericFunctions gf, String locatorType, String locatorValue) throws Throwable {
+			try {
+				//get the actual value of the locator by reading the objectProperties file
+				String value = PageObjects.getActualLocatorValue(locatorValue);
+				Thread.sleep(500);
+				
+				//get the element using the actual locator
+				WebElement element = gf.getElement(locatorType, value);
+				Thread.sleep(100);
+				
+				//create Actions class object of the WebDriver object
+				Actions hover = new Actions(gf.getDriver());
+				
+				//perform click and hold of the element using the Actions class object
+				hover.moveToElement(element);
+				hover.build();
+				hover.perform();
+				Thread.sleep(100);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Error in hoverOnElement().");
+				throw e;
+			}
+		}
+
+	//----------------------------------------------------------------------------------------------------------------------------------------------	
 	// method to click and hold
 	
 	public static void clickAndHoldElement(GenericFunctions gf, String locatorType, String locatorValue) throws Throwable {
@@ -35,9 +64,40 @@ public class ActionFunctions {
 			throw e;
 		}
 	}
+	
+	//-----------------------------------------------------------------------------------------------------------------------------------------------
+		// method to drag and drop an element via single function
+		
+		public static void dragAndDropElement(GenericFunctions gf, String locatorType, String sourceValue, String targetValue) throws Throwable {
+			try {
+				//get the actual value of the source and target element locators by reading the objectProperties file
+				String sourcePath = PageObjects.getActualLocatorValue(sourceValue);
+				String targetPath = PageObjects.getActualLocatorValue(targetValue);
+				Thread.sleep(500);
+				
+				//get the list of source elements using the actual locator value
+				WebElement source = gf.getElement(locatorType, sourcePath);
+				
+				//get the target element using the actual locator value
+				WebElement target = gf.getElement(locatorType, targetPath);
+				Thread.sleep(100);	
+				
+				//create Actions class object of the WebDriver ojbect
+				Actions dragDrop = new Actions(gf.getDriver());
+					
+				//perform drag and drop of the source element into the target element
+				dragDrop.dragAndDrop(source, target).build().perform();
+				Thread.sleep(100);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Error in dragAndDropElement().");
+				throw e;
+			}
+		}
 
 	//-----------------------------------------------------------------------------------------------------------------------------------------------
-	// method to drag an element via single function
+	// method to drag and drop list of elements via single function
 	
 	public static String[] dragAndDropElements(GenericFunctions gf, String locatorType, String sourceValue, String targetValue) throws Throwable {
 		try {
