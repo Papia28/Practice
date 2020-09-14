@@ -1,6 +1,6 @@
 #Author: Papia Nandi
 
-Feature: To test Demo Testing Website
+Feature: To test ToolsQADemo Testing Website
 
 @EndToEnd
 @Login

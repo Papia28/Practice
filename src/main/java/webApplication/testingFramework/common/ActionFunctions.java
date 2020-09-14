@@ -65,13 +65,14 @@ public class ActionFunctions {
 	
 	//-----------------------------------------------------------------------------------------------------------------------------------------------
 		// method to drag and drop an element
+	//DO NOT USE BUILD().IT CAUSES THE DRAG AND DROP TO NOT WORK
 		
 		public static void dragAndDropElement(GenericFunctions gf, String locatorType, String sourceValue, String targetValue) throws Throwable {
 			try {
 				//get the actual value of the source and target element locators by reading the objectProperties file
 				String sourcePath = PageObjects.getActualLocatorValue(sourceValue);
 				String targetPath = PageObjects.getActualLocatorValue(targetValue);
-				Thread.sleep(500);
+				Thread.sleep(200);
 				
 				//get the list of source elements using the actual locator value
 				WebElement source = gf.getElement(locatorType, sourcePath);
@@ -85,7 +86,6 @@ public class ActionFunctions {
 					
 				//perform drag and drop of the source element into the target element
 				dragDrop.dragAndDrop(source, target);
-				//DO NOT USE BUILD().IT CAUSES THE DRAG AND DROP TO NOT WORK
 				dragDrop.perform();
 				Thread.sleep(100);
 			} 
@@ -129,6 +129,7 @@ public class ActionFunctions {
 				
 				//perform drag and drop of the source element into the target element
 				dragDrop.moveToElement(source).perform();
+				Thread.sleep(50);
 				dragDrop.dragAndDrop(source, target).perform();
 				
 				//store the dragged and dropped element name into the array
@@ -177,8 +178,8 @@ public class ActionFunctions {
 					System.out.println("Item " + (i+1) + " : " + source);
 					
 					//perform drag and drop of the source element into the target element
-					dragDrop.clickAndHold(source).moveToElement(target, 1, 1).build().perform();					
-					Thread.sleep(100);
+					dragDrop.clickAndHold(source).moveToElement(target, 0, 0).build().perform();					
+					Thread.sleep(50);
 					dragDrop.release(target).perform();
 					
 					//store the dragged and dropped element name into the array

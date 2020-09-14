@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 public class GenericFunctions extends BaseFunctions {
 
 	private WebDriver driver = null;
-	private Logger log = LogManager.getLogger(GenericFunctions.class.getName());
+	public static Logger log = LogManager.getLogger(GenericFunctions.class.getName());
 	
 	//----------------------------------------------------------------------------------------------------------------------------------------------
 	
@@ -70,7 +70,7 @@ public class GenericFunctions extends BaseFunctions {
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Error in click()");
+			log.error("Error in click()");
 			throw e;
 		}
 	}
@@ -94,7 +94,7 @@ public class GenericFunctions extends BaseFunctions {
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Error in clearText()");
+			log.error("Error in clearText()");
 			throw e;
 		}
 	}
@@ -118,7 +118,7 @@ public class GenericFunctions extends BaseFunctions {
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Error in writeValue()");
+			log.error("Error in writeValue()");
 			throw e;
 		}
 	}
@@ -135,7 +135,7 @@ public class GenericFunctions extends BaseFunctions {
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Error in getActualPageTitle()");
+			log.error("Error in getActualPageTitle()");
 			throw e;
 		}
 	}
@@ -157,7 +157,7 @@ public class GenericFunctions extends BaseFunctions {
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Error in getExpectedPageTitle()");
+			log.error("Error in getExpectedPageTitle()");
 			throw e;
 		}
 	}
@@ -176,14 +176,14 @@ public class GenericFunctions extends BaseFunctions {
 			Thread.sleep(200);
 			
 			//assert visibility of element
-			if (Assertions.assertTrueValue(element.isDisplayed()) == true)
+			if (Assertions.assertTrueValue(element.isDisplayed()))
 				System.out.println("Success! " + locatorValue + " is visible!");
 			else
 				System.out.println("Failure! " + locatorValue + " is not visible!");
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Error in isElementVisible().");
+			log.error("Error in isElementVisible().");
 			throw e;
 		}
 	}

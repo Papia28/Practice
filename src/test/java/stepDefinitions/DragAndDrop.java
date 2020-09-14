@@ -2,6 +2,7 @@ package stepDefinitions;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import webApplication.testingFramework.common.ActionFunctions;
 import webApplication.testingFramework.common.GenericFunctions;
 
 public class DragAndDrop {
@@ -30,10 +31,10 @@ public class DragAndDrop {
 	public void performDragAndDrop() throws Throwable {
 		try {
 			Thread.sleep(100);
-			//droppedElements = rf.dragAndDropElements("xpath", "Item1", "DropHere");			
-			//droppedElements = rf.dragAndDropElements1("xpath", "ItemsToDrag", "DropHere");
-			//droppedElements  = rf.dragAndDropElements("xpath", "ItemsToDrag", "DropHere");
-			//droppedElements  = gf.dragAndDropElementsRobot("xpath", "Item1", "DropHere");
+			//droppedElements = ActionFunctions.dragAndDropElements(gf, "xpath", "ItemsToDrag", "DropHere");			
+			//droppedElements = ActionFunctions.dragAndDropElements1(gf, "xpath", "ItemsToDrag", "DropHere");
+			//droppedElements  = RobotFunctions.dragAndDropElementsRobot("xpath", "Item1", "DropHere");
+			ActionFunctions.dragAndDropElement(gf, "xpath", "Item1", "DropHere");	
 			Thread.sleep(50);
 		}
 		catch(Exception e) {
@@ -47,7 +48,7 @@ public class DragAndDrop {
 	public void verifyDragDroppedItems() throws Throwable {
 		try {
 			Thread.sleep(100);
-			//af.verifyDroppedItems("xpath", droppedElements, "DropedList");
+			ActionFunctions.verifyDroppedItems(gf, "xpath", droppedElements, "DropedList");
 			Thread.sleep(50);
 		}
 		catch(Exception e) {
