@@ -58,6 +58,7 @@ public class GenericFunctions extends BaseFunctions {
 		try {
 			//get the element
 			WebElement element = getElement(locatorType, locatorValue);
+			JavascriptFunctions.highlightElement(driver, element);
 			Thread.sleep(100);
 			
 			//click on the element
@@ -78,6 +79,7 @@ public class GenericFunctions extends BaseFunctions {
 		try {			
 			//get the element using the actual locator
 			WebElement element = getElement(locatorType, locatorValue);
+			JavascriptFunctions.highlightElement(driver, element);
 			Thread.sleep(100);
 			
 			//clear contents of the element
@@ -98,6 +100,7 @@ public class GenericFunctions extends BaseFunctions {
 		try {
 			//get the element using the actual locator
 			WebElement element = getElement(locatorType, locatorValue);
+			JavascriptFunctions.highlightElement(driver, element);
 			Thread.sleep(100);
 			
 			//write the fieldValue in the text field 
@@ -161,6 +164,7 @@ public class GenericFunctions extends BaseFunctions {
 			
 			//assert visibility of element
 			AssertionsAndVerifications.assertTrueValue(element.isDisplayed());
+			JavascriptFunctions.highlightElement(driver, element);
 			log.info("Success! " + locatorValue + " is visible!");
 		} 
 		catch(AssertionError e)
@@ -183,6 +187,7 @@ public class GenericFunctions extends BaseFunctions {
 			try {
 				//get the element using the actual locator
 				WebElement element = getElement(locatorType, locatorValue);
+				JavascriptFunctions.highlightElement(driver, element);
 				Thread.sleep(200);
 				
 				//return the inner text fro the element

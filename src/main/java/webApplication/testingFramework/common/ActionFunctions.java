@@ -19,6 +19,7 @@ public class ActionFunctions {
 				//perform click and hold of the element using the Actions class object
 				hover.moveToElement(element);
 				hover.perform();
+				JavascriptFunctions.highlightElement(driver, element);
 				Thread.sleep(100);
 			} 
 			catch (Exception e) {
@@ -37,6 +38,7 @@ public class ActionFunctions {
 			Actions hold = new Actions(driver);
 			
 			//perform click and hold of the element using the Actions class object
+			JavascriptFunctions.highlightElement(driver, element);
 			hold.clickAndHold(element);
 			hold.perform();
 			Thread.sleep(100);
@@ -56,7 +58,9 @@ public class ActionFunctions {
 			try {				
 				//create Actions class object of the WebDriver ojbect
 				Actions dragDrop = new Actions(driver);
-					
+				
+				JavascriptFunctions.highlightElement(driver, sourceElement);
+				JavascriptFunctions.highlightElement(driver, targetElement);
 				//perform drag and drop of the source element into the target element
 				dragDrop.dragAndDrop(sourceElement, targetElement);
 				dragDrop.perform();
@@ -87,6 +91,9 @@ public class ActionFunctions {
 				//get one of the source web elements
 				source = sourceElements.get(i);		
 				System.out.println("Item " + (i+1) + " : " + source);
+				
+				JavascriptFunctions.highlightElement(driver, source);
+				JavascriptFunctions.highlightElement(driver, targetElement);
 				
 				//perform drag and drop of the source element into the target element
 				dragDrop.moveToElement(source).perform();
@@ -125,6 +132,9 @@ public class ActionFunctions {
 					//get one of the source web elements
 					source = sourceElements.get(i);	
 					System.out.println("Item " + (i+1) + " : " + source);
+					
+					JavascriptFunctions.highlightElement(driver, source);
+					JavascriptFunctions.highlightElement(driver, targetElement);
 					
 					//perform drag and drop of the source element into the target element
 					dragDrop.clickAndHold(source).moveToElement(targetElement, 0, 0).build().perform();					

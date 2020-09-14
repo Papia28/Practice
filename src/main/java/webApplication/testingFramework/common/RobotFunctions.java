@@ -30,6 +30,9 @@ public class RobotFunctions {
 				//get the coordinate of the source element
 				coordinates1 = sourceElement.getLocation();
 				
+				//JavascriptFunctions.highlightElement(driver, sourceElement);
+				//JavascriptFunctions.highlightElement(driver, target);
+				
 				//move the mouse pointer via the Robot class object to required position
 				robot.mouseMove(coordinates1.getX(), coordinates1.getY());
 				Thread.sleep(100);

@@ -12,6 +12,7 @@ import webApplication.testingFramework.common.AssertionsAndVerifications;
 import webApplication.testingFramework.common.GenericFunctions;
 import webApplication.testingFramework.common.JavascriptFunctions;
 import webApplication.testingFramework.common.UploadDownloadFiles;
+import webApplication.testingFramework.common.Waits;
 
 public class UploadDownload {
 	
@@ -24,7 +25,8 @@ public class UploadDownload {
 	public void clickElements() throws Throwable
 	{
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(500);
+			JavascriptFunctions.scrollDownByPixelValue(driver, 300);
 			ActionFunctions.hoverOnElement(driver, gf.getElement("xpath", "Elements"));
 			gf.click("xpath", "Elements");
 		}
@@ -40,7 +42,7 @@ public class UploadDownload {
 	public void clickUploadDownload() throws Throwable
 	{
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			JavascriptFunctions.scrollToLast(driver);
 			Thread.sleep(100);
 			JavascriptFunctions.scrollUpByPixelValue(driver, 300);
@@ -90,9 +92,13 @@ public class UploadDownload {
 	public void verifyFileUpload() throws Throwable
 	{
 		try {
+			Waits.explicitWaitByVisibility(driver, gf.getElement("CssSelector", "uploadedFile"));
+			
 			String uploadedFile = gf.getInnerText("CssSelector", "uploadedFile");
 			int index = uploadedFile.lastIndexOf('\\');
+			
 			String actualFileName = uploadedFile.substring(index+1);
+			
 			AssertionsAndVerifications.assertEqualValue(actualFileName, expectedFileName);
 		}
 		catch(Throwable t)

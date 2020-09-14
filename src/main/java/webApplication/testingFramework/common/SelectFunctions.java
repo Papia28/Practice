@@ -19,7 +19,7 @@ public class SelectFunctions {
 	
 		public static void singleSelectByText(WebElement element, String text) throws Throwable {
 			try {
-				
+				//JavascriptFunctions.highlightElement(driver, element);
 				//create Select class object of the dropdown element
 				Select dropDown = new Select(element);
 				Thread.sleep(100);

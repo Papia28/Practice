@@ -50,7 +50,37 @@ public class JavascriptFunctions {
 		catch(Throwable t)
 		{
 			t.printStackTrace();
-			log.error("Error in clicking!");
+			log.error("Error in scrolling!");
+			throw t;
+		}
+	}
+	
+	public static void highlightElement(WebDriver driver, WebElement element)throws Throwable
+	{
+		try {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].setAttribute('style', 'background: lime; border: 2px solid red; font-weight: bolder;');", element);
+		Thread.sleep(500);
+		}
+		catch(Throwable t)
+		{
+			t.printStackTrace();
+			log.error("Error in highlighting!");
+			throw t;
+		}
+	}
+	
+	public static void scrollDownByPixelValue(WebDriver driver, int value)throws Throwable
+	{
+		try {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,arguments[0])", value);
+		Thread.sleep(500);
+		}
+		catch(Throwable t)
+		{
+			t.printStackTrace();
+			log.error("Error in scrolling!");
 			throw t;
 		}
 	}

@@ -17,7 +17,6 @@ public class UploadDownloadFiles {
 			String actualExecPath = PageObjects.getActualLocatorValue(execPath) + " " + actualFilePath;	
 			
 			Runtime.getRuntime().exec(actualExecPath);
-			Thread.sleep(3000);
 			
 			return fileName;
 		}
