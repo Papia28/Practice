@@ -9,14 +9,15 @@ public class UploadDownloadFiles {
 	
 	public static String uploadSampleFile(String filePath, String execPath) throws Throwable
 	{
-		try {
-			String actualExecPath = PageObjects.getActualLocatorValue(execPath);
-			Runtime.getRuntime().exec(actualExecPath);
-			Thread.sleep(5000);
+		try {		
+			String actualFilePath = PageObjects.getActualLocatorValue(filePath);
+			int index = actualFilePath.lastIndexOf('\\');
+			String fileName = actualFilePath.substring(index+1, actualFilePath.length()-1);	
 			
-			String actualFfilePath = PageObjects.getActualLocatorValue(filePath);
-			int index = actualFfilePath.lastIndexOf('\\');
-			String fileName = actualFfilePath.substring(index+1);			
+			String actualExecPath = PageObjects.getActualLocatorValue(execPath) + " " + actualFilePath;	
+			
+			Runtime.getRuntime().exec(actualExecPath);
+			Thread.sleep(3000);
 			
 			return fileName;
 		}
