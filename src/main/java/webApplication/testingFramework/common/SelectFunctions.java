@@ -2,6 +2,8 @@ package webApplication.testingFramework.common;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +11,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 public class SelectFunctions {
+	
+	public static Logger log = LogManager.getLogger(SelectFunctions.class.getName());
 	
 	//----------------------------------------------------------------------------------------------------------------------------------------------
 	// method to select an item from dropdown by visible text
@@ -26,7 +30,7 @@ public class SelectFunctions {
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
-				System.out.println("Error in selectDropdownByText().");
+				log.error("Error in selectDropdownByText().");
 				throw e;
 			}
 		}
@@ -46,7 +50,7 @@ public class SelectFunctions {
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
-				System.out.println("Error in selectDropdownByValue().");
+				log.error("Error in selectDropdownByValue().");
 				throw e;
 			}
 		}
@@ -60,11 +64,11 @@ public class SelectFunctions {
 				String[] actual = actualSetence.split("-");
 				
 				//assert selected and displayed result value
-				Assertions.assertEqualValue(actual[1].trim(), expected.trim());
+				AssertionsAndVerifications.assertEqualValue(actual[1].trim(), expected.trim());
 			}
 			catch(Exception e) {
 				e.printStackTrace();
-				System.out.println("Error in verifySingleSelected().");
+				log.error("Error in verifySingleSelected().");
 				throw e;
 			}
 		}
@@ -78,14 +82,17 @@ public class SelectFunctions {
 				Select dropDown = new Select(element);
 				
 				//assert whether dropdown is multi select or not
-				if(Assertions.assertTrueValue(dropDown.isMultiple()) == true)
-					System.out.println("Dropdown is Multi Select type.");
-				else
-					System.out.println("Dropdown is Single Select type.");
+				AssertionsAndVerifications.assertTrueValue(dropDown.isMultiple());
+				log.info("Dropdown is Multi Select type.");
 			}
-			catch(Exception e) {
+			catch(AssertionError e) {
 				e.printStackTrace();
-				System.out.println("Error in checkMultiSelect().");
+				log.info("Dropdown is Single Select type.");
+				throw e;
+			}			
+			catch(Throwable e) {
+				e.printStackTrace();
+				log.error("Error in checkMultiSelect().");
 				throw e;
 			}
 		}
@@ -117,7 +124,7 @@ public class SelectFunctions {
 			}
 			catch(Exception e) {
 				e.printStackTrace();
-				System.out.println("Error in multiSelectByValue().");
+				log.error("Error in multiSelectByValue().");
 				throw e;
 			}
 		}
@@ -138,11 +145,11 @@ public class SelectFunctions {
 				String expected = valuesArray[0].trim();
 				
 				//verify the first selected actual and expected values 
-				Assertions.assertEqualValue(actual1, actual2, expected);
+				AssertionsAndVerifications.assertEqualValue(actual1, actual2, expected);
 			}
 			catch(Exception e) {
 				e.printStackTrace();
-				System.out.println("Error in verifyFirstSelected().");
+				log.error("Error in verifyFirstSelected().");
 				throw e;
 			}
 		}
@@ -168,12 +175,12 @@ public class SelectFunctions {
 					String expected = valuesArray[i].trim();	
 					
 					//verify the actual and expected selected values in same order
-					Assertions.assertEqualValue(actual1, actual2, expected);
+					AssertionsAndVerifications.assertEqualValue(actual1, actual2, expected);
 				}
 			}
 			catch(Exception e) {
 				e.printStackTrace();
-				System.out.println("Error in verifyAllSelected().");
+				log.error("Error in verifyAllSelected().");
 				throw e;
 			}
 		}

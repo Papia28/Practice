@@ -88,7 +88,8 @@ public abstract class BaseFunctions {
 	// method to find element
 	public WebElement getElement(String locatorType, String locatorValue) throws Throwable {
 		try {
-			By locator = getLocator(locatorType, locatorValue);
+			String actuallocatorValue = PageObjects.getActualLocatorValue(locatorValue);
+			By locator = getLocator(locatorType, actuallocatorValue);
 			System.out.println(locator);
 			WebElement element = driver.findElement(locator);
 			Thread.sleep(500);
@@ -103,7 +104,8 @@ public abstract class BaseFunctions {
 	// method to find list of elements
 	public List<WebElement> getElements(String locatorType, String locatorValue) throws Throwable {
 		try {
-			By locator = getLocator(locatorType, locatorValue);
+			String actuallocatorValue = PageObjects.getActualLocatorValue(locatorValue);
+			By locator = getLocator(locatorType, actuallocatorValue);
 			System.out.println(locator);
 			List<WebElement> elements = driver.findElements(locator);
 			Thread.sleep(500);

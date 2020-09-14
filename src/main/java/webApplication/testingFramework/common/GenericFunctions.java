@@ -44,7 +44,7 @@ public class GenericFunctions extends BaseFunctions {
 			Thread.sleep(200);
 			log.info("Successfully maximized browser!");
 		} 
-		catch (Exception e) {
+		catch (Throwable e) {
 			log.error("Error occurred: maximizeBrowser()");
 			e.printStackTrace();
 			throw e;
@@ -56,19 +56,15 @@ public class GenericFunctions extends BaseFunctions {
 	
 	public void click(String locatorType, String locatorValue) throws Throwable {
 		try {
-			//get the actual value of the locator by reading the objectProperties file
-			String value = PageObjects.getActualLocatorValue(locatorValue);
-			Thread.sleep(500);
-			
-			//get the element using the actual locator
-			WebElement element = getElement(locatorType, value);
+			//get the element
+			WebElement element = getElement(locatorType, locatorValue);
 			Thread.sleep(100);
 			
 			//click on the element
 			element.click();
 			Thread.sleep(100);
 		} 
-		catch (Exception e) {
+		catch (Throwable e) {
 			e.printStackTrace();
 			log.error("Error in click()");
 			throw e;
@@ -79,20 +75,16 @@ public class GenericFunctions extends BaseFunctions {
 	// method to clear text field contents
 	
 	public void clearValue(String locatorType, String locatorValue) throws Throwable {
-		try {
-			//get the actual value of the locator by reading the objectProperties file
-			String value = PageObjects.getActualLocatorValue(locatorValue);
-			Thread.sleep(500);
-			
+		try {			
 			//get the element using the actual locator
-			WebElement element = getElement(locatorType, value);
+			WebElement element = getElement(locatorType, locatorValue);
 			Thread.sleep(100);
 			
 			//clear contents of the element
 			element.clear();
 			Thread.sleep(100);
 		} 
-		catch (Exception e) {
+		catch (Throwable e) {
 			e.printStackTrace();
 			log.error("Error in clearText()");
 			throw e;
@@ -104,19 +96,15 @@ public class GenericFunctions extends BaseFunctions {
 	
 	public void writeValue(String locatorType, String locatorValue, String fieldValue) throws Throwable {
 		try {
-			//get the actual value of the locator by reading the objectProperties file
-			String locatorValue1 = PageObjects.getActualLocatorValue(locatorValue);
-			Thread.sleep(500);
-			
 			//get the element using the actual locator
-			WebElement element = getElement(locatorType, locatorValue1);
+			WebElement element = getElement(locatorType, locatorValue);
 			Thread.sleep(100);
 			
 			//write the fieldValue in the text field 
 			element.sendKeys(fieldValue);
 			Thread.sleep(100);
 		} 
-		catch (Exception e) {
+		catch (Throwable e) {
 			e.printStackTrace();
 			log.error("Error in writeValue()");
 			throw e;
@@ -133,7 +121,7 @@ public class GenericFunctions extends BaseFunctions {
 			//return the title of the current web page
 			return driver.getTitle();
 		} 
-		catch (Exception e) {
+		catch (Throwable e) {
 			e.printStackTrace();
 			log.error("Error in getActualPageTitle()");
 			throw e;
@@ -153,9 +141,9 @@ public class GenericFunctions extends BaseFunctions {
 			String actualPageTitle = getActualPageTitle();
 			
 			//assert the actual and expected page titles
-			Assertions.assertEqualValue(actualPageTitle, expectedPageTitle);
+			AssertionsAndVerifications.assertEqualValue(actualPageTitle, expectedPageTitle);
 		} 
-		catch (Exception e) {
+		catch (Throwable e) {
 			e.printStackTrace();
 			log.error("Error in getExpectedPageTitle()");
 			throw e;
@@ -167,21 +155,21 @@ public class GenericFunctions extends BaseFunctions {
 	
 	public void isElementVisible(String locatorType, String locatorValue) throws Throwable {
 		try {
-			//get the actual value of the locator by reading the objectProperties file
-			String value = PageObjects.getActualLocatorValue(locatorValue);
-			Thread.sleep(500);			
-			
 			//get the element using the actual locator
-			WebElement element = getElement(locatorType, value);
+			WebElement element = getElement(locatorType, locatorValue);
 			Thread.sleep(200);
 			
 			//assert visibility of element
-			if (Assertions.assertTrueValue(element.isDisplayed()))
-				System.out.println("Success! " + locatorValue + " is visible!");
-			else
-				System.out.println("Failure! " + locatorValue + " is not visible!");
+			AssertionsAndVerifications.assertTrueValue(element.isDisplayed());
+			log.info("Success! " + locatorValue + " is visible!");
 		} 
-		catch (Exception e) {
+		catch(AssertionError e)
+		{
+			e.printStackTrace();
+			log.error("Failure! " + locatorValue + " is not visible!");
+			throw e;
+		}
+		catch (Throwable e) {
 			e.printStackTrace();
 			log.error("Error in isElementVisible().");
 			throw e;
@@ -189,6 +177,24 @@ public class GenericFunctions extends BaseFunctions {
 	}
 
 	//-----------------------------------------------------------------------------------------------------------------------------------------------
+	// method to return inner text from element
 	
+		public String getInnerText(String locatorType, String locatorValue) throws Throwable {
+			try {
+				//get the element using the actual locator
+				WebElement element = getElement(locatorType, locatorValue);
+				Thread.sleep(200);
+				
+				//return the inner text fro the element
+				return element.getText();
+			} 
+			catch (Throwable e) {
+				e.printStackTrace();
+				log.error("Error in getInnerText().");
+				throw e;
+			}
+		}
+	
+	//-----------------------------------------------------------------------------------------------------------------------------------------------
 	// end of class
 }

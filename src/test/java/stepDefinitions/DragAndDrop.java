@@ -1,5 +1,7 @@
 package stepDefinitions;
 
+import org.openqa.selenium.WebDriver;
+
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import webApplication.testingFramework.common.ActionFunctions;
@@ -7,7 +9,8 @@ import webApplication.testingFramework.common.GenericFunctions;
 
 public class DragAndDrop {
 	
-	public static GenericFunctions gf = new GenericFunctions();
+	private static GenericFunctions gf = new GenericFunctions();
+	private static WebDriver driver = gf.getDriver();
 	private static String [] droppedElements = null;
 	
 	@Then("^user selects Drag and Drop$")
@@ -34,7 +37,7 @@ public class DragAndDrop {
 			//droppedElements = ActionFunctions.dragAndDropElements(gf, "xpath", "ItemsToDrag", "DropHere");			
 			//droppedElements = ActionFunctions.dragAndDropElements1(gf, "xpath", "ItemsToDrag", "DropHere");
 			//droppedElements  = RobotFunctions.dragAndDropElementsRobot("xpath", "Item1", "DropHere");
-			ActionFunctions.dragAndDropElement(gf, "xpath", "Item1", "DropHere");	
+			ActionFunctions.dragAndDropElement(driver, gf.getElement("xpath", "Item1"), gf.getElement("xpath", "DropHere"));	
 			Thread.sleep(50);
 		}
 		catch(Exception e) {
@@ -48,7 +51,7 @@ public class DragAndDrop {
 	public void verifyDragDroppedItems() throws Throwable {
 		try {
 			Thread.sleep(100);
-			ActionFunctions.verifyDroppedItems(gf, "xpath", droppedElements, "DropedList");
+			ActionFunctions.verifyDroppedItems(driver, gf.getElements("xpath", "DropedList"), droppedElements);
 			Thread.sleep(50);
 		}
 		catch(Exception e) {

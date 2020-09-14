@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class JavascriptFunctions {
 	
@@ -20,6 +21,37 @@ public class JavascriptFunctions {
 		{
 			t.printStackTrace();
 			log.error("Error in scrolling!");
+			throw t;
+		}
+	}
+	
+	public static void javascriptClick(WebDriver driver, WebElement element)throws Throwable
+	{
+		try {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click;", element);
+		Thread.sleep(500);
+		}
+		catch(Throwable t)
+		{
+			t.printStackTrace();
+			log.error("Error in clicking!");
+			throw t;
+		}
+	}
+	
+	public static void scrollUpByPixelValue(WebDriver driver, int value)throws Throwable
+	{
+		try {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,-arguments[0])", value);
+		Thread.sleep(500);
+		}
+		catch(Throwable t)
+		{
+			t.printStackTrace();
+			log.error("Error in clicking!");
+			throw t;
 		}
 	}
 

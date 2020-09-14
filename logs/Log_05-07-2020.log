@@ -1,9 +1,16 @@
-12:57:17.829 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriverManager - Success! Browser driver path set.
-12:57:17.852 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - Setting driver.
-12:57:22.392 [main] DEBUG webApplication.testingFramework.common.Waits - Setting implicit wait for the driver.
-12:57:22.405 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriver - Success! driver set.
-12:57:27.785 [main] DEBUG webApplication.testingFramework.common.GenericFunctions - Maximizing browser
-12:57:30.161 [main] INFO  webApplication.testingFramework.common.GenericFunctions - Successfully maximized browser!
-12:59:10.840 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - ************Quitting Browser**************
-12:59:12.751 [main] INFO  webApplication.testingFramework.reporting.Listeners - Success! Test passed.
-12:59:12.772 [main] FATAL webApplication.testingFramework.reporting.Listeners - Error in taking screenshot during success!
+17:54:00.997 [main] ERROR stepDefinitions.UploadDownload - Error while clicking elements!
+17:54:01.330 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - ************Quitting Browser**************
+17:54:03.398 [main] ERROR webApplication.testingFramework.reporting.Listeners - Failure! Test failed.
+17:54:03.415 [main] FATAL webApplication.testingFramework.reporting.Listeners - Error in taking screenshot during failure!
+18:10:37.755 [main] DEBUG webApplication.testingFramework.reporting.Listeners - Setting the onTestStart method of Listeners.
+18:10:37.762 [main] INFO  webApplication.testingFramework.reporting.Listeners - Success! ExtentTest object created in onTestStart().
+18:10:38.147 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - Setting browser.
+18:10:38.151 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - Setting WebDriverManager.
+18:10:38.151 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriverManager - Success! Browser is set.
+18:10:38.151 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriverManager - Browser is Chrome.
+18:10:39.081 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriverManager - Success! Browser driver path set.
+18:10:39.082 [main] DEBUG webApplication.testingFramework.seleniumBaseFramework.seleniumBase - Setting driver.
+18:10:44.370 [main] DEBUG webApplication.testingFramework.common.Waits - Setting implicit wait for the driver.
+18:10:44.379 [main] INFO  webApplication.testingFramework.seleniumBaseFramework.seleniumBaseDriver - Success! driver set.
+18:10:50.320 [main] DEBUG webApplication.testingFramework.common.GenericFunctions - Maximizing browser
+18:10:52.732 [main] INFO  webApplication.testingFramework.common.GenericFunctions - Successfully maximized browser!

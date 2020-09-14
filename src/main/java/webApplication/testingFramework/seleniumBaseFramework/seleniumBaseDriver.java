@@ -82,7 +82,9 @@ public class seleniumBaseDriver extends seleniumBaseDriverManager
 				capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
-				driver = new ChromeDriver();
+				ChromeOptions ch = new ChromeOptions();
+				ch.merge(capabilities);
+				driver = new ChromeDriver(ch);
 				driver = Waits.implicitWait(driver);
 			} 
 			else if ("ChromeHeadless".equalsIgnoreCase(browser)) {
