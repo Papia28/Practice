@@ -13,6 +13,7 @@ import webApplication.testingFramework.common.ActionFunctions;
 import webApplication.testingFramework.common.GenericFunctions;
 import webApplication.testingFramework.common.JavascriptFunctions;
 import webApplication.testingFramework.common.Screenshots;
+import webApplication.testingFramework.common.StringUtility;
 import webApplication.testingFramework.reporting.ExtentReportHandler;
 
 public class DragAndDrop1 {
@@ -26,8 +27,9 @@ public class DragAndDrop1 {
 	public void clickInteractions() throws Throwable
 	{
 		ExtentTest stepInfo = null;
+		String stepName = StringUtility.getTitleCase("user clicks Interactions");
 		try {
-			stepInfo = ExtentReportHandler.createStepInfo("When", "user clicks Interactions");
+			stepInfo = ExtentReportHandler.createStepInfo("When", stepName);
 			Thread.sleep(200);
 			
 			//hover on the element to be clicked
@@ -41,14 +43,14 @@ public class DragAndDrop1 {
 			Thread.sleep(50);
 			
 			//pass the step status
-			ExtentReportHandler.testStepStatus("PASS", "user clicks Interactions", stepInfo, null);
+			ExtentReportHandler.testStepStatus("PASS", stepName, stepInfo, null);
 		}
 		catch(Throwable t)
 		{
 			t.printStackTrace();
 			log.error("Error occurred clickInteractions()!");
 			stepInfo.addScreenCaptureFromPath(Screenshots.saveScreenshot(driver, "Interactions_Click"));
-			ExtentReportHandler.testStepStatus("FAIL", "user clicks Interactions", stepInfo, t);
+			ExtentReportHandler.testStepStatus("FAIL", stepName, stepInfo, t);
 			throw t;
 		}
 	}

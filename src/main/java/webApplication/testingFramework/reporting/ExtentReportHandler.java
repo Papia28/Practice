@@ -53,19 +53,19 @@ public class ExtentReportHandler {
 		}
 	}
 	
-	public static void testStepStatus(String status,String message, ExtentTest test, Throwable errorThrown) throws Throwable
+	public static void testStepStatus(String status,String stepName, ExtentTest test, Throwable errorThrown) throws Throwable
 	{
 		try {
 			switch(status.toUpperCase())
 			{
 			case "PASS":
 				test.log(Status.PASS, "Success! Step passed!");
-				test.pass(MarkupHelper.createLabel("Step: " + message, ExtentColor.GREEN));
+				test.pass(MarkupHelper.createLabel(stepName, ExtentColor.GREEN));
 				break;
 				
 			case "FAIL":
 				test.log(Status.FAIL, "Failure! Step failed!");
-				test.fail(MarkupHelper.createLabel("Step: " + message, ExtentColor.RED));
+				test.fail(MarkupHelper.createLabel(stepName, ExtentColor.RED));
 				test.error(errorThrown.fillInStackTrace());
 				break;
 				
@@ -85,7 +85,7 @@ public class ExtentReportHandler {
 	{
 		try {
 			ExtentTest stepInfo = null;
-			stepInfo = test.createNode(new GherkinKeyword(keyword), stepName);
+			stepInfo = test.createNode(new GherkinKeyword(keyword), "Step: " + stepName);
 			return stepInfo;
 		}
 		catch(Throwable t)

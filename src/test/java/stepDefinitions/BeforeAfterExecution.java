@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.gherkin.model.Feature;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 
@@ -12,7 +11,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import webApplication.testingFramework.common.GenericFunctions;
-import webApplication.testingFramework.common.StringUtilility;
+import webApplication.testingFramework.common.StringUtility;
 import webApplication.testingFramework.reporting.ExtentReportHandler;
 import webApplication.testingFramework.seleniumBaseFramework.seleniumBase;
 
@@ -28,17 +27,13 @@ public class BeforeAfterExecution extends ExtentReportHandler {
 	@Before
 	public void beforeScenario(Scenario scenario) throws Throwable {
 		try {
-			scenarioName = scenario.getName();
-			System.out.println(scenario.getId());
-			System.out.println(Feature.getGherkinName());
-			featureName = StringUtilility.getFeatureName(scenario.getId());
+			scenarioName = StringUtility.getTitleCase(scenario.getName());
+			featureName = StringUtility.getFeatureName(scenario.getId());
 			
 			log.debug("Before Scenario code execution.");
 			
-			test = extent.createTest(featureName);
-			test = test.createNode(scenarioName);
-			
-			log.info("Feature: " + featureName);
+			test = extent.createTest("Feature: " + featureName);
+			test = test.createNode("Scenario: " + scenarioName);
 			
 			log.info("Success! ExtentTest object created in beforeScenario().");
 			
@@ -62,15 +57,15 @@ public class BeforeAfterExecution extends ExtentReportHandler {
 			  if(scenario.isFailed() == true) 
 			  { 
 			  log.error("Failure! Scenario failed!"); 
-			  test.log(Status.FAIL, "Failure! Scenario failed!");
-			  test.fail(MarkupHelper.createLabel("Scenario: " + scenarioName, ExtentColor.RED));
+			  test.log(Status.FAIL, "Failure! Scenario Failed!");
+			  test.fail(MarkupHelper.createLabel(scenarioName, ExtentColor.RED));
 			  }
 			  
 			  else if(scenario.isFailed() != true) 
 			  { 
 			  log.info("Success! Scenario passed!"); 
-			  test.log(Status.PASS, "Success! Scenario passed!"); 
-			  test.pass(MarkupHelper.createLabel("Scenario: " + scenarioName, ExtentColor.GREEN));
+			  test.log(Status.PASS, "Success! Scenario Passed!"); 
+			  test.pass(MarkupHelper.createLabel(scenarioName, ExtentColor.GREEN));
 			  }			 
 			
 			Thread.sleep(300);
