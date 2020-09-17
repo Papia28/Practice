@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This testng.xml sometimes does not use Listeners. It uses cucumber hooks 
+	and extent reports for report generation and execution. -->
+
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
 	<listeners>
-		<listener class-name="webApplication.testingFramework.reporting.Listeners" />
+		<listener class-name="webApplication.testingFramework.reporting.ListenersCucumber" />
 	</listeners>
 	<test name="Test">
 		<classes>
+			<class name="stepDefinitions.BeforeAfterExecution" />
 			<class name="runner.TestRunnerToolsQA" />
 		</classes>
 	</test> <!-- Test -->

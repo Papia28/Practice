@@ -59,8 +59,6 @@ public class ActionFunctions {
 				//create Actions class object of the WebDriver ojbect
 				Actions dragDrop = new Actions(driver);
 				
-				JavascriptFunctions.highlightElement(driver, sourceElement);
-				JavascriptFunctions.highlightElement(driver, targetElement);
 				//perform drag and drop of the source element into the target element
 				dragDrop.dragAndDrop(sourceElement, targetElement);
 				dragDrop.perform();

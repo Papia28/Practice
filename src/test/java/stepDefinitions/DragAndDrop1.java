@@ -1,6 +1,10 @@
 package stepDefinitions;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+
+import com.aventstack.extentreports.ExtentTest;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -8,25 +12,43 @@ import io.cucumber.java.en.When;
 import webApplication.testingFramework.common.ActionFunctions;
 import webApplication.testingFramework.common.GenericFunctions;
 import webApplication.testingFramework.common.JavascriptFunctions;
+import webApplication.testingFramework.common.Screenshots;
+import webApplication.testingFramework.reporting.ExtentReportHandler;
 
 public class DragAndDrop1 {
 	
 	private static GenericFunctions gf = new GenericFunctions();
 	private static WebDriver driver = gf.getDriver();
+	public static Logger log = LogManager.getLogger(DragAndDrop1.class.getName());
+	
 	
 	@When("^user clicks Interactions$")
 	public void clickInteractions() throws Throwable
 	{
+		ExtentTest stepInfo = null;
 		try {
-			Thread.sleep(500);
-			ActionFunctions.hoverOnElement(driver, gf.getElement("xpath", "Interactions"));
+			stepInfo = ExtentReportHandler.createStepInfo("When", "user clicks Interactions");
+			Thread.sleep(200);
+			
+			//hover on the element to be clicked
+			ActionFunctions.hoverOnElement(driver, GenericFunctions.getElement("xpath", "Interactions"));
+			
+			//take screenshot of the element to be clicked
+			stepInfo.addScreenCaptureFromPath(Screenshots.saveScreenshot(driver, "Interactions_Click"));
+			
+			//click on the element
 			gf.click("xpath", "Interactions");
-			Thread.sleep(300);
+			Thread.sleep(50);
+			
+			//pass the step status
+			ExtentReportHandler.testStepStatus("PASS", "user clicks Interactions", stepInfo, null);
 		}
 		catch(Throwable t)
 		{
 			t.printStackTrace();
-			System.out.println("Error occurred!");
+			log.error("Error occurred clickInteractions()!");
+			stepInfo.addScreenCaptureFromPath(Screenshots.saveScreenshot(driver, "Interactions_Click"));
+			ExtentReportHandler.testStepStatus("FAIL", "user clicks Interactions", stepInfo, t);
 			throw t;
 		}
 	}
@@ -34,13 +56,20 @@ public class DragAndDrop1 {
 	@When("^Interactions page opens$")
 	public void interactionsPage() throws Throwable
 	{
+		ExtentTest stepInfo = null;
 		try {			
-			//verify interactions page or not			
+			stepInfo = ExtentReportHandler.createStepInfo("When", "Interactions page opens");
+			//TODO verify interactions page or not			
+			
+			//take screenshot of the element to be clicked
+			stepInfo.addScreenCaptureFromPath(Screenshots.saveScreenshot(driver, "Interactions_Page"));
 		}
 		catch(Throwable t)
 		{
 			t.printStackTrace();
 			System.out.println("Error occurred!");
+			stepInfo.addScreenCaptureFromPath(Screenshots.saveScreenshot(driver, "Interactions_Page"));
+			ExtentReportHandler.testStepStatus("FAIL", "user clicks Interactions", stepInfo, t);
 			throw t;
 		}
 	}
@@ -50,7 +79,7 @@ public class DragAndDrop1 {
 		try {
 			JavascriptFunctions.scrollToLast(gf.getDriver());
 			Thread.sleep(100);
-			ActionFunctions.hoverOnElement(driver, gf.getElement("xpath", "Droppable"));
+			ActionFunctions.hoverOnElement(driver, GenericFunctions.getElement("xpath", "Droppable"));
 			gf.click("xpath", "Droppable");
 			Thread.sleep(300);
 		}
@@ -64,10 +93,10 @@ public class DragAndDrop1 {
 	@And("^user drags and drops item$")
 	public void performDragAndDrop() throws Throwable {
 		try {
-			ActionFunctions.hoverOnElement(driver, gf.getElement("xpath", "DragMe"));
+			
 			Thread.sleep(50);
-			ActionFunctions.dragAndDropElement(driver, gf.getElement("xpath", "DragMe"), gf.getElement("xpath", "DropHere"));
-			Thread.sleep(100);
+			ActionFunctions.dragAndDropElement(driver, GenericFunctions.getElement("xpath", "DragMe"), GenericFunctions.getElement("xpath", "DropHere"));
+			Thread.sleep(500);
 		}
 		catch(Exception e) {
 			e.printStackTrace();

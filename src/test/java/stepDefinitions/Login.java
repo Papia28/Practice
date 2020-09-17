@@ -1,56 +1,19 @@
 package stepDefinitions;
 
 import webApplication.testingFramework.common.GenericFunctions;
-import webApplication.testingFramework.seleniumBaseFramework.seleniumBase;
 
-import org.testng.ITestContext;
-
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
 public final class Login {
 
-	public GenericFunctions gf = null;
-	
-	@Before
-	public void beforeScenario() throws Throwable {
-		try {
-			//initialize and open browser
-			seleniumBase.openBrowser();
-			
-			gf = new GenericFunctions();
-			//ITestContext context = (ITestContext) gf;
-			//context.setAttribute("webDriver", gf.getDriver());
-			Thread.sleep(300);				
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			System.out.println("Error in beforeScenario().");
-			throw e;
-		}
-	}
-	
-	@After
-	public void afterScenario() throws Throwable {
-		try {
-			Thread.sleep(300);
-			//gf.afterExecution();
-			seleniumBase.closeBrowser();
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			System.out.println("Error in afterScenario().");
-			throw e;
-		}
-	}
+	public GenericFunctions gf = new GenericFunctions();
 
 	@Given("^application is launched$")
 	public void launchApplication() throws Throwable {
 		try {
-			gf.launchBaseURL();
+			GenericFunctions.launchBaseURL();
 			gf.maximizeBrowser();
 			Thread.sleep(5000);
 		} catch (PendingException n) {

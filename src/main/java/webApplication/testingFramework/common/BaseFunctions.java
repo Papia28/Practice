@@ -5,14 +5,12 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-//import org.testng.ITestContext;
 
 import webApplication.testingFramework.seleniumBaseFramework.seleniumBase;
 
 public abstract class BaseFunctions {
 
-	private WebDriver driver = null;
-	//public ITestContext context;
+	private static WebDriver driver = null;
 	
 	//constructor for BaseFunctions	
 	  public BaseFunctions()
@@ -22,23 +20,22 @@ public abstract class BaseFunctions {
 			  } 
 		  catch (Throwable e) 
 		  {
-			  e.printStackTrace(); 
-			  //afterExecution(); 
+			  e.printStackTrace();  
 		  } 
 	}	 
 
 	// getter method for driver
-	public WebDriver getBaseDriver() {
+	public static WebDriver getBaseDriver() {
 		return driver;
 	}
 
 	// setter method for driver
-	public void setBaseDriver(WebDriver driver) {
-		this.driver = driver;
+	public static void setBaseDriver(WebDriver driver) {
+		BaseFunctions.driver = driver;
 	}
 
 	// method to launch the URL of the application
-	public void launchBaseURL() throws Throwable {
+	public static void launchBaseURL() throws Throwable {
 		try {
 			String URL = PageObjects.getURL();
 			if (URL != "") {
@@ -55,7 +52,7 @@ public abstract class BaseFunctions {
 	}
 
 	// method to return locator type
-	public By getLocator(String locatorType, String locatorValue) throws Throwable {
+	public static By getLocator(String locatorType, String locatorValue) throws Throwable {
 		try {
 			switch (locatorType.toUpperCase()) {
 			case "XPATH":
@@ -86,7 +83,7 @@ public abstract class BaseFunctions {
 	}
 
 	// method to find element
-	public WebElement getElement(String locatorType, String locatorValue) throws Throwable {
+	public static WebElement getElement(String locatorType, String locatorValue) throws Throwable {
 		try {
 			String actuallocatorValue = PageObjects.getActualLocatorValue(locatorValue);
 			By locator = getLocator(locatorType, actuallocatorValue);
@@ -102,7 +99,7 @@ public abstract class BaseFunctions {
 	}
 
 	// method to find list of elements
-	public List<WebElement> getElements(String locatorType, String locatorValue) throws Throwable {
+	public static List<WebElement> getElements(String locatorType, String locatorValue) throws Throwable {
 		try {
 			String actuallocatorValue = PageObjects.getActualLocatorValue(locatorValue);
 			By locator = getLocator(locatorType, actuallocatorValue);
@@ -118,7 +115,7 @@ public abstract class BaseFunctions {
 	}
 
 	// method to return username
-	public String returnUsername() throws Throwable {
+	public static String returnUsername() throws Throwable {
 		try {
 			String username = PageObjects.getUsername();
 			return username;
@@ -130,7 +127,7 @@ public abstract class BaseFunctions {
 	}
 
 	// method to return password
-	public String returnPassword() throws Throwable {
+	public static String returnPassword() throws Throwable {
 		try {
 			String password = PageObjects.getPassword();
 			return password;

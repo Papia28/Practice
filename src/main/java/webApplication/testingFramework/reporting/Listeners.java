@@ -2,7 +2,6 @@ package webApplication.testingFramework.reporting;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -11,15 +10,14 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
-import webApplication.testingFramework.common.Screenshots;
+//import webApplication.testingFramework.common.Screenshots;
 
 public class Listeners implements ITestListener {
 
 	private ExtentReports extent = ExtentReportHandler.getExtentObject();
 	private ExtentTest test = null;
 	private String testName = null;
-	private Logger log = LogManager.getLogger(Listeners.class.getName());
-	private WebDriver driver = null;
+	private static Logger log = LogManager.getLogger(Listeners.class.getName());
 
 	@Override
 	public void onStart(ITestContext context) {
@@ -28,8 +26,8 @@ public class Listeners implements ITestListener {
 	@Override
 	public void onTestStart(ITestResult result) {
 		log.debug("Setting the onTestStart method of Listeners.");
-		//testName = result.getMethod().getMethodName();
-		testName = result.getName();
+		testName = result.getMethod().getMethodName();
+		//testName = result.getName();
 		test = extent.createTest(testName);
 		log.info("Success! ExtentTest object created in onTestStart().");
 	}
@@ -37,9 +35,10 @@ public class Listeners implements ITestListener {
 	@Override
 	public void onTestSuccess(ITestResult result) {
 		try {
+			//driver =(WebDriver)result.getTestClass().getRealClass().getDeclaredField("driver").get(result.getInstance());
+		//String imagePath = Screenshots.saveScreenshot(testName);
+		//test.addScreenCaptureFromPath(imagePath, testName);
 		log.info("Success! Test passed.");
-		String imagePath = Screenshots.saveScreenshot(driver, testName);
-		test.addScreenCaptureFromPath(imagePath, testName);
 		test.pass("Success! Test passed.");
 		test.log(Status.PASS, "Success! Test passed.");
 		}
@@ -53,9 +52,10 @@ public class Listeners implements ITestListener {
 	@Override
 	public void onTestFailure(ITestResult result) {
 		try {
+			//driver =(WebDriver)result.getTestClass().getRealClass().getDeclaredField("driver").get(result.getInstance());
+			//String imagePath = Screenshots.saveScreenshot(testName);			
+			//test.addScreenCaptureFromPath(imagePath, testName);
 			log.error("Failure! Test failed.");
-			String imagePath = Screenshots.saveScreenshot(driver, testName);			
-			test.addScreenCaptureFromPath(imagePath, testName);
 			test.fail(result.getThrowable());
 			test.log(Status.FAIL, "Failure! Test failed.");
 		} 
