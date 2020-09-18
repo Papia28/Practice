@@ -5,7 +5,6 @@ import webApplication.testingFramework.common.PageObjects;
 import webApplication.testingFramework.common.SelectFunctions;
 
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -13,7 +12,7 @@ import io.cucumber.java.en.When;
 public class SelectDropdownList 
 {
 	public static GenericFunctions gf = new GenericFunctions();
-	private static Select multiDropdown = null;
+	//private static Select multiDropdown = null;
 	
 	//--------------------------------------------------Select Dropdown List----------------------------------------------
 	
