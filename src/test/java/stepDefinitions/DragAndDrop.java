@@ -37,7 +37,7 @@ public class DragAndDrop {
 			//droppedElements = ActionFunctions.dragAndDropElements(gf, "xpath", "ItemsToDrag", "DropHere");			
 			//droppedElements = ActionFunctions.dragAndDropElements1(gf, "xpath", "ItemsToDrag", "DropHere");
 			//droppedElements  = RobotFunctions.dragAndDropElementsRobot("xpath", "Item1", "DropHere");
-			ActionFunctions.dragAndDropElement(driver, gf.getElement("xpath", "Item1"), gf.getElement("xpath", "DropHere"));	
+			ActionFunctions.dragAndDropElement(driver, GenericFunctions.getElement("xpath", "Item1"), GenericFunctions.getElement("xpath", "DropHere"));	
 			Thread.sleep(50);
 		}
 		catch(Exception e) {
@@ -51,7 +51,7 @@ public class DragAndDrop {
 	public void verifyDragDroppedItems() throws Throwable {
 		try {
 			Thread.sleep(100);
-			ActionFunctions.verifyDroppedItems(driver, gf.getElements("xpath", "DropedList"), droppedElements);
+			ActionFunctions.verifyDroppedItems(driver, GenericFunctions.getElements("xpath", "DropedList"), droppedElements);
 			Thread.sleep(50);
 		}
 		catch(Exception e) {

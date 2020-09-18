@@ -27,7 +27,7 @@ public class UploadDownload {
 		try {
 			Thread.sleep(500);
 			JavascriptFunctions.scrollDownByPixelValue(driver, 300);
-			ActionFunctions.hoverOnElement(driver, gf.getElement("xpath", "Elements"));
+			ActionFunctions.hoverOnElement(driver, GenericFunctions.getElement("xpath", "Elements"));
 			gf.click("xpath", "Elements");
 		}
 		catch(Throwable t)
@@ -62,7 +62,7 @@ public class UploadDownload {
 	{
 		try {
 			Thread.sleep(200);
-			ActionFunctions.hoverOnElement(driver, gf.getElement("xpath", "SelectFile"));
+			ActionFunctions.hoverOnElement(driver, GenericFunctions.getElement("xpath", "SelectFile"));
 			gf.click("xpath", "SelectFile");
 		}
 		catch(Throwable t)
@@ -92,7 +92,7 @@ public class UploadDownload {
 	public void verifyFileUpload() throws Throwable
 	{
 		try {
-			Waits.explicitWaitByVisibility(driver, gf.getElement("CssSelector", "uploadedFile"));
+			Waits.explicitWaitByVisibility(driver, GenericFunctions.getElement("CssSelector", "uploadedFile"));
 			
 			String uploadedFile = gf.getInnerText("CssSelector", "uploadedFile");
 			int index = uploadedFile.lastIndexOf('\\');
