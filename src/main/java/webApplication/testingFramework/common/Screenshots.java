@@ -20,6 +20,7 @@ public class Screenshots {
 	// method to take simple screenshot via Selenium
 	public static String saveScreenshot(WebDriver driver, String name) throws Throwable 
 	{
+		name = name + "_" + DateTimeUtility.getCurrentDateTime();
 		String desPath = System.getProperty("user.dir") + "\\screenshots\\" + name + ".png";
 		File scrFile = null;
 		try {
@@ -39,6 +40,7 @@ public class Screenshots {
 	//method to take screenshot via AShot
 	public static String saveAshotScreenshot(WebDriver driver, String name)throws Throwable
 	{
+		name = name + "_" + DateTimeUtility.getCurrentDateTime();
 		String desPath = System.getProperty("user.dir") + "\\screenshots\\" + name + ".png";
 		Screenshot screenshot = null;
 		try {
@@ -58,6 +60,7 @@ public class Screenshots {
 	//method to take full page screenshot via AShot
 	public static String fullPageScreenshot(WebDriver driver, String name)throws Throwable
 	{
+		name = name + "_" + DateTimeUtility.getCurrentDateTime();
 		String desPath = System.getProperty("user.dir") + "\\screenshots\\" + name + ".png";
 		Screenshot screenshot = null;
 		try {

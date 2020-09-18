@@ -22,18 +22,37 @@ public class ExtentReportHandler {
 	
 	public static ExtentReports getExtentObject() {
 		try {
-			reporter = new ExtentSparkReporter(path);
-
+			
+			/**Month: If the number of pattern letters is 3 or more, 
+			 * the month is interpreted as text; 
+			 * otherwise, it is interpreted as a number. 
+			 */			
+			
 			// configure the ExtentSparkReporter object
+			reporter = new ExtentSparkReporter(path);
+			
 			log.debug("Configuring the extent object.");
+			
+			//these are present in the top right corner of the report
 			reporter.config().setReportName("Test Results");
+			reporter.config().setTimeStampFormat("dd MMMM yyyy hh:mm:ss:SSS a z");
+			
+			//this is the title of the report webpage
 			reporter.config().setDocumentTitle("Web Automation Results");
+			
+			//this is present in the dashboard
 			reporter.config().enableTimeline(true);
+			
+			//this enables either a white standard or a dark theme
 			reporter.config().setTheme(Theme.DARK);
-			reporter.config().setTimeStampFormat("dd.MM.yyyy hh:mm:ss.ms a");
+			
+			//starts passing run information to the reporter			
 			reporter.start();
 
-			// attach the reporter object to ExtentReports object and configure it
+			/** attach the reporter object to ExtentReports object and configure it
+			 * This information is displayed on the dashboard of the report
+			 */
+			
 			log.debug("Creating extent report object.");
 			extent = new ExtentReports();
 			log.info("Extent report object created.");
@@ -59,17 +78,20 @@ public class ExtentReportHandler {
 			switch(status.toUpperCase())
 			{
 			case "PASS":
+				log.info(stepName + ": Step passed!");
 				test.log(Status.PASS, "Success! Step passed!");
 				test.pass(MarkupHelper.createLabel(stepName, ExtentColor.GREEN));
 				break;
 				
 			case "FAIL":
+				log.error(stepName + ": Step failed!");
 				test.log(Status.FAIL, "Failure! Step failed!");
 				test.fail(MarkupHelper.createLabel(stepName, ExtentColor.RED));
 				test.error(errorThrown.fillInStackTrace());
 				break;
 				
 			default:
+				log.error(stepName + ": Unknown error!");
 				break;
 			}
 		}
@@ -84,6 +106,7 @@ public class ExtentReportHandler {
 	public static ExtentTest createStepInfo(String keyword, String stepName) throws Throwable
 	{
 		try {
+			log.info("Creating step info.");
 			ExtentTest stepInfo = null;
 			stepInfo = test.createNode(new GherkinKeyword(keyword), "Step: " + stepName);
 			return stepInfo;
