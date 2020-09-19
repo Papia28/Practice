@@ -3,6 +3,8 @@ package webApplication.testingFramework.common;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import webApplication.testingFramework.base.PageObjects;
+
 public class UploadDownloadFiles {
 	
 	public static Logger log = LogManager.getLogger(UploadDownloadFiles.class.getName());

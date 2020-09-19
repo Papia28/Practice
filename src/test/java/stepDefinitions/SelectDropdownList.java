@@ -1,7 +1,7 @@
 package stepDefinitions;
 
-import webApplication.testingFramework.common.GenericFunctions;
-import webApplication.testingFramework.common.PageObjects;
+import webApplication.testingFramework.base.GenericFunctions;
+import webApplication.testingFramework.base.PageObjects;
 import webApplication.testingFramework.common.SelectFunctions;
 
 import org.openqa.selenium.WebElement;

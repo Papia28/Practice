@@ -22,7 +22,7 @@ public class readConfig {
 		try {
 			// convert customConfig.properties to type File and assign it to previously
 			// created File type variable
-			configFile = new File("src/main/resources/config/customConfig.properties");
+			configFile = new File("src/main/resources/configuration/customConfig.properties");
 			
 			// convert configFile to FileInputStream type and assign it to previously
 			// created FileInputStream type variable

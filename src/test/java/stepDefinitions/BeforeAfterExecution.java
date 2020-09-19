@@ -10,7 +10,7 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import webApplication.testingFramework.common.GenericFunctions;
+import webApplication.testingFramework.base.GenericFunctions;
 import webApplication.testingFramework.common.StringUtility;
 import webApplication.testingFramework.reporting.ExtentReportHandler;
 import webApplication.testingFramework.seleniumBaseFramework.seleniumBase;

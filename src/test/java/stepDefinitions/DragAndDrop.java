@@ -4,8 +4,8 @@ import org.openqa.selenium.WebDriver;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import webApplication.testingFramework.base.GenericFunctions;
 import webApplication.testingFramework.common.ActionFunctions;
-import webApplication.testingFramework.common.GenericFunctions;
 
 public class DragAndDrop {
 	

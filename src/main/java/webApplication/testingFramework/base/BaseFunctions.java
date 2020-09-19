@@ -1,4 +1,4 @@
-package webApplication.testingFramework.common;
+package webApplication.testingFramework.base;
 
 import java.util.List;
 

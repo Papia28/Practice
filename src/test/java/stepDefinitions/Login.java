@@ -1,10 +1,9 @@
 package stepDefinitions;
 
-import webApplication.testingFramework.common.GenericFunctions;
-
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import webApplication.testingFramework.base.GenericFunctions;
 
 public final class Login {
 

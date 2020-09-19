@@ -8,6 +8,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import webApplication.testingFramework.base.BaseFunctions;
+
 public class WindowHandler extends BaseFunctions {
 
 	private static Logger log = LogManager.getLogger(WindowHandler.class.getName());

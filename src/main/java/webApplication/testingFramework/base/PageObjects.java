@@ -1,4 +1,4 @@
-package webApplication.testingFramework.common;
+package webApplication.testingFramework.base;
 
 import java.io.File;
 import java.io.FileInputStream;
