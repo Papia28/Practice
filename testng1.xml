@@ -6,8 +6,10 @@
 	</listeners>
 	<test name="Test">
 		<classes>
-			<class name="stepDefinitions.BeforeAfterExecution" />
 			<class name="runner.TestRunnerToolsQA" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
+
+<!-- One need not call BeforeAfterExecution separately since it is present inside the glue folder and is automatically
+searched and called by cucumber -->
