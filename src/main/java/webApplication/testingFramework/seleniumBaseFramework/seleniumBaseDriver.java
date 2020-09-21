@@ -87,7 +87,7 @@ public class seleniumBaseDriver extends seleniumBaseDriverManager
 				driver = new ChromeDriver(ch);
 				driver = Waits.implicitWait(driver);
 			} 
-			else if ("ChromeHeadless".equalsIgnoreCase(browser)) {
+			else if ("ChromeHeadless".equalsIgnoreCase(browser) || "Chrome Headless".equalsIgnoreCase(browser)) {
 				log.info("Browser is Chrome Headless!");
 				capabilities = new DesiredCapabilities();
 				capabilities.setCapability(CapabilityType.BROWSER_NAME, "chrome");
@@ -112,7 +112,7 @@ public class seleniumBaseDriver extends seleniumBaseDriverManager
 				driver = new FirefoxDriver();
 				driver = Waits.implicitWait(driver);
 			} 
-			else if ("FirefoxHeadless".equalsIgnoreCase(browser)) {
+			else if ("FirefoxHeadless".equalsIgnoreCase(browser) || "Firefox Headless".equalsIgnoreCase(browser)) {
 				log.info("Browser is Firefox Headless");
 				capabilities = new DesiredCapabilities();
 				capabilities.setCapability(CapabilityType.BROWSER_NAME, "firefox");
@@ -127,7 +127,7 @@ public class seleniumBaseDriver extends seleniumBaseDriverManager
 				driver = new FirefoxDriver(ff);
 				driver = Waits.implicitWait(driver);
 			} 
-			else if ("InternetExplorer".equalsIgnoreCase(browser)) {
+			else if ("InternetExplorer".equalsIgnoreCase(browser) || "Internet Explorer".equalsIgnoreCase(browser)) {
 				log.info("Browser is Internet Explorer!");
 				capabilities = new DesiredCapabilities();
 				capabilities.setCapability(CapabilityType.BROWSER_NAME, "internetExplorer");
@@ -137,7 +137,7 @@ public class seleniumBaseDriver extends seleniumBaseDriverManager
 				driver = new InternetExplorerDriver();
 				driver = Waits.implicitWait(driver);
 			} 
-			else if ("MicrosoftEdge".equalsIgnoreCase(browser)) {
+			else if ("MicrosoftEdge".equalsIgnoreCase(browser) || "Microsoft Edge".equalsIgnoreCase(browser)) {
 				log.info("Browser is Microsoft Edge!");
 				capabilities = new DesiredCapabilities();
 				capabilities.setCapability(CapabilityType.BROWSER_NAME, "edge");
