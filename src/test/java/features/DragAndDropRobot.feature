@@ -1,14 +1,12 @@
-Feature: Test the drag and drop functionality
+Feature: Test drag and drop functionalities using Robot class functions
 
-Background: Selenium Easy Demo website is launched
+Background: ToolsQA Demo website is launched
 Given application is launched
-When popups have been closed
-Then Others option is visible
-When user clicks Others
-Then Others dropdown opens
-And user selects Drag and Drop
 
-@DragAndDrop
-Scenario: Test dragging and dropping of items
-When user drags and drops all items
-Then all items displayed in list
+@DragAndDropRobot
+Scenario: Test dragging and dropping of items using Robot class functions
+When user clicks Interactions using Robot
+Then Interactions page opens using Robot
+When user selects Droppable using Robot
+And user drags and drops item using Robot
+Then text changes using Robot

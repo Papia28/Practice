@@ -8,9 +8,7 @@ import io.cucumber.testng.CucumberOptions;
 		features = "src/test/java/features/", 
 		glue = "stepDefinitions", 
 		plugin = { "pretty", "html:target/cucumber" },
-		//tags = {"@DragAndDrop1"},
-		//tags = "@Upload or @DragAndDrop1",
-		tags = "@DragAndDrop1",
+		tags = "@Upload or @DragAndDrop",
 		strict = true,
 		dryRun = false
 )
@@ -26,6 +24,8 @@ public class TestRunnerToolsQA extends AbstractTestNGCucumberTests {
  *  2. strict = true - fails the build if steps have not been found or have been skipped
  *  3. dryRun = true - checks whether each step has corresponding code written in step definition file or not
  *  4. use "or"/"and" keywords to cimbine tags
+ *  5. tags = "@Upload and not @DragAndDrop",
+ *  6. tags = "@Upload and @DragAndDrop",
  */
 
 /* tags = {"@Select","@DragAndDrop"} means ANDing of tags : This will execute scenarios which are tagged as 

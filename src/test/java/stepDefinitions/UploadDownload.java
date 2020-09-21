@@ -25,7 +25,7 @@ public class UploadDownload {
 	public void clickElements() throws Throwable
 	{
 		try {
-			Thread.sleep(500);
+			Thread.sleep(50);
 			JavascriptFunctions.scrollDownByPixelValue(driver, 300);
 			ActionFunctions.hoverOnElement(driver, GenericFunctions.getElement("xpath", "Elements"));
 			gf.click("xpath", "Elements");
@@ -42,7 +42,7 @@ public class UploadDownload {
 	public void clickUploadDownload() throws Throwable
 	{
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(100);
 			JavascriptFunctions.scrollToLast(driver);
 			Thread.sleep(100);
 			JavascriptFunctions.scrollUpByPixelValue(driver, 300);

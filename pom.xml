@@ -18,7 +18,7 @@
 
 	<profiles>
 		<profile>
-			<id>Practice</id>
+			<id>Profile1</id>
 			<build>
 				<pluginManagement>
 					<plugins>
@@ -39,7 +39,7 @@
 		</profile>
 
 		<profile>
-			<id>DragAndDrop</id>
+			<id>Profile2</id>
 			<build>
 				<pluginManagement>
 					<plugins>
@@ -79,7 +79,7 @@
 					<configuration>
 						<source>1.8</source>
 						<target>1.8</target>
-						<!--<release>1.8</release>-->
+						<!--<release>1.8</release> -->
 					</configuration>
 				</plugin>
 			</plugins>
@@ -238,13 +238,23 @@
 			<scope>test</scope>
 		</dependency>
 
-
-
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server-standalone 
 			<dependency> <groupId>org.seleniumhq.selenium</groupId> <artifactId>selenium-server-standalone</artifactId> 
 			<version>2.53.0</version> </dependency> -->
 
+		<!-- https://mvnrepository.com/artifact/org.sikuli/sikuli-api -->
+		<dependency>
+			<groupId>org.sikuli</groupId>
+			<artifactId>sikuli-api</artifactId>
+			<version>1.2.0</version>
+		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.12</version>
+		</dependency>
 
 	</dependencies>
 </project>

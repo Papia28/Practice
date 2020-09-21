@@ -42,7 +42,16 @@ public final class seleniumBase {
 			
 			// set value for browser
 			log.debug("Setting browser.");
-			seleniumBaseDriver.setBrowser(readConfig.getBrowser());
+			
+			//To run via .propeties file use below command
+			//seleniumBaseDriver.setBrowser(readConfig.getBrowser());
+			
+			/** This is running via maven command.
+			 * For maven command System.getProperty is required to get the value of any system property.
+			 * Browser is regarded as a system property.
+			 * Its value is provided by maven commands via Jenkins or command prompt
+			 */
+			seleniumBaseDriver.setBrowser(System.getProperty("browser"));
 						
 			//set the webDriverManager as per the browser
 			log.debug("Setting WebDriverManager.");

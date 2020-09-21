@@ -38,7 +38,7 @@ public class seleniumBaseDriverManager
 					WebDriverManager.chromedriver().setup();
 					log.info("Success! Browser driver path set.");
 				} 
-				else if ("ChromeHeadless".equalsIgnoreCase(browser)) 
+				else if ("ChromeHeadless".equalsIgnoreCase(browser) || "Chrome Headless".equalsIgnoreCase(browser)) 
 				{
 					WebDriverManager.chromedriver().setup();
 					log.info("Success! Browser driver path set.");
@@ -48,17 +48,17 @@ public class seleniumBaseDriverManager
 					WebDriverManager.firefoxdriver().setup();
 					log.info("Success! Browser driver path set.");
 				} 
-				else if ("FirefoxHeadless".equalsIgnoreCase(browser)) 
+				else if ("FirefoxHeadless".equalsIgnoreCase(browser) || "Firefox Headless".equalsIgnoreCase(browser)) 
 				{
 					WebDriverManager.firefoxdriver().setup();
 					log.info("Success! Browser driver path set.");
 				} 
-				else if ("InternetExplorer".equalsIgnoreCase(browser)) 
+				else if ("InternetExplorer".equalsIgnoreCase(browser) || "Internet Explorer".equalsIgnoreCase(browser)) 
 				{
 					WebDriverManager.iedriver().setup();
 					log.info("Success! Browser driver path set.");
 				} 
-				else if ("MicrosoftEdge".equalsIgnoreCase(browser)) 
+				else if ("MicrosoftEdge".equalsIgnoreCase(browser) || "Microsoft Edge".equalsIgnoreCase(browser)) 
 				{
 					WebDriverManager.edgedriver().setup();
 					log.info("Success! Browser driver path set.");
