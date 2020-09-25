@@ -16,9 +16,9 @@ import webApplication.testingFramework.reporting.ExtentReportHandler;
 import webApplication.testingFramework.seleniumBaseFramework.seleniumBase;
 
 
-public class BeforeAfterExecution extends ExtentReportHandler {
+public class Hooks extends ExtentReportHandler {
 	
-	private static Logger log = LogManager.getLogger(BeforeAfterExecution.class.getName());
+	private static Logger log = LogManager.getLogger(Hooks.class.getName());
 	
 	public GenericFunctions gf = null;
 	public String scenarioName = null;
