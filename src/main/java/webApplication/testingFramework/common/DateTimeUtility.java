@@ -27,6 +27,18 @@ public class DateTimeUtility {
 			Date date = new Date();
 			return formatter.format(date);
 		}
+		catch(NullPointerException t)
+		{
+			t.printStackTrace();
+			log.error("Date format is null!");
+			throw t;
+		}
+		catch(IllegalArgumentException t)
+		{
+			t.printStackTrace();
+			log.error("Illegal date time format used!");
+			throw t;
+		}
 		catch(Throwable t)
 		{
 			t.printStackTrace();

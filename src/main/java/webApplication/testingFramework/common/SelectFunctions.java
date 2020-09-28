@@ -28,7 +28,7 @@ public class SelectFunctions {
 				dropDown.selectByVisibleText(text);
 				Thread.sleep(100);
 			} 
-			catch (Exception e) {
+			catch (Throwable e) {
 				e.printStackTrace();
 				log.error("Error in selectDropdownByText().");
 				throw e;
@@ -48,7 +48,7 @@ public class SelectFunctions {
 				dropDown.selectByValue(value);
 				Thread.sleep(100);
 			} 
-			catch (Exception e) {
+			catch (Throwable e) {
 				e.printStackTrace();
 				log.error("Error in selectDropdownByValue().");
 				throw e;
@@ -66,7 +66,7 @@ public class SelectFunctions {
 				//assert selected and displayed result value
 				AssertionsAndVerifications.assertEqualValue(actual[1].trim(), expected.trim());
 			}
-			catch(Exception e) {
+			catch(Throwable e) {
 				e.printStackTrace();
 				log.error("Error in verifySingleSelected().");
 				throw e;
@@ -122,7 +122,7 @@ public class SelectFunctions {
 				//after selecting all options return the dropdown 
 				return dropdown;			
 			}
-			catch(Exception e) {
+			catch(Throwable e) {
 				e.printStackTrace();
 				log.error("Error in multiSelectByValue().");
 				throw e;
@@ -147,7 +147,12 @@ public class SelectFunctions {
 				//verify the first selected actual and expected values 
 				AssertionsAndVerifications.assertEqualValue(actual1, actual2, expected);
 			}
-			catch(Exception e) {
+			catch(AssertionError e) {
+				e.printStackTrace();
+				log.info("Values are not equal!");
+				throw e;
+			}	
+			catch(Throwable e) {
 				e.printStackTrace();
 				log.error("Error in verifyFirstSelected().");
 				throw e;
@@ -178,7 +183,12 @@ public class SelectFunctions {
 					AssertionsAndVerifications.assertEqualValue(actual1, actual2, expected);
 				}
 			}
-			catch(Exception e) {
+			catch(AssertionError e) {
+				e.printStackTrace();
+				log.info("Values are not equal!");
+				throw e;
+			}	
+			catch(Throwable e) {
 				e.printStackTrace();
 				log.error("Error in verifyAllSelected().");
 				throw e;

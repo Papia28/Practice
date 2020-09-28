@@ -22,7 +22,12 @@ public class ActionFunctions {
 				JavascriptFunctions.highlightElement(driver, element);
 				Thread.sleep(100);
 			} 
-			catch (Exception e) {
+			catch (InterruptedException e) {
+				e.printStackTrace();
+				System.out.println("Thread interrupted in hoverOnElement().");
+				throw e;
+			}
+			catch (Throwable e) {
 				e.printStackTrace();
 				System.out.println("Error in hoverOnElement().");
 				throw e;
@@ -43,7 +48,12 @@ public class ActionFunctions {
 			hold.perform();
 			Thread.sleep(100);
 		} 
-		catch (Exception e) {
+		catch (InterruptedException e) {
+			e.printStackTrace();
+			System.out.println("Thread interrupted in hoverOnElement().");
+			throw e;
+		}
+		catch (Throwable e) {
 			e.printStackTrace();
 			System.out.println("Error in clickAndHoldElement().");
 			throw e;
@@ -64,7 +74,12 @@ public class ActionFunctions {
 				dragDrop.perform();
 				Thread.sleep(100);
 			} 
-			catch (Exception e) {
+			catch (InterruptedException e) {
+				e.printStackTrace();
+				System.out.println("Thread interrupted in hoverOnElement().");
+				throw e;
+			}
+			catch (Throwable e) {
 				e.printStackTrace();
 				System.out.println("Error in dragAndDropElement().");
 				throw e;
@@ -105,7 +120,12 @@ public class ActionFunctions {
 			//return the dragged and dropped elements' name array
 			return names;
 		} 
-		catch (Exception e) {
+		catch (InterruptedException e) {
+			e.printStackTrace();
+			System.out.println("Thread interrupted in hoverOnElement().");
+			throw e;
+		}
+		catch (Throwable e) {
 			e.printStackTrace();
 			System.out.println("Error in dragAndDropElements().");
 			throw e;
@@ -146,7 +166,12 @@ public class ActionFunctions {
 				//return the dragged and dropped elements' name array
 				return names;
 			} 
-			catch (Exception e) {
+			catch (InterruptedException e) {
+				e.printStackTrace();
+				System.out.println("Thread interrupted in hoverOnElement().");
+				throw e;
+			}
+			catch (Throwable e) {
 				e.printStackTrace();
 				System.out.println("Error in dragAndDropElements().");
 				throw e;
@@ -173,7 +198,14 @@ public class ActionFunctions {
 				//asert whether name of item in dropped list matches with name of dropped items array
 				AssertionsAndVerifications.assertEqualValue(itemName, values[i]);
 			}
-		} catch (Exception e) {
+			
+		} 
+		catch (InterruptedException e) {
+			e.printStackTrace();
+			System.out.println("Thread interrupted in hoverOnElement().");
+			throw e;
+		}
+		catch (Throwable e) {
 			e.printStackTrace();
 			System.out.println("Error in verifyDroppedItems().");
 			throw e;

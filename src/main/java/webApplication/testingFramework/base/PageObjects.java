@@ -53,10 +53,10 @@ public class PageObjects extends readConfig
 	}
 	
 	//method to provide the actual locator values
-	public static String getActualLocatorValue(String value) throws Throwable {
+	public static String getActualLocatorValue(String key) throws Throwable {
 		try {		
-			log.debug("Getting the actual locator value of " + value);
-			return pageObjectProperty.getProperty(value);
+			log.debug("Getting the actual locator value of " + key);
+			return pageObjectProperty.getProperty(key);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();

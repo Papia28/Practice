@@ -109,4 +109,17 @@ public class readConfig
 			throw e;
 		}
 	}
+	
+	//method to return the key value from customConfig.properties file
+		public static String getConfigKeyValue(String key)throws Exception {
+			try {
+				log.debug("Getting the actual key value from config file.");
+				return configProperties.getProperty("key");
+			}
+			catch(Throwable e) {
+				log.fatal("Failure! Error in getting key value.");
+				e.printStackTrace();
+				throw e;
+			}
+		}
 }

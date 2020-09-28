@@ -33,38 +33,27 @@ public class seleniumBaseDriverManager
 				log.info("Browser is " + browser + ".");
 
 				// check the browser obtained from config file
-				if ("Chrome".equalsIgnoreCase(browser)) 
+				if (browser.toUpperCase().contains("CHROME")) 
 				{
 					WebDriverManager.chromedriver().setup();
 					log.info("Success! Browser driver path set.");
 				} 
-				else if ("ChromeHeadless".equalsIgnoreCase(browser) || "Chrome Headless".equalsIgnoreCase(browser)) 
-				{
-					WebDriverManager.chromedriver().setup();
-					log.info("Success! Browser driver path set.");
-				} 
-				else if ("Firefox".equalsIgnoreCase(browser)) 
+				else if (browser.toUpperCase().contains("FIREFOX")) 
 				{
 					WebDriverManager.firefoxdriver().setup();
 					log.info("Success! Browser driver path set.");
 				} 
-				else if ("FirefoxHeadless".equalsIgnoreCase(browser) || "Firefox Headless".equalsIgnoreCase(browser)) 
-				{
-					WebDriverManager.firefoxdriver().setup();
-					log.info("Success! Browser driver path set.");
-				} 
-				else if ("InternetExplorer".equalsIgnoreCase(browser) || "Internet Explorer".equalsIgnoreCase(browser)) 
+				else if (browser.toUpperCase().contains("INTERNET")) 
 				{
 					WebDriverManager.iedriver().setup();
 					log.info("Success! Browser driver path set.");
 				} 
-				else if ("MicrosoftEdge".equalsIgnoreCase(browser) || "Microsoft Edge".equalsIgnoreCase(browser)) 
+				else if (browser.toUpperCase().contains("EDGE")) 
 				{
 					WebDriverManager.edgedriver().setup();
 					log.info("Success! Browser driver path set.");
 				}
 				/*
-				 * else if("Headless".equalsIgnoreCase(browser)) { //TODO for headless } else
 				 * if("Safari".equalsIgnoreCase(browser)) {
 				 * //System.setProperties("webdriver.safari.driver", ""); //TODO for safari }
 				 */
@@ -84,7 +73,7 @@ public class seleniumBaseDriverManager
 			e.printStackTrace();
 			throw e;
 		}
-		catch (Exception e) 
+		catch (Throwable e) 
 		{
 			log.fatal("Failure! Browser driver path not set.");
 			e.printStackTrace();

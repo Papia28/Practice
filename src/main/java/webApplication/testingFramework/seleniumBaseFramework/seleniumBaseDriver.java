@@ -1,20 +1,26 @@
 package webApplication.testingFramework.seleniumBaseFramework;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 //import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import webApplication.testingFramework.base.PageObjects;
 import webApplication.testingFramework.common.Waits;
 
 public class seleniumBaseDriver extends seleniumBaseDriverManager 
@@ -64,7 +70,7 @@ public class seleniumBaseDriver extends seleniumBaseDriverManager
 			seleniumBaseDriver.driver = setSeleniumBaseDriver(getBrowser());
 			log.info("Success! driver set.");
 		} 
-		catch (Exception e) {
+		catch (Throwable e) {
 			e.printStackTrace();
 			log.fatal("Failure! driver not set.");
 			throw e;
@@ -76,59 +82,45 @@ public class seleniumBaseDriver extends seleniumBaseDriverManager
 	private static WebDriver setSeleniumBaseDriver(String browser) throws Throwable {
 		try {
 			// return proper WebDriver object
-			if ("Chrome".equalsIgnoreCase(browser)) {
+			log.info("Browser is " + browser + "!");
+			if (browser.toUpperCase().contains("CHROME")) 
+			{
+				ChromeOptions options = new ChromeOptions();
 				capabilities = new DesiredCapabilities();
 				capabilities.setCapability(CapabilityType.BROWSER_NAME, "chrome");
 				capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
-				ChromeOptions ch = new ChromeOptions();
-				ch.merge(capabilities);
-				driver = new ChromeDriver(ch);
+				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);				
+				if(browser.toUpperCase().contains("HEADLESS"))
+				{
+					options.addArguments("--headless");
+					options.addArguments("--disable-gpu");
+					options.addArguments("--window-size=1920,1080");
+				}
+				options.merge(capabilities);
+				driver = new ChromeDriver(options);
 				driver = Waits.implicitWait(driver);
 			} 
-			else if ("ChromeHeadless".equalsIgnoreCase(browser) || "Chrome Headless".equalsIgnoreCase(browser)) {
-				log.info("Browser is Chrome Headless!");
-				capabilities = new DesiredCapabilities();
-				capabilities.setCapability(CapabilityType.BROWSER_NAME, "chrome");
-				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-				capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
-				ChromeOptions ch = new ChromeOptions();
-				ch.addArguments("--headless");
-				ch.addArguments("--disable-gpu");
-				ch.addArguments("--window-size=1920,1080");
-				ch.merge(capabilities);
-				driver = new ChromeDriver(ch);
-				driver = Waits.implicitWait(driver);
-			} 
-			else if ("Firefox".equalsIgnoreCase(browser)) {
-				log.info("Browser is Firefox!");
+			else if (browser.toUpperCase().contains("FIREFOX")) 
+			{
+				FirefoxOptions options = new FirefoxOptions();
 				capabilities = new DesiredCapabilities();
 				capabilities.setCapability(CapabilityType.BROWSER_NAME, "firefox");
 				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 				capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
-				driver = new FirefoxDriver();
+				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);				
+				if(browser.toUpperCase().contains("HEADLESS"))
+				{
+					options.addArguments("--headless");
+					options.addArguments("--disable-gpu");
+					options.addArguments("--window-size=1920,1080");
+				}
+				options.merge(capabilities);
+				driver = new FirefoxDriver(options);
 				driver = Waits.implicitWait(driver);
-			} 
-			else if ("FirefoxHeadless".equalsIgnoreCase(browser) || "Firefox Headless".equalsIgnoreCase(browser)) {
-				log.info("Browser is Firefox Headless");
-				capabilities = new DesiredCapabilities();
-				capabilities.setCapability(CapabilityType.BROWSER_NAME, "firefox");
-				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-				capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
-				FirefoxOptions ff = new FirefoxOptions();
-				ff.addArguments("--headless");
-				ff.addArguments("--disable-gpu");
-				ff.addArguments("--window-size=1920,1080");
-				ff.merge(capabilities);
-				driver = new FirefoxDriver(ff);
-				driver = Waits.implicitWait(driver);
-			} 
-			else if ("InternetExplorer".equalsIgnoreCase(browser) || "Internet Explorer".equalsIgnoreCase(browser)) {
-				log.info("Browser is Internet Explorer!");
+			}  
+			else if (browser.toUpperCase().contains("INTERNET")) 
+			{
 				capabilities = new DesiredCapabilities();
 				capabilities.setCapability(CapabilityType.BROWSER_NAME, "internetExplorer");
 				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
@@ -137,41 +129,55 @@ public class seleniumBaseDriver extends seleniumBaseDriverManager
 				driver = new InternetExplorerDriver();
 				driver = Waits.implicitWait(driver);
 			} 
-			else if ("MicrosoftEdge".equalsIgnoreCase(browser) || "Microsoft Edge".equalsIgnoreCase(browser)) {
-				log.info("Browser is Microsoft Edge!");
+			else if (browser.toUpperCase().contains("EDGE")) 
+			{
+				EdgeOptions options = new EdgeOptions();
 				capabilities = new DesiredCapabilities();
 				capabilities.setCapability(CapabilityType.BROWSER_NAME, "edge");
 				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 				capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
-				driver = new EdgeDriver();
+				capabilities.setCapability(EdgeOptions.CAPABILITY, options);
+				driver = new EdgeDriver(capabilities);
 				driver = Waits.implicitWait(driver);
 			} 
-			else if ("Headless".equalsIgnoreCase(browser)) {
-				log.info("Browser is Headless!");
-				capabilities = new DesiredCapabilities();
-				capabilities.setCapability(CapabilityType.BROWSER_NAME, "htmlUnit");
+			else if (browser.toUpperCase().contains("GRID")) 
+			{
+				String gridBrowser = PageObjects.getConfigKeyValue("gridBrowser");
+				String hubAddress = PageObjects.getConfigKeyValue("hubAddress");
+				
+				log.info("Grid Browser is " + gridBrowser + "!");
+				
+				capabilities = new DesiredCapabilities();				
+				capabilities.setCapability(CapabilityType.BROWSER_NAME, gridBrowser);
+				capabilities.setCapability(CapabilityType.PLATFORM_NAME, Platform.WINDOWS);
 				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 				capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				capabilities.setCapability(CapabilityType.SUPPORTS_JAVASCRIPT, true);
-				driver = new HtmlUnitDriver();
+				
+				driver = new RemoteWebDriver(new URL(hubAddress + "/wd/hub"), capabilities);
+				
 				driver = Waits.implicitWait(driver);
-			}
-
+			} 
+			
 			// TODO safari
-			// TODO selenium grid
 			// TODO for android for appium
-
+			log.info("Browser launched successfully!");
 			return driver;
 		}
-		catch(WebDriverException e) {
-			log.fatal("Failure! WebDriver object not set.");
+		catch(MalformedURLException e) {
+			log.fatal("Failure! URL not proper!");
 			e.printStackTrace();
 			throw e;
 		}
-		catch (Exception e) 
+		catch(WebDriverException e) {
+			log.fatal("Failure! WebDriver object not set!");
+			e.printStackTrace();
+			throw e;
+		}
+		catch (Throwable e) 
 		{
-			log.fatal("Failure! driver not set.");
+			log.fatal("Failure! WebDriver object not set!");
 			e.printStackTrace();
 			throw e;
 		}

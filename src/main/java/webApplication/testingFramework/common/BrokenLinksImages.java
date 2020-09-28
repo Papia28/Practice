@@ -1,5 +1,6 @@
 package webApplication.testingFramework.common;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.apache.logging.log4j.LogManager;
@@ -20,6 +21,12 @@ public class BrokenLinksImages {
 				else 
 					return false;
 		}
+		catch(MalformedURLException t)
+		{
+			t.printStackTrace();
+			log.error("URL not formed correctly!");
+			throw t;
+		}
 		catch(Throwable t)
 		{
 			t.printStackTrace();
@@ -37,6 +44,12 @@ public class BrokenLinksImages {
 					return true;
 				else 
 					return false;
+		}
+		catch(MalformedURLException t)
+		{
+			t.printStackTrace();
+			log.error("URL not formed correctly!");
+			throw t;
 		}
 		catch(Throwable t)
 		{
