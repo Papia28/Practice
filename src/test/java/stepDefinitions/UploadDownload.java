@@ -21,7 +21,7 @@ public class UploadDownload {
 	private static WebDriver driver = gf.getDriver();
 	private static String expectedFileName = null;
 	
-	@When("^user clicks elements$")
+	@When("^user clicks Elements$")
 	public void clickElements() throws Throwable
 	{
 		try {

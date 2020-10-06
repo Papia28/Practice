@@ -12,9 +12,9 @@ import org.apache.logging.log4j.Logger;
 
 import webApplication.testingFramework.base.PageObjects;
 
-public class DatabaseConnection 
+public class JDBC 
 {
-	public static Logger log = LogManager.getLogger(DatabaseConnection.class.getName());
+	public static Logger log = LogManager.getLogger(JDBC.class.getName());
 	private static Connection connection = null;
 	private static Statement statement = null;
 	private static ResultSet resultSet = null;
@@ -25,7 +25,7 @@ public class DatabaseConnection
 	private static String dbName = null;	
 	private static String url = null;	
 
-	public static Connection openConnection() throws Throwable 
+	public static void openConnection() throws Throwable 
 	{
 		try {
 			log.debug("Establising database connection.");
@@ -36,11 +36,9 @@ public class DatabaseConnection
 			dbName = PageObjects.getConfigKeyValue("DBname");
 			
 			url = "jdbc:mysql://" + host + ":" + port + "/" + dbName;
-			
+			log.info(url);
 			connection = DriverManager.getConnection(url, username, password);
 			log.info("Database connection successfull!");
-			
-			return connection;
 		} 
 		catch (SQLTimeoutException t) 
 		{
@@ -62,14 +60,24 @@ public class DatabaseConnection
 		}
 	}
 
-	public static void runQuery(String query) throws Throwable 
+	public static String runQuery(String query) throws Throwable 
 	{
+		String firstName = null;
+		String lastName = null;
 		try {
 			log.debug("Running given query.");
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery(query);
 			log.info("Query run successfull!");
-		} 
+			log.debug("Getting required data.");			
+			if (resultSet.next()) 
+			{
+				firstName = resultSet.getString("first_name");
+				lastName = resultSet.getString("last_name");
+			}
+			log.info("Data collected successfully!");
+			return (firstName + " " + lastName);
+		}
 		catch (SQLTimeoutException t) 
 		{
 			t.printStackTrace();
@@ -90,34 +98,7 @@ public class DatabaseConnection
 		}
 	}
 	
-	public static String getQueryResult(String columnLabel) throws Throwable 
-	{
-		log.debug("Getting required data.");
-		String data = null;
-		try {
-			while(resultSet.next())
-			{
-				data = resultSet.getString(columnLabel);
-				break;
-			}
-			log.info("Data collected successfully!");			
-			return data;
-		} 
-		catch (SQLException t) 
-		{
-			t.printStackTrace();
-			log.fatal("SQL error in getting query result!");
-			throw t;
-		}
-		catch (Throwable t) 
-		{
-			t.printStackTrace();
-			log.fatal("Error in getting query result!");
-			throw t;
-		}
-	}
-	
-	public static void closeConnection(String query) throws Throwable 
+	public static void closeConnection() throws Throwable 
 	{
 		try {
 			log.debug("Closing database connection.");
