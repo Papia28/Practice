@@ -40,7 +40,7 @@ public abstract class BaseFunctions {
 			String URL = PageObjects.getURL();
 			if (URL != "") {
 				driver.get(URL);
-				Thread.sleep(2000);
+				Thread.sleep(500);
 				System.out.println("URL launched successfully.");
 			} else if (URL == "")
 				throw new NullPointerException("URL cannot be empty!");
@@ -89,7 +89,7 @@ public abstract class BaseFunctions {
 			By locator = getLocator(locatorType, actuallocatorValue);
 			System.out.println(locator);
 			WebElement element = driver.findElement(locator);
-			Thread.sleep(500);
+			Thread.sleep(100);
 			return element;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -105,7 +105,7 @@ public abstract class BaseFunctions {
 			By locator = getLocator(locatorType, actuallocatorValue);
 			System.out.println(locator);
 			List<WebElement> elements = driver.findElements(locator);
-			Thread.sleep(500);
+			Thread.sleep(100);
 			return elements;
 		} catch (Exception e) {
 			e.printStackTrace();

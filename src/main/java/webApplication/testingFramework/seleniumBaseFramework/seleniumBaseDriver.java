@@ -53,6 +53,7 @@ public class seleniumBaseDriver extends seleniumBaseDriverManager
 	//method to delete instance of the singleton class
 	public static void deleteInstance()
 	{
+		driver = null;
 		baseInstance = null;
 	}
 	

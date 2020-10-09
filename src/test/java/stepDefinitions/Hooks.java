@@ -10,6 +10,7 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import webApplication.testingFramework.base.BaseFunctions;
 import webApplication.testingFramework.base.GenericFunctions;
 import webApplication.testingFramework.common.StringUtility;
 import webApplication.testingFramework.reporting.ExtentReportHandler;
@@ -20,9 +21,9 @@ public class Hooks extends ExtentReportHandler {
 	
 	private static Logger log = LogManager.getLogger(Hooks.class.getName());
 	
-	public GenericFunctions gf = null;
-	public String scenarioName = null;
-	public String featureName = null;
+	private static GenericFunctions gf = null;
+	private static String scenarioName = null;
+	private static String featureName = null;
 	
 	@Before
 	public void beforeScenario(Scenario scenario) throws Throwable {
@@ -40,6 +41,7 @@ public class Hooks extends ExtentReportHandler {
 			//initialize and open browser
 			seleniumBase.openBrowser();			
 			gf = new GenericFunctions();
+			gf.setDriver();
 			
 			Thread.sleep(100);				
 		}
@@ -68,14 +70,19 @@ public class Hooks extends ExtentReportHandler {
 			  test.pass(MarkupHelper.createLabel(scenarioName, ExtentColor.GREEN));
 			  }			 
 			
-			Thread.sleep(300);
-			seleniumBase.closeBrowser();
+			Thread.sleep(300);			
 		}
 		catch(Throwable e) 
 		{
 			e.printStackTrace();
 			log.error("Error in afterScenario().");
 			throw e;
+		}
+		finally
+		{
+			gf = null;
+			BaseFunctions.setBaseDriver(null);
+			seleniumBase.closeBrowser();
 		}
 	}
 }

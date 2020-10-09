@@ -15,7 +15,7 @@ public class JavascriptFunctions {
 		try {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
-		Thread.sleep(500);
+		Thread.sleep(50);
 		}
 		catch(Throwable t)
 		{
@@ -30,7 +30,7 @@ public class JavascriptFunctions {
 		try {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click;", element);
-		Thread.sleep(500);
+		Thread.sleep(50);
 		}
 		catch(Throwable t)
 		{
@@ -45,7 +45,7 @@ public class JavascriptFunctions {
 		try {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,-arguments[0])", value);
-		Thread.sleep(500);
+		Thread.sleep(50);
 		}
 		catch(Throwable t)
 		{
@@ -60,7 +60,7 @@ public class JavascriptFunctions {
 		try {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].setAttribute('style', 'background: lime; border: 2px solid red; font-weight: bolder;');", element);
-		Thread.sleep(500);
+		Thread.sleep(50);
 		}
 		catch(Throwable t)
 		{
@@ -75,12 +75,26 @@ public class JavascriptFunctions {
 		try {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,arguments[0])", value);
-		Thread.sleep(500);
+		Thread.sleep(50);
 		}
 		catch(Throwable t)
 		{
 			t.printStackTrace();
 			log.error("Error in scrolling!");
+			throw t;
+		}
+	}
+	
+	public static WebElement getElementByJavascript(WebDriver driver)throws Throwable
+	{
+		try {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		return (WebElement) js.executeScript("document.getElementByTagName('body');");
+		}
+		catch(Throwable t)
+		{
+			t.printStackTrace();
+			log.error("Error in highlighting!");
 			throw t;
 		}
 	}

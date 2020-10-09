@@ -32,6 +32,8 @@ public class DragAndDrop {
 			stepInfo = ExtentReportHandler.createStepInfo("When", stepName);
 			Thread.sleep(200);
 			
+			JavascriptFunctions.scrollDownByPixelValue(driver, 300);
+			
 			//hover on the element to be clicked
 			ActionFunctions.hoverOnElement(driver, GenericFunctions.getElement("xpath", "Interactions"));
 			

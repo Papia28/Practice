@@ -3,6 +3,7 @@ package stepDefinitions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -17,13 +18,16 @@ import webApplication.testingFramework.common.Waits;
 public class UploadDownload {
 	
 	public static Logger log = LogManager.getLogger(UploadDownload.class.getName());
-	private static GenericFunctions gf = new GenericFunctions();
-	private static WebDriver driver = gf.getDriver();
+	private static GenericFunctions gf = null;
+	private static WebDriver driver = null;
 	private static String expectedFileName = null;
 	
 	@When("^user clicks Elements$")
 	public void clickElements() throws Throwable
 	{
+		gf = new GenericFunctions();
+		gf.setDriver();
+		driver = gf.getDriver();
 		try {
 			Thread.sleep(50);
 			JavascriptFunctions.scrollDownByPixelValue(driver, 300);
@@ -92,9 +96,10 @@ public class UploadDownload {
 	public void verifyFileUpload() throws Throwable
 	{
 		try {
-			Waits.explicitWaitByVisibility(driver, GenericFunctions.getElement("CssSelector", "uploadedFile"));
+			WebElement element = GenericFunctions.getElement("CssSelector", "uploadedFile");
+			Waits.explicitWaitByVisibility(driver, element);
 			
-			String uploadedFile = gf.getInnerText("CssSelector", "uploadedFile");
+			String uploadedFile = gf.getInnerText(element);
 			int index = uploadedFile.lastIndexOf('\\');
 			
 			String actualFileName = uploadedFile.substring(index+1);

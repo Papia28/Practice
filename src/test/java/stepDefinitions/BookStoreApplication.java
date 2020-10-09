@@ -5,7 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import webApplication.testingFramework.base.GenericFunctions;
 
-public final class Login {
+public final class BookStoreApplication {
 
 	public GenericFunctions gf = new GenericFunctions();
 
@@ -14,7 +14,7 @@ public final class Login {
 		try {
 			GenericFunctions.launchBaseURL();
 			gf.maximizeBrowser();
-			Thread.sleep(5000);
+			Thread.sleep(50);
 		} catch (PendingException n) {
 			System.out.println("Steps not found.");
 		} catch (Exception e) {

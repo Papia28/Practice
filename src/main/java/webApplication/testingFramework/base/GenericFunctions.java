@@ -44,7 +44,7 @@ public class GenericFunctions extends BaseFunctions {
 			//code to maximize the browser window
 			log.debug("Maximizing browser");
 			driver.manage().window().maximize();
-			Thread.sleep(200);
+			Thread.sleep(50);
 			log.info("Successfully maximized browser!");
 		} 
 		catch (Throwable e) {
@@ -62,11 +62,11 @@ public class GenericFunctions extends BaseFunctions {
 			//get the element
 			WebElement element = getElement(locatorType, locatorValue);
 			JavascriptFunctions.highlightElement(driver, element);
-			Thread.sleep(100);
+			Thread.sleep(50);
 			
 			//click on the element
 			element.click();
-			Thread.sleep(100);
+			Thread.sleep(50);
 		} 
 		catch (Throwable e) {
 			e.printStackTrace();
@@ -83,11 +83,11 @@ public class GenericFunctions extends BaseFunctions {
 			//get the element using the actual locator
 			WebElement element = getElement(locatorType, locatorValue);
 			JavascriptFunctions.highlightElement(driver, element);
-			Thread.sleep(100);
+			Thread.sleep(50);
 			
 			//clear contents of the element
 			element.clear();
-			Thread.sleep(100);
+			Thread.sleep(50);
 		} 
 		catch (Throwable e) {
 			e.printStackTrace();
@@ -104,11 +104,11 @@ public class GenericFunctions extends BaseFunctions {
 			//get the element using the actual locator
 			WebElement element = getElement(locatorType, locatorValue);
 			JavascriptFunctions.highlightElement(driver, element);
-			Thread.sleep(100);
+			Thread.sleep(50);
 			
 			//write the fieldValue in the text field 
 			element.sendKeys(fieldValue);
-			Thread.sleep(100);
+			Thread.sleep(50);
 		} 
 		catch (Throwable e) {
 			e.printStackTrace();
@@ -122,7 +122,7 @@ public class GenericFunctions extends BaseFunctions {
 	
 	public String getActualPageTitle() throws Throwable {
 		try {
-			Thread.sleep(500);
+			Thread.sleep(50);
 			
 			//return the title of the current web page
 			return driver.getTitle();
@@ -141,7 +141,7 @@ public class GenericFunctions extends BaseFunctions {
 		try {			
 			//get the actual value of the expected page title by reading the objectProperties file
 			String expectedPageTitle = PageObjects.getActualLocatorValue(title);
-			Thread.sleep(500);
+			Thread.sleep(50);
 			
 			//call function to return current web page title
 			String actualPageTitle = getActualPageTitle();
@@ -163,7 +163,7 @@ public class GenericFunctions extends BaseFunctions {
 		try {
 			//get the element using the actual locator
 			WebElement element = getElement(locatorType, locatorValue);
-			Thread.sleep(200);
+			Thread.sleep(50);
 			
 			//assert visibility of element
 			AssertionsAndVerifications.assertTrueValue(element.isDisplayed());
@@ -186,14 +186,12 @@ public class GenericFunctions extends BaseFunctions {
 	//-----------------------------------------------------------------------------------------------------------------------------------------------
 	// method to return inner text from element
 	
-		public String getInnerText(String locatorType, String locatorValue) throws Throwable {
+		public String getInnerText(WebElement element) throws Throwable {
 			try {
-				//get the element using the actual locator
-				WebElement element = getElement(locatorType, locatorValue);
 				JavascriptFunctions.highlightElement(driver, element);
-				Thread.sleep(200);
+				Thread.sleep(50);
 				
-				//return the inner text fro the element
+				//return the inner text from the element
 				return element.getText();
 			} 
 			catch (Throwable e) {
@@ -204,5 +202,20 @@ public class GenericFunctions extends BaseFunctions {
 		}
 	
 	//-----------------------------------------------------------------------------------------------------------------------------------------------
+		// method to close current window
+		
+			public void closeCurrentWindow() throws Throwable {
+				try {
+					Thread.sleep(50);					
+					driver.close();
+				} 
+				catch (Throwable e) {
+					e.printStackTrace();
+					log.error("Error in getInnerText().");
+					throw e;
+				}
+			}
+		
+		//-----------------------------------------------------------------------------------------------------------------------------------------------
 	// end of class
 }

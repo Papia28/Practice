@@ -4,37 +4,49 @@ import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import webApplication.testingFramework.base.BaseFunctions;
+import webApplication.testingFramework.base.GenericFunctions;
 
-public class WindowHandler extends BaseFunctions {
-
+public class WindowHandler 
+{
 	private static Logger log = LogManager.getLogger(WindowHandler.class.getName());
-	private static String parent = null;
 
-	public String getParentWindow(WebDriver driver) throws Throwable {
+	public static String getParentWindow(WebDriver driver) throws Throwable {
 		try {
-			parent = driver.getWindowHandle();
-			return parent;
-		} catch (Throwable e) {
+			return driver.getWindowHandle();
+		} 
+		catch (Throwable e) {
 			log.error("Error in getting parent window handle!", e.fillInStackTrace());
 			throw e;
 		}
 	}
 
-	public Set<String> getChildWindows(WebDriver driver) throws Throwable {
+	public static Set<String> getChildWindows(WebDriver driver) throws Throwable {
 		try {
 			return driver.getWindowHandles();
-		} catch (Throwable e) {
+		} 
+		catch (Throwable e) {
+			log.error("Error in getting child window handles!", e.fillInStackTrace());
+			throw e;
+		}
+	}
+	
+	public static void switchToWindow(WebDriver driver, String windowHandle) throws Throwable {
+		try {
+			driver.switchTo().window(windowHandle);
+		} 
+		catch (Throwable e) {
 			log.error("Error in getting child window handles!", e.fillInStackTrace());
 			throw e;
 		}
 	}
 
-	public void switchToNthChildWindow(WebDriver driver, int n) throws Throwable {
+	public static void switchToNthWindow(WebDriver driver, String parent, int n) throws Throwable 
+	{
 		int count = 0;
 		Set<String> windows = getChildWindows(driver);
 
@@ -52,19 +64,73 @@ public class WindowHandler extends BaseFunctions {
 		}
 	}
 
-	public void switchToWindowWithElement(WebDriver driver, WebElement element) throws Throwable 
+	public static WebElement switchToWindowWithElement(WebDriver driver, String parent, String locatorType, String locatorValue) throws Throwable 
 	{
-		// TODO
+		int count = 0;
+		Set<String> windows = getChildWindows(driver);		
+		WebElement element = null;
+		try {
+			windows.remove(parent);
+			for (String child : windows) 
+			{
+				driver.switchTo().window(child);
+				try 
+				{
+					element = GenericFunctions.getElement(locatorType, locatorValue);
+					if (element.getTagName() != null)
+						break;
+				}
+				catch(Throwable t)
+				{
+					count++;
+					if (count > 5)
+						break;
+					else
+						continue;
+				}
+			}
+			return element;
+		} 
+		catch (Throwable e) 
+		{
+			log.error("Error while switching windows!", e.fillInStackTrace());
+			throw e;
+		}
+	}
+	
+	public static void switchUsingJavascriptElement(WebDriver driver, String parent) throws Throwable 
+	{
+		//int count = 0;
+		Set<String> windows = getChildWindows(driver);		
+		//WebElement element = null;
+		try {
+			windows.remove(parent);
+			for (String child : windows) 
+			{
+				driver.switchTo().window(child);
+				/*
+				 * try { element = JavascriptFunctions.getElementByJavascript(driver); if
+				 * (element.getTagName() != null) break; } catch(Throwable t) { count++; if
+				 * (count > 5) break; else continue; }
+				 */
+			}
+			//return element;
+		} 
+		catch (Throwable e) 
+		{
+			log.error("Error while switching windows!", e.fillInStackTrace());
+			throw e;
+		}
 	}
 
-	public void openNewTab(WebDriver driver) throws Throwable 
+	public static void openNewTab(WebDriver driver) throws Throwable 
 	{
 		try {
 			// get parent window handle
 			String parent = getParentWindow(driver);
 
 			// get body element of the page
-			WebElement body = getElement("xpath", "PageBody");
+			WebElement body = driver.findElement(By.xpath("//body"));
 
 			// open a new tab
 			body.sendKeys(Keys.chord(Keys.CONTROL, "t"));
